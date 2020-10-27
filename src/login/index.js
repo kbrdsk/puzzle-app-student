@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import jwt from "jsonwebtoken";
+import { Redirect } from "react-router-dom";
 
 export default function Login() {
 	const [first, setFirst] = useState();
 	const [last, setLast] = useState();
+	const [loginSuccess, setLoginSuccess] = useState(false);
+	let student;
 
 	const updateName = (updater, event) => {
 		updater(event.target.value);
@@ -14,7 +17,6 @@ export default function Login() {
 		const uri =
 			`${process.env.REACT_APP_API_URI}/students` +
 			(create ? "" : "/login");
-		console.log(uri);
 		const response = await fetch(uri, {
 			method: "POST",
 			headers: {
@@ -24,11 +26,14 @@ export default function Login() {
 		});
 		if (response.ok) {
 			const token = (await response.json()).token;
-			console.log(jwt.decode(token).student);
+			student = jwt.decode(token).student;
+			setLoginSuccess(true);
 		} else console.log("HTTP error, status = " + response.status);
 	};
 
-	return (
+	return loginSuccess ? (
+		<Redirect to={{ pathname: "/", state: { student } }} />
+	) : (
 		<div id="login-container">
 			<div className="name-container">
 				<label htmlFor="firstname">First Name:</label>
