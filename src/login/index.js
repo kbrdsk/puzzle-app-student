@@ -6,7 +6,7 @@ export default function Login() {
 	const [first, setFirst] = useState();
 	const [last, setLast] = useState();
 	const [loginSuccess, setLoginSuccess] = useState(false);
-	let student;
+	let token;
 
 	const updateName = (updater, event) => {
 		updater(event.target.value);
@@ -26,13 +26,17 @@ export default function Login() {
 		});
 		if (response.ok) {
 			const token = (await response.json()).token;
-			student = jwt.decode(token).student;
-			setLoginSuccess(true);
+			try {
+				jwt.decode(token);
+				setLoginSuccess(true);
+			} catch (error) {
+				console.log(error);
+			}
 		} else console.log("HTTP error, status = " + response.status);
 	};
 
 	return loginSuccess ? (
-		<Redirect to={{ pathname: "/", state: { student } }} />
+		<Redirect to={{ pathname: "/", state: { token } }} />
 	) : (
 		<div id="login-container">
 			<div className="name-container">
