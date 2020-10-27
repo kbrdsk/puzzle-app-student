@@ -5,8 +5,7 @@ import { Redirect } from "react-router-dom";
 export default function Login() {
 	const [first, setFirst] = useState();
 	const [last, setLast] = useState();
-	const [loginSuccess, setLoginSuccess] = useState(false);
-	let token;
+	const [token, setToken] = useState();
 
 	const updateName = (updater, event) => {
 		updater(event.target.value);
@@ -25,17 +24,17 @@ export default function Login() {
 			body: JSON.stringify(studentData),
 		});
 		if (response.ok) {
-			const token = (await response.json()).token;
 			try {
+				const token = (await response.json()).token
 				jwt.decode(token);
-				setLoginSuccess(true);
+				setToken(token);
 			} catch (error) {
 				console.log(error);
 			}
 		} else console.log("HTTP error, status = " + response.status);
 	};
 
-	return loginSuccess ? (
+	return token ? (
 		<Redirect to={{ pathname: "/", state: { token } }} />
 	) : (
 		<div id="login-container">
