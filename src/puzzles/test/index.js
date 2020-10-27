@@ -1,7 +1,13 @@
 import React from "react";
 
-function Test() {
+export function Page() {
 	return <div>Test Puzzle</div>;
 }
 
-export { Test };
+export function POTDPreview() {
+	return <div>Test puzzle! Is it solved????</div>;
+}
+
+export const name = "Test Puzzle";
+
+export const id = "test";
