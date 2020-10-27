@@ -1,8 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import { Login } from "./login/index";
+
 function App() {
-	return <main>Hello Students!</main>;
+	return (
+		<main>
+			<Login />
+		</main>
+	);
 }
 
 //---------
