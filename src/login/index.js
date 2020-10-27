@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import jwt from "jsonwebtoken";
-import { Redirect } from "react-router-dom";
 
-export default function Login() {
+export default function Login(props) {
 	const [first, setFirst] = useState();
 	const [last, setLast] = useState();
-	const [token, setToken] = useState();
 
 	const updateName = (updater, event) => {
 		updater(event.target.value);
@@ -25,18 +23,16 @@ export default function Login() {
 		});
 		if (response.ok) {
 			try {
-				const token = (await response.json()).token
+				const token = (await response.json()).token;
 				jwt.decode(token);
-				setToken(token);
+				props.history.push("/", { token });
 			} catch (error) {
 				console.log(error);
 			}
 		} else console.log("HTTP error, status = " + response.status);
 	};
 
-	return token ? (
-		<Redirect to={{ pathname: "/", state: { token } }} />
-	) : (
+	return (
 		<div id="login-container">
 			<div className="name-container">
 				<label htmlFor="firstname">First Name:</label>
