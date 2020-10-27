@@ -1,7 +1,7 @@
 import React from "react";
 
 function Test() {
-	return <div>Login Window</div>;
+	return <div>Test Puzzle</div>;
 }
 
 export { Test };
