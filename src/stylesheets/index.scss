@@ -1,12 +1,11 @@
 @use "./login";
 @use "./home";
 
-@import url('https://fonts.googleapis.com/css?family=Alegreya&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
 * {
-	font-family: 'Alegreya';
+	font-family: "Open Sans", sans-serif;
 }
 
-body{
+body {
 	padding: 1em;
 }
