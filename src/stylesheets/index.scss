@@ -1,6 +1,12 @@
 @use "./login";
 @use "./home";
 
+@import url('https://fonts.googleapis.com/css?family=Alegreya&display=swap');
+
+* {
+	font-family: 'Alegreya';
+}
+
 body{
 	padding: 1em;
 }

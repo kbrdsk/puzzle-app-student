@@ -1,6 +1,8 @@
+@use "variables";
+
 div.login-container {
-	height: 100vh;
-	width: 100vw;
+	height: 90vh;
+	width: 90vw;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -12,6 +14,8 @@ div.login-container {
 			"firstname firstname"
 			"lastname  lastname"
 			"create    login";
+		border: 3px solid variables.$color10;
+		border-radius: 1em;
 
 		div.name-container {
 			margin: 0.5em;
@@ -27,19 +31,28 @@ div.login-container {
 
 			input{
 				margin-left: 0.5em;
+
+				&:focus{
+					outline: none;
+				}
 			}
 		}
 
 		button {
 			margin: 1em;
-			padding: 0.5em;
+			margin-bottom: 0;
+			padding: 0.7em;
 			cursor: pointer;
+			border: none;
+			border-radius: 0.3em;
 
 			&.create-student {
 				grid-area: create;
+				background-color: variables.$color4;
 			}
 			&.login-student {
 				grid-area: login;
+				background-color: variables.$color10;
 			}
 		}
 	}
