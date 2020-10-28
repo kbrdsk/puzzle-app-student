@@ -110,7 +110,8 @@ div.dashboard-container div.puzzle-list-container ul li div.list-preview {
 }
 
 body {
-  padding: 1em;
+  padding: 1.5em;
+  padding-top: 0.5em;
 }
 
 /*# sourceMappingURL=index.css.map */
