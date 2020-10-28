@@ -15,11 +15,13 @@ export default function Home(props) {
 			<h1>
 				{student.first} {student.last}
 			</h1>
-			<POTD history={history} />
+			<POTD history={history} token={token} />
 			<div className="puzzle-list-container">
 				<h2>More Puzzles</h2>
 				<ul>
-					{puzzleList.map(renderPuzzleListing.bind(null, history))}
+					{puzzleList.map(
+						renderPuzzleListing.bind(null, history, token)
+					)}
 				</ul>
 			</div>
 		</div>
@@ -33,7 +35,9 @@ function POTD(props) {
 	return (
 		<div
 			className="potd-container"
-			onClick={() => props.history.push(`/${potd.id}`)}
+			onClick={() =>
+				props.history.push(`/${potd.id}`, { token: props.token })
+			}
 		>
 			<h2>Puzzle of the Day</h2>
 			<POTDPreview />
@@ -41,9 +45,9 @@ function POTD(props) {
 	);
 }
 
-function renderPuzzleListing(history, puzzle) {
+function renderPuzzleListing(history, token, puzzle) {
 	return (
-		<li onClick={() => history.push(`/${puzzle.id}`)}>
+		<li onClick={() => history.push(`/${puzzle.id}`, { token })}>
 			<h3>{puzzle.name}</h3>
 			{puzzle.ListPreview()}
 		</li>
