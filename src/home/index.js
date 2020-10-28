@@ -11,13 +11,13 @@ export default function Home(props) {
 		? jwt.decode(token).student
 		: { first: null, last: null };
 	return token ? (
-		<div>
-			<h1>
-				{student.first} {student.last}
-			</h1>
+		<div className="dashboard-container">
+			<p className="student-name">
+				{capitalize(student.first)} {capitalize(student.last)}
+			</p>
 			<POTD history={history} token={token} />
 			<div className="puzzle-list-container">
-				<h2>More Puzzles</h2>
+				<h2>Individual Work</h2>
 				<ul>
 					{puzzleList.map(
 						renderPuzzleListing.bind(null, history, token)
@@ -55,4 +55,8 @@ function renderPuzzleListing(history, token, puzzle) {
 			{puzzle.ListPreview()}
 		</li>
 	);
+}
+
+function capitalize(string){
+	return string.replace(/^./, (char) => char.toUpperCase());
 }

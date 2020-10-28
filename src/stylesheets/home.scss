@@ -1,0 +1,63 @@
+@use "variables";
+@use "sass:color";
+
+div.dashboard-container {
+	user-select: none;
+	p.student-name {
+		text-align: right;
+		color: color.adjust(variables.$color10, $lightness: -35);
+	}
+	div.potd-container {
+		cursor: pointer;
+		padding: 2em;
+		border: 3px solid variables.$color7;
+		border-radius: 1em;
+		&:hover {
+			background-color: color.adjust(variables.$color7, $lightness: 28);
+		}
+		h2 {
+			margin: 0;
+			color: color.adjust(variables.$color7, $lightness: -35);
+		}
+		div.potd-preview {
+			margin: 2em;
+		}
+	}
+	div.puzzle-list-container {
+		padding: 2em;
+		border: 3px solid variables.$color10;
+		margin-top: 2em;
+		border-radius: 1em;
+		background-color: variables.$color12;
+		h2 {
+			margin: 0;
+			color: color.adjust(variables.$color10, $lightness: -55);
+		}
+		ul {
+			list-style-type: none;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-auto-rows: auto;
+			li {
+				background-color: white;
+				padding: 1em;
+				border: 3px solid variables.$color7;
+				border-radius: 0.5em;
+				cursor: pointer;
+				&:hover {
+					background-color: color.adjust(
+						variables.$color7,
+						$lightness: 28
+					);
+				}
+				h3 {
+					margin: 0;
+					color: color.adjust(variables.$color7, $lightness: -35);
+				}
+				div.list-preview {
+					margin: 0.5em;
+				}
+			}
+		}
+	}
+}

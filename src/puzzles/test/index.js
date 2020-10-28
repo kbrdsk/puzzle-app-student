@@ -8,9 +8,9 @@ export const id = "test";
 export { Page };
 
 export function POTDPreview() {
-	return <div>Test puzzle! Is it solved????</div>;
+	return <div className="potd-preview">Test puzzle! Is it solved????</div>;
 }
 
 export function ListPreview() {
-	return <div>Solved?</div>;
+	return <div className="list-preview">Solved?</div>;
 }
