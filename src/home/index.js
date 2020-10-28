@@ -47,7 +47,10 @@ function POTD(props) {
 
 function renderPuzzleListing(history, token, puzzle) {
 	return (
-		<li onClick={() => history.push(`/${puzzle.id}`, { token })}>
+		<li
+			key={puzzle.id}
+			onClick={() => history.push(`/${puzzle.id}`, { token })}
+		>
 			<h3>{puzzle.name}</h3>
 			{puzzle.ListPreview()}
 		</li>
