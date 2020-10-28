@@ -1,13 +1,11 @@
 import React from "react";
+import Page from "./page";
 
-export function Page(props) {
-	return (
-		<div>
-			<h1>Test Puzzle</h1>
-			<p>{props.location.state.token}</p>
-		</div>
-	);
-}
+export const name = "Test Puzzle";
+
+export const id = "test";
+
+export { Page };
 
 export function POTDPreview() {
 	return <div>Test puzzle! Is it solved????</div>;
@@ -16,7 +14,3 @@ export function POTDPreview() {
 export function ListPreview() {
 	return <div>Solved?</div>;
 }
-
-export const name = "Test Puzzle";
-
-export const id = "test";
