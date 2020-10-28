@@ -33,31 +33,33 @@ export default function Login(props) {
 	};
 
 	return (
-		<div id="login-container">
-			<div className="name-container">
-				<label htmlFor="firstname">First Name:</label>
-				<input
-					type="text"
-					name="firstname"
-					id="firstname"
-					onChange={updateName.bind(null, setFirst)}
-				/>
+		<div className="login-container">
+			<div className="login-window">
+				<div className="name-container first">
+					<label htmlFor="firstname">First Name:</label>
+					<input
+						type="text"
+						name="firstname"
+						id="firstname"
+						onChange={updateName.bind(null, setFirst)}
+					/>
+				</div>
+				<div className="name-container last">
+					<label htmlFor="lastname">Last Name:</label>
+					<input
+						type="text"
+						name="lasname"
+						id="lasname"
+						onChange={updateName.bind(null, setLast)}
+					/>
+				</div>
+				<button className="create-student" onClick={() => login(true)}>
+					Create
+				</button>
+				<button className="login-student" onClick={() => login(false)}>
+					Log-In
+				</button>
 			</div>
-			<div className="name-container">
-				<label htmlFor="lastname">Last Name:</label>
-				<input
-					type="text"
-					name="lasname"
-					id="lasname"
-					onChange={updateName.bind(null, setLast)}
-				/>
-			</div>
-			<button className="create-student" onClick={() => login(true)}>
-				Create
-			</button>
-			<button className="login-student" onClick={() => login(false)}>
-				Log-In
-			</button>
 		</div>
 	);
 }

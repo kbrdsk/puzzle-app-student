@@ -1,0 +1,39 @@
+div.login-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div.login-container div.login-window {
+  display: grid;
+  padding: 2em;
+  grid-template-areas: "firstname firstname" "lastname  lastname" "create    login";
+}
+div.login-container div.login-window div.name-container {
+  margin: 0.5em;
+  display: flex;
+  justify-content: space-between;
+}
+div.login-container div.login-window div.name-container.first {
+  grid-area: firstname;
+}
+div.login-container div.login-window div.name-container.last {
+  grid-area: lastname;
+}
+div.login-container div.login-window div.name-container input {
+  margin-left: 0.5em;
+}
+div.login-container div.login-window button {
+  margin: 1em;
+  padding: 0.5em;
+  cursor: pointer;
+}
+div.login-container div.login-window button.create-student {
+  grid-area: create;
+}
+div.login-container div.login-window button.login-student {
+  grid-area: login;
+}
+
+/*# sourceMappingURL=index.css.map */

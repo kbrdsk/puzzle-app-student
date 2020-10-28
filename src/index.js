@@ -7,6 +7,8 @@ import Login from "./login/index";
 import Home from "./home/index";
 import { puzzleList } from "./puzzles/index";
 
+import "./stylesheets/index.css";
+
 const history = createBrowserHistory();
 
 const renderPuzzleRoute = (puzzle) => (
