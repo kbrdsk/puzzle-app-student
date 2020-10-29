@@ -57,6 +57,6 @@ function renderPuzzleListing(history, token, puzzle) {
 	);
 }
 
-function capitalize(string){
+function capitalize(string) {
 	return string.replace(/^./, (char) => char.toUpperCase());
 }
