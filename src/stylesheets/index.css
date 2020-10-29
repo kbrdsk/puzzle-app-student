@@ -134,6 +134,9 @@ div.grid-container div.calcudoku-square {
   padding: 0.5em;
   border: solid 2px;
 }
+div.grid-container div.calcudoku-square.active {
+  background-color: #e5e5e5;
+}
 div.grid-container div.calcudoku-square.n-up {
   border-top: none;
 }
