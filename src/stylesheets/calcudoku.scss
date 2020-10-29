@@ -1,9 +1,11 @@
 @use "variables";
 
+$puzzle-size: 30em;
+
 div.grid-container {
 	display: grid;
-	height: 30em;
-	width: 30em;
+	height: $puzzle-size;
+	width: $puzzle-size;
 	gap: 1px;
 	background-color: black;
 	border: solid 3px;
@@ -29,19 +31,21 @@ div.grid-container {
 		box-sizing: border-box;
 		padding: 0.5em;
 		border: solid 2px;
-		&.active{
+		cursor: pointer;
+
+		&.active {
 			background-color: #e5e5e5;
 		}
-		&.n-up{
+		&.n-up {
 			border-top: none;
 		}
-		&.n-down{
+		&.n-down {
 			border-bottom: none;
 		}
-		&.n-right{
+		&.n-right {
 			border-right: none;
 		}
-		&.n-left{
+		&.n-left {
 			border-left: none;
 		}
 
@@ -57,14 +61,29 @@ div.grid-container {
 			height: 100%;
 			font-size: 4em;
 			text-align: right;
+			cursor: pointer;
 			&::-webkit-inner-spin-button,
 			&::-webkit-outer-spin-button {
 				-webkit-appearance: none;
 				margin: 0;
 			}
-			&:focus{
+			&:focus {
 				outline: none;
 			}
 		}
+	}
+}
+
+div.number-select-container {
+	width: $puzzle-size;
+	display: flex;
+	justify-content: space-evenly;
+	padding: 1em;
+	box-sizing: border-box;
+
+	button {
+		font-size: 3em;
+		padding: 0.15em 0.5em;
+		cursor: pointer;
 	}
 }

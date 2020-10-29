@@ -73,13 +73,38 @@ export default function Page(props) {
 		);
 	};
 
+	const renderNumberSelect = (number) => {
+		return (
+			<button
+				className="number-select"
+				key={`num${number}`}
+				onClick={() => {
+					activeSquare.value = number;
+					setGrid([...grid]);
+					updateWork();
+				}}
+			>
+				{number}
+			</button>
+		);
+	};
+
 	return (
 		<div>
 			<h1>{name.replace(/^./, (char) => char.toUpperCase())}</h1>
 
 			{grid ? (
-				<div className="grid-container" size={puzzleData.size}>
-					{grid.map(renderSquare)}
+				<div className="puzzle-container">
+					<div className="grid-container" size={puzzleData.size}>
+						{grid.map(renderSquare)}
+					</div>
+					<div className="number-select-container">
+						{new Array(puzzleData.size)
+							.fill(null)
+							.map((...[, number]) =>
+								renderNumberSelect(number + 1)
+							)}
+					</div>
 				</div>
 			) : null}
 		</div>
