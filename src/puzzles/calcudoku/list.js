@@ -2,15 +2,15 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import jwt from "jsonwebtoken";
 
-export const instanceList = ["sample"];
-
 export default function List(props) {
 	const state = props.location.state || { token: null };
 	const token = state.token;
 	const history = props.history;
+	const instanceList = props.instanceList;
 	const student = token
 		? jwt.decode(token).student
 		: { first: null, last: null };
+
 	return token ? (
 		<div className="calcudoku-page-container">
 			<p className="student-name">
@@ -19,9 +19,11 @@ export default function List(props) {
 			<div className="instance-list-container">
 				<h2>Calcudokus</h2>
 				<ul>
-					{instanceList.map(
-						renderInstanceListing.bind(null, history, token)
-					)}
+					{instanceList
+						? instanceList.map(
+								renderInstanceListing.bind(null, history, token)
+						  )
+						: null}
 				</ul>
 			</div>
 		</div>
