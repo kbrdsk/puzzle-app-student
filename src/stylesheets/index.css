@@ -47,11 +47,6 @@ div.login-container div.login-window button.login-student {
   background-color: #9edfe5;
 }
 
-p.student-name {
-  text-align: right;
-  color: #2c9aa4;
-}
-
 div.dashboard-container {
   user-select: none;
 }
@@ -232,6 +227,29 @@ div.instance-list-container ul li div.list-preview {
 body {
   padding: 1.5em;
   padding-top: 0.5em;
+}
+
+div.profile-bar {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  right: 0;
+  padding: 0.5em;
+}
+div.profile-bar span.student-name {
+  color: #2c9aa4;
+  margin-right: 0.5em;
+}
+div.profile-bar button.log-out {
+  border: none;
+  border-radius: 0.2em;
+  color: white;
+  background-color: #39beca;
+  cursor: pointer;
+}
+div.profile-bar button.log-out:hover {
+  color: #2c9aa4;
+  background-color: #daf3f5;
 }
 
 /*# sourceMappingURL=index.css.map */

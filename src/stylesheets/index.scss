@@ -1,3 +1,5 @@
+@use "variables";
+@use "sass:color";
 @use "./login";
 @use "./home";
 @use "./calcudoku";
@@ -10,4 +12,29 @@
 body {
 	padding: 1.5em;
 	padding-top: 0.5em;
+}
+
+div.profile-bar {
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+	right: 0;
+	padding: 0.5em;
+
+	span.student-name {
+		color: color.adjust(variables.$color10, $lightness: -35);
+		margin-right: 0.5em;
+	}
+	button.log-out{
+		border: none;
+		border-radius: 0.2em;
+		color: white;
+		background-color: color.adjust(variables.$color10, $lightness: -25);
+		cursor: pointer;
+
+		&:hover{
+			color: color.adjust(variables.$color10, $lightness: -35);
+			background-color: color.adjust(variables.$color10, $lightness: 15);
+		}
+	}
 }

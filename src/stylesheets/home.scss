@@ -1,11 +1,6 @@
 @use "variables";
 @use "sass:color";
 
-p.student-name {
-	text-align: right;
-	color: color.adjust(variables.$color10, $lightness: -35);
-}
-
 div.dashboard-container {
 	user-select: none;
 	div.potd-container {

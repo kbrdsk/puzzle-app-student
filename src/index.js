@@ -45,11 +45,13 @@ function Routes() {
 
 function ProfileBar({ student, setUser }) {
 	return (
-		<div>
-			<p className="student-name">
+		<div className="profile-bar">
+			<span className="student-name">
 				{capitalize(student.first)} {capitalize(student.last)}
-			</p>
-			<button onClick={() => setUser(null)}>Log Out</button>
+			</span>
+			<button onClick={() => setUser(null)} className="log-out">
+				Log Out
+			</button>
 		</div>
 	);
 }
