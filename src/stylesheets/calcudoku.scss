@@ -19,6 +19,8 @@ div.grid-container {
 	&[size="5"] {
 		grid-template-columns: repeat(5, 1fr);
 		grid-template-rows: repeat(5, 1fr);
+		height: $puzzle-size * 5 / 4;
+		width: $puzzle-size * 5 / 4;
 	}
 
 	&[size="6"] {

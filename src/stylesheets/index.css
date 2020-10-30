@@ -123,6 +123,8 @@ div.grid-container[size="4"] {
 div.grid-container[size="5"] {
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
+  height: 37.5em;
+  width: 37.5em;
 }
 div.grid-container[size="6"] {
   grid-template-columns: repeat(6, 1fr);
