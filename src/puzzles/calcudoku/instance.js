@@ -45,11 +45,12 @@ export default function Instance(props) {
 	};
 
 	const downHandler = ({ key }) => {
+		if (key === "Backspace") activeSquare.value = "";
 		if (!isNaN(key) && 1 <= key && key <= puzzleData.size && activeSquare) {
 			activeSquare.value = key;
-			setGrid([...grid]);
-			updateWork();
 		}
+		setGrid([...grid]);
+		updateWork();
 	};
 
 	useEffect(() => {
