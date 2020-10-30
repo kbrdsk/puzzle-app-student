@@ -31,12 +31,12 @@ export default function Home(props) {
 }
 
 function POTD(props) {
-	const POTDPreview = potd.POTDPreview;
+	const POTDPreview = potd.Preview;
 	return (
 		<div
 			className="potd-container"
 			onClick={() =>
-				props.history.push(`/${potd.id}`, { token: props.token })
+				props.history.push(potd.uri, { token: props.token })
 			}
 		>
 			<h2>Puzzle of the Day</h2>
