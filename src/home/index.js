@@ -4,13 +4,10 @@ import { UserContext } from "../login/user-context.js";
 
 export default function Home({ history }) {
 	const {
-		user: { token, student },
+		user: { token },
 	} = useContext(UserContext);
 	return (
 		<div className="dashboard-container">
-			<p className="student-name">
-				{capitalize(student.first)} {capitalize(student.last)}
-			</p>
 			<POTD history={history} token={token} />
 			<div className="puzzle-list-container">
 				<h2>Individual Work</h2>
@@ -47,8 +44,4 @@ function renderPuzzleListing(history, token, puzzle) {
 			{puzzle.ListPreview()}
 		</li>
 	);
-}
-
-function capitalize(string) {
-	return string.replace(/^./, (char) => char.toUpperCase());
 }

@@ -12,11 +12,7 @@ import "./stylesheets/index.css";
 
 const history = createBrowserHistory();
 
-const renderPuzzleRoute = (puzzle) => (
-	<Route key={puzzle.id} path={`/${puzzle.id}`} component={puzzle.Page} />
-);
-
-const Routes = () => {
+function Routes() {
 	const [user, setUser] = useState(null);
 	const defaultContext = {
 		user,
@@ -26,11 +22,14 @@ const Routes = () => {
 		<BrowserRouter history={history}>
 			<UserContext.Provider value={defaultContext}>
 				{user ? (
-					<Switch>
-						{puzzleList.map(renderPuzzleRoute)}
-						<Route path="/login" component={Login} />
-						<Route path="/" component={Home} />
-					</Switch>
+					<div>
+						<ProfileBar student={user.student} setUser={setUser} />
+						<Switch>
+							{puzzleList.map(renderPuzzleRoute)}
+							<Route path="/login" component={Login} />
+							<Route path="/" component={Home} />
+						</Switch>
+					</div>
 				) : (
 					<Switch>
 						<Route path="/login" component={Login} />
@@ -42,7 +41,28 @@ const Routes = () => {
 			</UserContext.Provider>
 		</BrowserRouter>
 	);
-};
+}
+
+function ProfileBar({ student, setUser }) {
+	return (
+		<div>
+			<p className="student-name">
+				{capitalize(student.first)} {capitalize(student.last)}
+			</p>
+			<button onClick={() => setUser(null)}>Log Out</button>
+		</div>
+	);
+}
+
+function renderPuzzleRoute(puzzle) {
+	return (
+		<Route key={puzzle.id} path={`/${puzzle.id}`} component={puzzle.Page} />
+	);
+}
+
+function capitalize(string) {
+	return string.replace(/^./, (char) => char.toUpperCase());
+}
 
 //---------
 
