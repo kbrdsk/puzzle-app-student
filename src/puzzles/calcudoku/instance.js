@@ -2,38 +2,37 @@ import React, { useState, useEffect } from "react";
 
 export default function Instance(props) {
 	const name = props.name;
-	const [puzzleData, setPuzzleData] = useState(null);
+	const [size, setSize] = useState(null);
 	const [grid, setGrid] = useState(null);
 	const [activeSquare, setActiveSquare] = useState(null);
 	const token = props.location.state.token;
-	const puzzleUri = `${process.env.REACT_APP_API_URI}/puzzles/calcudoku/${name}`;
+	const dburl = `${process.env.REACT_APP_API_URL}/puzzles/calcudoku/${name}`;
 
 	useEffect(() => {
 		(async () => {
-			const response = await fetch(puzzleUri, {
+			const response = await fetch(dburl, {
 				method: "GET",
 				headers: { authorization: token },
 			});
 			if (response.ok) {
 				try {
 					const data = await response.json();
-					const gridData = generateGrid(data);
-					setPuzzleData(data);
-					setGrid(gridData);
+					setSize(data.size);
+					setGrid(generateGrid(data));
 				} catch (error) {
 					setGrid([]);
 					console.log(error);
 				}
 			} else console.log("HTTP error, status = " + response.status);
 		})();
-	}, [puzzleUri, token]);
+	}, [dburl, token]);
 
 	const updateWork = async () => {
 		const work = grid.map((sq) => {
 			return { col: sq.col, row: sq.row, value: sq.value };
 		});
 
-		const response = await fetch(puzzleUri, {
+		const response = await fetch(dburl, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
@@ -45,12 +44,16 @@ export default function Instance(props) {
 	};
 
 	const downHandler = ({ key }) => {
-		if (key === "Backspace") activeSquare.value = "";
-		if (!isNaN(key) && 1 <= key && key <= puzzleData.size && activeSquare) {
-			activeSquare.value = key;
+		if (activeSquare) {
+			if (["Backspace", "Delete"].includes(key)) {
+				activeSquare.value = "";
+			} else if (!isNaN(key) && 1 <= key && key <= size) {
+				activeSquare.value = key;
+			}
+
+			setGrid([...grid]);
+			updateWork();
 		}
-		setGrid([...grid]);
-		updateWork();
 	};
 
 	useEffect(() => {
@@ -95,12 +98,12 @@ export default function Instance(props) {
 			<h1>{name.replace(/^./, (char) => char.toUpperCase())}</h1>
 
 			{grid ? (
-				<div className="puzzle-container">
-					<div className="grid-container" size={puzzleData.size}>
+				<div className="puzzle-container" size={size}>
+					<div className="grid-container" size={size}>
 						{grid.map(renderSquare)}
 					</div>
 					<div className="number-select-container">
-						{new Array(puzzleData.size)
+						{new Array(size)
 							.fill(null)
 							.map((...[, number]) =>
 								renderNumberSelect(number + 1)
@@ -118,9 +121,7 @@ function generateGrid(puzzleData) {
 	return squares.map((...[, index]) => {
 		const col = Math.floor(index / size);
 		const row = index % size;
-
-		const matchSquare = (square) =>
-			square.col === col && square.row === row;
+		const matchSquare = squareMatcher({ col, row });
 		const entry = work.find(matchSquare);
 		const cage = cages.find((cage) => cage.squares.find(matchSquare));
 		const neighbors = neighborList({ col, row }, cage);
@@ -142,15 +143,17 @@ function neighborList(square, cage) {
 		"n-left": { col: square.col, row: square.row - 1 },
 		"n-right": { col: square.col, row: square.row + 1 },
 	};
+
 	for (let dir in directions) {
-		if (
-			cage.squares.find(
-				(sq) =>
-					sq.col === directions[dir].col &&
-					sq.row === directions[dir].row
-			)
-		)
+		const matchSquare = squareMatcher(directions[dir]);
+		if (cage.squares.find(matchSquare)) {
 			neighbors.push(dir);
+		}
 	}
+
 	return neighbors;
+}
+
+function squareMatcher({ col, row }) {
+	return (square) => square.col === col && square.row === row;
 }

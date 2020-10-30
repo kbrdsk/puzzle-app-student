@@ -4,7 +4,7 @@ export default function Page(props) {
 	const [solved, setSolved] = useState(false);
 	const [workFetched, setWorkFetched] = useState(false);
 	const token = props.location.state.token;
-	const puzzleUri = `${process.env.REACT_APP_API_URI}/puzzles/Test/0`;
+	const puzzleUri = `${process.env.REACT_APP_API_URL}/puzzles/Test/0`;
 	useEffect(() => {
 		if (!workFetched)
 			(async () => {

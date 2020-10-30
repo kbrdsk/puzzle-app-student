@@ -12,7 +12,7 @@ export default function Login(props) {
 	const login = async (create) => {
 		const studentData = { first, last };
 		const uri =
-			`${process.env.REACT_APP_API_URI}/students` +
+			`${process.env.REACT_APP_API_URL}/students` +
 			(create ? "" : "/login");
 		const response = await fetch(uri, {
 			method: "POST",
