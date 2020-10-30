@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../login/user-context";
 
 export default function Page(props) {
 	const [solved, setSolved] = useState(false);
 	const [workFetched, setWorkFetched] = useState(false);
-	const token = props.location.state.token;
+	const {
+		user: { token },
+	} = useContext(UserContext);
 	const puzzleUri = `${process.env.REACT_APP_API_URL}/puzzles/Test/0`;
 	useEffect(() => {
 		if (!workFetched)

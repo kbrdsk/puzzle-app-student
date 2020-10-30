@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
 import Login from "./login/index";
+import { UserContext } from "./login/user-context";
 import Home from "./home/index";
 import { puzzleList } from "./puzzles/index";
 
@@ -16,13 +17,29 @@ const renderPuzzleRoute = (puzzle) => (
 );
 
 const Routes = () => {
+	const [user, setUser] = useState(null);
+	const defaultContext = {
+		user,
+		setUser,
+	};
 	return (
 		<BrowserRouter history={history}>
-			<Switch>
-				{puzzleList.map(renderPuzzleRoute)}
-				<Route path="/login" component={Login} />
-				<Route path="/" component={Home} />
-			</Switch>
+			<UserContext.Provider value={defaultContext}>
+				{user ? (
+					<Switch>
+						{puzzleList.map(renderPuzzleRoute)}
+						<Route path="/login" component={Login} />
+						<Route path="/" component={Home} />
+					</Switch>
+				) : (
+					<Switch>
+						<Route path="/login" component={Login} />
+						<Route path="/">
+							<Redirect to="/login" />
+						</Route>
+					</Switch>
+				)}
+			</UserContext.Provider>
 		</BrowserRouter>
 	);
 };

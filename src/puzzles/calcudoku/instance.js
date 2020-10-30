@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../login/user-context";
 
 export default function Instance(props) {
 	const name = props.name;
 	const [size, setSize] = useState(null);
 	const [grid, setGrid] = useState(null);
 	const [activeSquare, setActiveSquare] = useState(null);
-	const token = props.location.state.token;
+	const {
+		user: { token },
+	} = useContext(UserContext);
 	const dburl = `${process.env.REACT_APP_API_URL}/puzzles/calcudoku/${name}`;
 
 	useEffect(() => {

@@ -1,16 +1,12 @@
-import React from "react";
-import { Redirect } from "react-router-dom";
-import jwt from "jsonwebtoken";
+import React, { useContext } from "react";
 import { potd, puzzleList } from "../puzzles/index";
+import { UserContext } from "../login/user-context.js";
 
-export default function Home(props) {
-	const state = props.location.state || { token: null };
-	const token = state.token;
-	const history = props.history;
-	const student = token
-		? jwt.decode(token).student
-		: { first: null, last: null };
-	return token ? (
+export default function Home({ history }) {
+	const {
+		user: { token, student },
+	} = useContext(UserContext);
+	return (
 		<div className="dashboard-container">
 			<p className="student-name">
 				{capitalize(student.first)} {capitalize(student.last)}
@@ -25,8 +21,6 @@ export default function Home(props) {
 				</ul>
 			</div>
 		</div>
-	) : (
-		<Redirect to="/login" />
 	);
 }
 
@@ -35,9 +29,7 @@ function POTD(props) {
 	return (
 		<div
 			className="potd-container"
-			onClick={() =>
-				props.history.push(potd.uri, { token: props.token })
-			}
+			onClick={() => props.history.push(potd.uri, { token: props.token })}
 		>
 			<h2>Puzzle of the Day</h2>
 			<POTDPreview />

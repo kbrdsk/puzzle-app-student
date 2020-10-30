@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import jwt from "jsonwebtoken";
+import { UserContext } from "./user-context";
 
 export default function Login(props) {
 	const [first, setFirst] = useState();
 	const [last, setLast] = useState();
+	const { setUser } = useContext(UserContext);
 
 	const updateName = (updater, event) => {
 		updater(event.target.value);
@@ -24,8 +26,9 @@ export default function Login(props) {
 		if (response.ok) {
 			try {
 				const token = (await response.json()).token;
-				jwt.decode(token);
-				props.history.push("/", { token });
+				const { student } = jwt.decode(token);
+				setUser({ token, student });
+				props.history.push("/");
 			} catch (error) {
 				console.log(error);
 			}

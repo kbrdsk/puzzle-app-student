@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import List from "./list";
 import Instance from "./instance";
+import { UserContext } from "../../login/user-context";
 
 export default function Page(props) {
 	const [instanceList, setInstanceList] = useState([]);
-	const state = props.location.state || { token: null };
-	const token = state.token;
+	const {
+		user: { token },
+	} = useContext(UserContext);
 	const match = props.match;
 
 	useEffect(() => {
