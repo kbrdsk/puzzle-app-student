@@ -98,8 +98,6 @@ export default function Instance(props) {
 
 	return (
 		<div>
-			<h1>{name.replace(/^./, (char) => char.toUpperCase())}</h1>
-
 			{grid ? (
 				<div className="puzzle-container" size={size}>
 					<div className="grid-container" size={size}>

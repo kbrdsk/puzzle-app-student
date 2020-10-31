@@ -6,6 +6,10 @@ $base-dimension: 30em;
 
 @mixin puzzle-container($puzzle-size) {
 	$puzzle-dimension: $base-dimension * $puzzle-size/ 4;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 2em;
 	div.grid-container {
 		display: grid;
 		height: $puzzle-dimension;

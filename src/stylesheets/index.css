@@ -140,6 +140,12 @@ div.dashboard-container div.puzzle-list-container ul li div.list-preview {
   margin: 0.5em;
 }
 
+div.puzzle-container[size="4"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+}
 div.puzzle-container[size="4"] div.grid-container {
   display: grid;
   height: 30em;
@@ -206,6 +212,12 @@ div.puzzle-container[size="4"] div.number-select-container button {
   padding: 0.15em 0.5em;
   cursor: pointer;
 }
+div.puzzle-container[size="5"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+}
 div.puzzle-container[size="5"] div.grid-container {
   display: grid;
   height: 37.5em;
@@ -271,6 +283,12 @@ div.puzzle-container[size="5"] div.number-select-container button {
   font-size: 3em;
   padding: 0.15em 0.5em;
   cursor: pointer;
+}
+div.puzzle-container[size="6"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
 }
 div.puzzle-container[size="6"] div.grid-container {
   display: grid;
