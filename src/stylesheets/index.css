@@ -404,25 +404,40 @@ body {
   padding-top: 0.5em;
 }
 
-div.profile-bar {
+nav.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav.main-nav button {
+  border: none;
+  border-radius: 0.2em;
+  color: white;
+  cursor: pointer;
+  background-color: #39beca;
+}
+nav.main-nav button:hover {
+  color: #2c9aa4;
+  background-color: #daf3f5;
+}
+nav.main-nav button:focus {
+  outline: none;
+}
+nav.main-nav div.profile-bar {
   position: relative;
   display: flex;
   justify-content: flex-end;
   right: 0;
   padding: 0.5em;
 }
-div.profile-bar span.student-name {
+nav.main-nav div.profile-bar span.student-name {
   color: #2c9aa4;
   margin-right: 0.5em;
 }
-div.profile-bar button.log-out {
-  border: none;
-  border-radius: 0.2em;
-  color: white;
+nav.main-nav div.profile-bar button.log-out {
   background-color: #39beca;
-  cursor: pointer;
 }
-div.profile-bar button.log-out:hover {
+nav.main-nav div.profile-bar button.log-out:hover {
   color: #2c9aa4;
   background-color: #daf3f5;
 }

@@ -23,7 +23,14 @@ function Routes() {
 			<UserContext.Provider value={defaultContext}>
 				{user ? (
 					<div>
-						<ProfileBar student={user.student} setUser={setUser} />
+						<nav className="main-nav">
+							<BackButton history={history} />
+							<ProfileBar
+								student={user.student}
+								setUser={setUser}
+							/>
+						</nav>
+
 						<Switch>
 							{puzzleList.map(renderPuzzleRoute)}
 							<Route path="/login" component={Login} />
@@ -40,6 +47,20 @@ function Routes() {
 				)}
 			</UserContext.Provider>
 		</BrowserRouter>
+	);
+}
+
+function BackButton({ history }) {
+	return (
+		<button
+			className="back-button"
+			onClick={() => {
+				console.log("tried to go back");
+				history.back();
+			}}
+		>
+			Back
+		</button>
 	);
 }
 

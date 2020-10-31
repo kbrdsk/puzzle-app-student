@@ -15,27 +15,50 @@ body {
 	padding-top: 0.5em;
 }
 
-div.profile-bar {
-	position: relative;
+nav.main-nav {
 	display: flex;
-	justify-content: flex-end;
-	right: 0;
-	padding: 0.5em;
+	justify-content: space-between;
+	align-items: center;
 
-	span.student-name {
-		color: color.adjust(variables.$color10, $lightness: -35);
-		margin-right: 0.5em;
-	}
-	button.log-out{
+	button {
 		border: none;
 		border-radius: 0.2em;
 		color: white;
-		background-color: color.adjust(variables.$color10, $lightness: -25);
 		cursor: pointer;
+		background-color: color.adjust(variables.$color10, $lightness: -25);
 
-		&:hover{
+		&:hover {
 			color: color.adjust(variables.$color10, $lightness: -35);
 			background-color: color.adjust(variables.$color10, $lightness: 15);
 		}
+
+		&:focus {
+			outline: none;
+		}
 	}
+
+	div.profile-bar {
+		position: relative;
+		display: flex;
+		justify-content: flex-end;
+		right: 0;
+		padding: 0.5em;
+
+		span.student-name {
+			color: color.adjust(variables.$color10, $lightness: -35);
+			margin-right: 0.5em;
+		}
+		button.log-out {
+			background-color: color.adjust(variables.$color10, $lightness: -25);
+
+			&:hover {
+				color: color.adjust(variables.$color10, $lightness: -35);
+				background-color: color.adjust(
+					variables.$color10,
+					$lightness: 15
+				);
+			}
+		}
+	}
+
 }
