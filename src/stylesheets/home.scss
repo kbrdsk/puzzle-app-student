@@ -1,5 +1,48 @@
 @use "variables";
 @use "sass:color";
+@mixin list(
+	$cont-title,
+	$cont-backgr,
+	$cont-border,
+	$li-title,
+	$li-backgr,
+	$li-border
+) {
+	padding: 2em;
+	border: 3px solid $cont-border;
+	margin-top: 2em;
+	border-radius: 1em;
+	background-color: $cont-backgr;
+	h2 {
+		margin: 0;
+		color: $cont-title;
+	}
+	ul {
+		list-style-type: none;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-auto-rows: auto;
+		gap: 1.5em;
+		padding: 0;
+		li {
+			background-color: white;
+			padding: 1em;
+			border: 3px solid $li-border;
+			border-radius: 0.5em;
+			cursor: pointer;
+			&:hover {
+				background-color: $li-backgr;
+			}
+			h3 {
+				margin: 0;
+				color: $li-title;
+			}
+			div.list-preview {
+				margin: 0.5em;
+			}
+		}
+	}
+}
 
 div.dashboard-container {
 	user-select: none;
@@ -20,7 +63,15 @@ div.dashboard-container {
 		}
 	}
 	div.puzzle-list-container {
-		padding: 2em;
+		@include list(
+				color.adjust(variables.$color10, $lightness: -55),
+				variables.$color12,
+				variables.$color10,
+				color.adjust(variables.$color10, $lightness: -55),
+				color.adjust(variables.$color3, $lightness: 30),
+				variables.$color3
+			);
+		/*padding: 2em;
 		border: 3px solid variables.$color10;
 		margin-top: 2em;
 		border-radius: 1em;
@@ -56,6 +107,6 @@ div.dashboard-container {
 					margin: 0.5em;
 				}
 			}
-		}
+		}*/
 	}
 }
