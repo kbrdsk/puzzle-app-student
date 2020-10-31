@@ -408,6 +408,7 @@ nav.main-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.3em;
 }
 nav.main-nav button {
   border: none;
@@ -440,6 +441,9 @@ nav.main-nav div.profile-bar button.log-out {
 nav.main-nav div.profile-bar button.log-out:hover {
   color: #2c9aa4;
   background-color: #daf3f5;
+}
+nav.main-nav button.back-button {
+  font-size: 1em;
 }
 
 /*# sourceMappingURL=index.css.map */
