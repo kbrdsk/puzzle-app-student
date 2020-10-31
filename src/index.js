@@ -52,13 +52,7 @@ function Routes() {
 
 function BackButton({ history }) {
 	return (
-		<button
-			className="back-button"
-			onClick={() => {
-				console.log("tried to go back");
-				history.back();
-			}}
-		>
+		<button className="back-button" onClick={history.back}>
 			Back
 		</button>
 	);
