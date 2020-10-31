@@ -100,9 +100,9 @@ div.puzzle-container {
 
 div.instance-list-container {
 	@include home.list(
-		color.adjust(variables.$color3, $lightness: -10),
-		color.adjust(variables.$color3, $lightness: 30),
-		variables.$color3,
+		color.adjust(variables.$color3, $lightness: -20, $saturation: -30),
+		color.adjust(variables.$color3, $lightness: 30, $saturation: -30),
+		color.adjust(variables.$color3, $saturation: -30),
 		color.adjust(variables.$color7, $lightness: -35),
 		color.adjust(variables.$color7, $lightness: 28),
 		variables.$color7

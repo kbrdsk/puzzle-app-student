@@ -64,13 +64,13 @@ div.dashboard-container {
 	}
 	div.puzzle-list-container {
 		@include list(
-				color.adjust(variables.$color10, $lightness: -55),
-				variables.$color12,
-				variables.$color10,
-				color.adjust(variables.$color10, $lightness: -55),
-				color.adjust(variables.$color3, $lightness: 30),
-				variables.$color3
-			);
+			color.adjust(variables.$color10, $lightness: -55),
+			variables.$color12,
+			variables.$color10,
+			color.adjust(variables.$color3, $lightness: -20, $saturation: -30),
+			color.adjust(variables.$color3, $lightness: 30, $saturation: -30),
+			color.adjust(variables.$color3, $saturation: -30)
+		);
 		/*padding: 2em;
 		border: 3px solid variables.$color10;
 		margin-top: 2em;

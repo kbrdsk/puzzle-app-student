@@ -125,16 +125,16 @@ div.dashboard-container div.puzzle-list-container ul {
 div.dashboard-container div.puzzle-list-container ul li {
   background-color: white;
   padding: 1em;
-  border: 3px solid #7354f4;
+  border: 3px solid #846fd9;
   border-radius: 0.5em;
   cursor: pointer;
 }
 div.dashboard-container div.puzzle-list-container ul li:hover {
-  background-color: #e9e4fd;
+  background-color: #ebe8f9;
 }
 div.dashboard-container div.puzzle-list-container ul li h3 {
   margin: 0;
-  color: #174f54;
+  color: #4930b2;
 }
 div.dashboard-container div.puzzle-list-container ul li div.list-preview {
   margin: 0.5em;
@@ -359,14 +359,14 @@ div.puzzle-container[size="6"] div.number-select-container button {
 
 div.instance-list-container {
   padding: 2em;
-  border: 3px solid #7354f4;
+  border: 3px solid #846fd9;
   margin-top: 2em;
   border-radius: 1em;
-  background-color: #e9e4fd;
+  background-color: #ebe8f9;
 }
 div.instance-list-container h2 {
   margin: 0;
-  color: #4c24f1;
+  color: #4930b2;
 }
 div.instance-list-container ul {
   list-style-type: none;
