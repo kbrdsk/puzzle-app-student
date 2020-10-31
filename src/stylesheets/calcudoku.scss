@@ -2,93 +2,95 @@
 @use "sass:color";
 @use "./home";
 
-$puzzle-size: 30em;
+$base-size: 30em;
 
-div.grid-container {
-	display: grid;
-	height: $puzzle-size;
-	width: $puzzle-size;
-	gap: 1px;
-	background-color: black;
-	border: solid 3px;
+@mixin puzzle-container($puzzle-dim) {
+	$puzzle-size: $base-size * $puzzle-dim / 4;
+	div.grid-container {
+		display: grid;
+		height: $puzzle-size;
+		width: $puzzle-size;
+		gap: 1px;
+		background-color: black;
+		border: solid 3px;
+		grid-template-columns: repeat($puzzle-dim, 1fr);
+		grid-template-rows: repeat($puzzle-dim, 1fr);
 
-	&[size="4"] {
-		grid-template-columns: repeat(4, 1fr);
-		grid-template-rows: repeat(4, 1fr);
-	}
-
-	&[size="5"] {
-		grid-template-columns: repeat(5, 1fr);
-		grid-template-rows: repeat(5, 1fr);
-		height: $puzzle-size * 5 / 4;
-		width: $puzzle-size * 5 / 4;
-	}
-
-	&[size="6"] {
-		grid-template-columns: repeat(6, 1fr);
-		grid-template-rows: repeat(6, 1fr);
-	}
-
-	div.calcudoku-square {
-		position: relative;
-		background-color: white;
-		box-sizing: border-box;
-		padding: 0.5em;
-		border: solid 2px;
-		cursor: pointer;
-
-		&.active {
-			background-color: #e5e5e5;
-		}
-		&.n-up {
-			border-top: none;
-		}
-		&.n-down {
-			border-bottom: none;
-		}
-		&.n-right {
-			border-right: none;
-		}
-		&.n-left {
-			border-left: none;
-		}
-
-		div.cage-indicator {
-			position: absolute;
-			top: 0.2em;
-			left: 0.2em;
-		}
-		input {
-			border: none;
+		div.calcudoku-square {
+			position: relative;
+			background-color: white;
 			box-sizing: border-box;
-			width: 100%;
-			height: 100%;
-			font-size: 4em;
-			text-align: right;
+			padding: 0.5em;
+			border: solid 2px;
 			cursor: pointer;
-			&::-webkit-inner-spin-button,
-			&::-webkit-outer-spin-button {
-				-webkit-appearance: none;
-				margin: 0;
+
+			&.active {
+				background-color: #e5e5e5;
 			}
-			&:focus {
-				outline: none;
+			&.n-up {
+				border-top: none;
 			}
+			&.n-down {
+				border-bottom: none;
+			}
+			&.n-right {
+				border-right: none;
+			}
+			&.n-left {
+				border-left: none;
+			}
+
+			div.cage-indicator {
+				position: absolute;
+				top: 0.2em;
+				left: 0.2em;
+			}
+			input {
+				border: none;
+				box-sizing: border-box;
+				width: 100%;
+				height: 100%;
+				font-size: 4em;
+				text-align: right;
+				cursor: pointer;
+				&::-webkit-inner-spin-button,
+				&::-webkit-outer-spin-button {
+					-webkit-appearance: none;
+					margin: 0;
+				}
+				&:focus {
+					outline: none;
+				}
+			}
+		}
+	}
+
+	div.number-select-container {
+		width: $puzzle-size;
+		display: flex;
+		justify-content: space-evenly;
+		padding: 1em;
+		box-sizing: border-box;
+
+		button {
+			font-size: 3em;
+			padding: 0.15em 0.5em;
+			cursor: pointer;
 		}
 	}
 }
 
-div.number-select-container {
-	width: $puzzle-size;
-	display: flex;
-	justify-content: space-evenly;
-	padding: 1em;
-	box-sizing: border-box;
+div.puzzle-container {
+	&[size="4"] {
+		@include puzzle-container(4);
+	}
 
-	button {
-		font-size: 3em;
-		padding: 0.15em 0.5em;
-		cursor: pointer;
+	&[size="5"] {
+		@include puzzle-container(5);
+	}
+
+	&[size="6"] {
+		@include puzzle-container(6);
 	}
 }
 
