@@ -6,9 +6,6 @@ export default function List(props) {
 
 	return (
 		<div className="calcudoku-page-container">
-			{/*<p className="student-name">
-				{capitalize(student.first)} {capitalize(student.last)}
-			</p>*/}
 			<div className="instance-list-container">
 				<h2>Calcudokus</h2>
 				<ul>
