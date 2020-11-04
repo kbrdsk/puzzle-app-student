@@ -30,6 +30,33 @@ export default function Instance(props) {
 		})();
 	}, [dburl, token]);
 
+	useEffect(() => {
+		const url = `${process.env.REACT_APP_API_URL}/activepuzzle`;
+		(async () => {
+			const response = await fetch(url, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					authorization: token,
+				},
+				body: JSON.stringify({
+					puzzleName: "calcudoku",
+					puzzleId: name,
+				}),
+			});
+			console.log(response.status);
+		})();
+
+		return () => {
+			fetch(url, {
+				method: "DELETE",
+				headers: {
+					authorization: token,
+				},
+			});
+		};
+	}, [token, name]);
+
 	const updateWork = async () => {
 		const work = grid.map((sq) => {
 			return { col: sq.col, row: sq.row, value: sq.value };
