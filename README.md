@@ -4,10 +4,15 @@ This project is meant to be a workspace for students during distance learning in
 \
 The selection of puzzles will grow as the course progresses.\
 \
-Students have persistent accounts they access with first and last names. No passwords are used because, due to the scale of the class and since only progress on puzzles is stored, ease of access seems like a priority.\
+Students have persistent accounts they access with first and last names. No passwords are used because, due to the scale of the class and since only progress on puzzles is stored, ease of access seems like a priority.
 
 ## To-Do's
 
-- Store JWT's locally so that logins persist on refresh\
-- Add error message if student is not found on login\
-- Add compatability for more browsers/platforms\
+- Store JWT's locally so that logins persist on refresh
+- Add error message if student is not found on login
+- Add compatability for more browsers/platforms
+
+## Links
+- Student Interface [View in Browser](https://kbrdsk.github.io/puzzle-app-student)
+- Instructor Interface [View in Browser](https://kbrdsk.github.io/puzzle-app-instructor) - [Code](https://github.com/kbrdsk/puzzle-app-instructor)
+- Backend [Code](https://github.com/kbrdsk/puzzle-app-backend)
