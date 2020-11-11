@@ -68,7 +68,7 @@ export default function Instance(props) {
 	};
 
 	return (
-		<div>
+		<div className="logic instance">
 			<p className="puzzle-description">{description}</p>
 			<textarea
 				className="work"

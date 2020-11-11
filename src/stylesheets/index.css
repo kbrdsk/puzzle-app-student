@@ -400,6 +400,14 @@ div.instance-list-container ul li div.list-preview {
   margin: 0.5em;
 }
 
+div.logic.instance p.puzzle-description {
+  white-space: pre-wrap;
+}
+div.logic.instance textarea {
+  width: 100%;
+  height: 13em;
+}
+
 * {
   font-family: "Open Sans", sans-serif;
   user-select: none;
