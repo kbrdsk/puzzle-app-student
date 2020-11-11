@@ -13,7 +13,7 @@ export default function Page(props) {
 
 	useEffect(() => {
 		(async () => {
-			const uri = `${process.env.REACT_APP_API_URL}/puzzles/calcudoku/`;
+			const uri = `${process.env.REACT_APP_API_URL}/puzzles/logic`;
 			const response = await fetch(uri, {
 				method: "GET",
 				headers: { authorization: token },

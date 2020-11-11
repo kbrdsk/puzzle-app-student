@@ -5,9 +5,9 @@ export default function List(props) {
 	const instanceList = props.instanceList;
 
 	return (
-		<div className="calcudoku-page-container">
+		<div className="logic-puzzles page-container">
 			<div className="instance-list-container">
-				<h2>Calcudokus</h2>
+				<h2>Logic Puzzles</h2>
 				<ul>
 					{instanceList
 						? instanceList.map(
@@ -20,12 +20,9 @@ export default function List(props) {
 	);
 }
 
-function renderInstanceListing(history, {instance, title}) {
+function renderInstanceListing(history, { instance, title }) {
 	return (
-		<li
-			key={instance}
-			onClick={() => history.push(`/calcudoku/${instance}`)}
-		>
+		<li key={instance} onClick={() => history.push(`/logic/${instance}`)}>
 			<h3>{capitalize(title)}</h3>
 		</li>
 	);
