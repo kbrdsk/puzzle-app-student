@@ -18,9 +18,9 @@ export default function Instance(props) {
 			});
 			if (response.ok) {
 				try {
-					const data = await response.json();
-					setDescription(data.description);
-					setWork(data.work);
+					const { description, work } = await response.json();
+					setDescription(description);
+					setWork(work);
 				} catch (error) {
 					console.log(error);
 				}

@@ -20,13 +20,10 @@ export default function List(props) {
 	);
 }
 
-function renderInstanceListing(history, instance) {
+function renderInstanceListing(history, { instance, title }) {
 	return (
-		<li
-			key={instance}
-			onClick={() => history.push(`/logic/${instance}`)}
-		>
-			<h3>{capitalize(instance)}</h3>
+		<li key={instance} onClick={() => history.push(`/logic/${instance}`)}>
+			<h3>{capitalize(title)}</h3>
 		</li>
 	);
 }

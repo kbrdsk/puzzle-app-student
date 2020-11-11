@@ -20,13 +20,13 @@ export default function List(props) {
 	);
 }
 
-function renderInstanceListing(history, instance) {
+function renderInstanceListing(history, {instance, title}) {
 	return (
 		<li
 			key={instance}
 			onClick={() => history.push(`/calcudoku/${instance}`)}
 		>
-			<h3>{capitalize(instance)}</h3>
+			<h3>{capitalize(title)}</h3>
 		</li>
 	);
 }

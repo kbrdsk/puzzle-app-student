@@ -13,7 +13,7 @@ export default function Page(props) {
 
 	useEffect(() => {
 		(async () => {
-			const uri = `${process.env.REACT_APP_API_URL}/puzzles/logic/`;
+			const uri = `${process.env.REACT_APP_API_URL}/puzzles/logic`;
 			const response = await fetch(uri, {
 				method: "GET",
 				headers: { authorization: token },
@@ -29,12 +29,12 @@ export default function Page(props) {
 		})();
 	}, [token]);
 
-	const renderInstanceRoute = (match, name) => {
+	const renderInstanceRoute = (match, { instance }) => {
 		return (
 			<Route
-				key={name}
-				path={`${match.url}/${name}`}
-				render={(props) => <Instance {...props} name={name} />}
+				key={instance}
+				path={`${match.url}/${instance}`}
+				render={(props) => <Instance {...props} name={instance} />}
 			/>
 		);
 	};

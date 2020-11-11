@@ -29,12 +29,12 @@ export default function Page(props) {
 		})();
 	}, [token]);
 
-	const renderInstanceRoute = (match, name) => {
+	const renderInstanceRoute = (match, { instance }) => {
 		return (
 			<Route
-				key={name}
-				path={`${match.url}/${name}`}
-				render={(props) => <Instance {...props} name={name} />}
+				key={instance}
+				path={`${match.url}/${instance}`}
+				render={(props) => <Instance {...props} name={instance} />}
 			/>
 		);
 	};
