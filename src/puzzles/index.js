@@ -1,10 +1,11 @@
 //import * as Test from "./test/index";
 import * as calcudoku from "./calcudoku/index";
+import * as logic from "./logic/index";
 
-export const puzzleList = [calcudoku];
+export const puzzleList = [calcudoku, logic];
 
 export const potd = {
-	uri: "/calcudoku/sample",
+	uri: "/calcudoku/4x4beginner1",
 	Preview: POTDPreview,
 };
 
