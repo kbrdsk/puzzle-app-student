@@ -1,7 +1,7 @@
-import * as Test from "./test/index";
+//import * as Test from "./test/index";
 import * as calcudoku from "./calcudoku/index";
 
-export const puzzleList = [calcudoku, Test];
+export const puzzleList = [calcudoku];
 
 export const potd = {
 	uri: "/calcudoku/sample",
