@@ -154,7 +154,8 @@ function generateGrid(puzzleData) {
 		const cage = cages.find((cage) => cage.squares.find(matchSquare));
 		const neighbors = neighborList({ col, row }, cage);
 		const isTopLeft = cage.squares.every(
-			(square) => square.col >= col && square.row >= row
+			(square) =>
+				square.col >= col && (square.row >= row || square.col > col)
 		);
 		const result = isTopLeft ? cage.result : null;
 		const operation = isTopLeft ? cage.operation : null;
