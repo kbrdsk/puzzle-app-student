@@ -11,11 +11,19 @@ div.login-container {
 		display: grid;
 		padding: 2em;
 		grid-template-areas:
+			"error     error"
 			"firstname firstname"
 			"lastname  lastname"
 			"create    login";
 		border: 3px solid variables.$color10;
 		border-radius: 1em;
+
+		p.login-error {
+			grid-area: error;
+			margin-top: -1em;
+			font-size: 0.7em;
+			color: red;
+		}
 
 		div.name-container {
 			margin: 0.5em;
@@ -29,10 +37,10 @@ div.login-container {
 				grid-area: lastname;
 			}
 
-			input{
+			input {
 				margin-left: 0.5em;
 
-				&:focus{
+				&:focus {
 					outline: none;
 				}
 			}

@@ -5,6 +5,7 @@ import { UserContext } from "./user-context";
 export default function Login(props) {
 	const [first, setFirst] = useState();
 	const [last, setLast] = useState();
+	const [badLogin, setBadLogin] = useState(false);
 	const { setUser } = useContext(UserContext);
 
 	const updateName = (updater, event) => {
@@ -24,6 +25,7 @@ export default function Login(props) {
 			body: JSON.stringify(studentData),
 		});
 		if (response.ok) {
+			setBadLogin(false);
 			try {
 				const token = (await response.json()).token;
 				const { student } = jwt.decode(token);
@@ -32,12 +34,19 @@ export default function Login(props) {
 			} catch (error) {
 				console.log(error);
 			}
+		} else if (response.status === 404) {
+			setBadLogin(true);
 		} else console.log("HTTP error, status = " + response.status);
 	};
 
 	return (
 		<div className="login-container">
 			<div className="login-window">
+				{badLogin ? (
+					<p className="login-error">
+						User not found. Please try again or create a new user.
+					</p>
+				) : null}
 				<div className="name-container first">
 					<label htmlFor="firstname">First Name:</label>
 					<input

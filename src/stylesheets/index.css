@@ -9,9 +9,15 @@ div.login-container {
 div.login-container div.login-window {
   display: grid;
   padding: 2em;
-  grid-template-areas: "firstname firstname" "lastname  lastname" "create    login";
+  grid-template-areas: "error     error" "firstname firstname" "lastname  lastname" "create    login";
   border: 3px solid #9edfe5;
   border-radius: 1em;
+}
+div.login-container div.login-window p.login-error {
+  grid-area: error;
+  margin-top: -1em;
+  font-size: 0.7em;
+  color: red;
 }
 div.login-container div.login-window div.name-container {
   margin: 0.5em;
