@@ -75,14 +75,50 @@ export default function Instance(props) {
 
 	const downHandler = ({ key }) => {
 		if (activeSquare) {
-			if (["Backspace", "Delete"].includes(key)) {
-				activeSquare.value = "";
-			} else if (!isNaN(key) && 1 <= key && key <= size) {
+			if (!isNaN(key) && 1 <= key && key <= size) {
 				activeSquare.value = key;
+			} else {
+				const { col, row } = activeSquare;
+				switch (key) {
+					case "Backspace":
+					case "Delete":
+						activeSquare.value = "";
+						break;
+					case "ArrowUp":
+						setActiveSquare(
+							grid.find(squareMatcher({ col: col - 1, row })) ||
+								activeSquare
+						);
+						return;
+					case "ArrowDown":
+						setActiveSquare(
+							grid.find(squareMatcher({ col: col + 1, row })) ||
+								activeSquare
+						);
+						return;
+					case "ArrowLeft":
+						setActiveSquare(
+							grid.find(squareMatcher({ col, row: row - 1 })) ||
+								activeSquare
+						);
+						return;
+					case "ArrowRight":
+						setActiveSquare(
+							grid.find(squareMatcher({ col, row: row + 1 })) ||
+								activeSquare
+						);
+						return;
+					default:
+						return;
+				}
 			}
 
 			setGrid([...grid]);
 			updateWork();
+		} else if (
+			["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(key)
+		) {
+			setActiveSquare(grid.find(squareMatcher({ col: 0, row: 0 })));
 		}
 	};
 
