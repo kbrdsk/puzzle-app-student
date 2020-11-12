@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import jwt from "jsonwebtoken";
 import { UserContext } from "./user-context";
 
@@ -12,32 +12,49 @@ export default function Login(props) {
 		updater(event.target.value);
 	};
 
-	const login = async (create) => {
-		const studentData = { first, last };
-		const uri =
-			`${process.env.REACT_APP_API_URL}/students` +
-			(create ? "" : "/login");
-		const response = await fetch(uri, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(studentData),
-		});
-		if (response.ok) {
-			setBadLogin(false);
-			try {
-				const token = (await response.json()).token;
-				const { student } = jwt.decode(token);
-				setUser({ token, student });
-				props.history.push("/");
-			} catch (error) {
-				console.log(error);
+	const login = useCallback(
+		async (create) => {
+			const studentData = { first, last };
+			const uri =
+				`${process.env.REACT_APP_API_URL}/students` +
+				(create ? "" : "/login");
+			const response = await fetch(uri, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(studentData),
+			});
+			if (response.ok) {
+				setBadLogin(false);
+				try {
+					const token = (await response.json()).token;
+					const { student } = jwt.decode(token);
+					setUser({ token, student });
+					props.history.push("/");
+				} catch (error) {
+					console.log(error);
+				}
+			} else if (response.status === 404) {
+				setBadLogin(true);
+			} else console.log("HTTP error, status = " + response.status);
+		},
+		[first, last, props.history, setUser]
+	);
+
+	const downHandler = useCallback(
+		({ key }) => {
+			if (key === "Enter") {
+				login(false);
 			}
-		} else if (response.status === 404) {
-			setBadLogin(true);
-		} else console.log("HTTP error, status = " + response.status);
-	};
+		},
+		[login]
+	);
+
+	useEffect(() => {
+		window.addEventListener("keydown", downHandler);
+		return () => window.removeEventListener("keydown", downHandler);
+	}, [downHandler]);
 
 	return (
 		<div className="login-container">
