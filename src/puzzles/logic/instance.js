@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { UserContext } from "../../login/user-context";
 
 export default function Instance(props) {
@@ -55,7 +55,7 @@ export default function Instance(props) {
 		};
 	}, [token, name]);
 
-	const updateWork = async () => {
+	const updateWork = useCallback(async () => {
 		const response = await fetch(apiurl, {
 			method: "PUT",
 			headers: {
@@ -65,7 +65,23 @@ export default function Instance(props) {
 			body: JSON.stringify({ puzzleData: work }),
 		});
 		console.log(response.status);
-	};
+	}, [token, work, apiurl]);
+
+	useEffect(() => {
+		const clearHistoryListener = props.history.listen(updateWork);
+		const updateTimer = setTimeout(updateWork, 3000);
+		return () => {
+			clearTimeout(updateTimer);
+			clearHistoryListener();
+		};
+	}, [updateWork, props.history]);
+
+	useEffect(() => {
+		window.addEventListener("beforeunload", updateWork);
+		return () => {
+			window.removeEventListener("beforeunload", updateWork);
+		};
+	}, [updateWork]);
 
 	return (
 		<div className="logic instance">
@@ -74,8 +90,9 @@ export default function Instance(props) {
 				className="work"
 				onChange={(e) => {
 					setWork(e.target.value);
-					updateWork();
+					//updateWork();
 				}}
+				value={work}
 				placeholder="Enter your solution or any notes here!"
 			/>
 		</div>
