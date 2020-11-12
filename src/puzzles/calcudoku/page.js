@@ -12,21 +12,30 @@ export default function Page(props) {
 	const match = props.match;
 
 	useEffect(() => {
-		(async () => {
-			const uri = `${process.env.REACT_APP_API_URL}/puzzles/calcudoku/`;
-			const response = await fetch(uri, {
-				method: "GET",
-				headers: { authorization: token },
-			});
-			if (response.ok) {
-				try {
-					const list = await response.json();
-					setInstanceList(list);
-				} catch (error) {
-					console.log(error);
-				}
-			} else console.log("HTTP error, status = " + response.status);
-		})();
+		const cachedList = sessionStorage.getItem("calcudoku-instance-list");
+		if (cachedList) {
+			setInstanceList(JSON.parse(cachedList));
+		} else {
+			(async () => {
+				const uri = `${process.env.REACT_APP_API_URL}/puzzles/calcudoku/`;
+				const response = await fetch(uri, {
+					method: "GET",
+					headers: { authorization: token },
+				});
+				if (response.ok) {
+					try {
+						const list = await response.json();
+						sessionStorage.setItem(
+							"calcudoku-instance-list",
+							JSON.stringify(list)
+						);
+						setInstanceList(list);
+					} catch (error) {
+						console.log(error);
+					}
+				} else console.log("HTTP error, status = " + response.status);
+			})();
+		}
 	}, [token]);
 
 	const renderInstanceRoute = (match, { instance }) => {
