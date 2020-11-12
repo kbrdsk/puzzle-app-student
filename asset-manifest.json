@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/puzzle-app-student/static/css/main.d40dd3af.chunk.css",
-    "main.js": "/puzzle-app-student/static/js/main.f2c4383e.chunk.js",
-    "main.js.map": "/puzzle-app-student/static/js/main.f2c4383e.chunk.js.map",
+    "main.css": "/puzzle-app-student/static/css/main.bd6a5925.chunk.css",
+    "main.js": "/puzzle-app-student/static/js/main.671bcd14.chunk.js",
+    "main.js.map": "/puzzle-app-student/static/js/main.671bcd14.chunk.js.map",
     "runtime-main.js": "/puzzle-app-student/static/js/runtime-main.5b3589b3.js",
     "runtime-main.js.map": "/puzzle-app-student/static/js/runtime-main.5b3589b3.js.map",
-    "static/js/2.7460c83b.chunk.js": "/puzzle-app-student/static/js/2.7460c83b.chunk.js",
-    "static/js/2.7460c83b.chunk.js.map": "/puzzle-app-student/static/js/2.7460c83b.chunk.js.map",
+    "static/js/2.67f79b24.chunk.js": "/puzzle-app-student/static/js/2.67f79b24.chunk.js",
+    "static/js/2.67f79b24.chunk.js.map": "/puzzle-app-student/static/js/2.67f79b24.chunk.js.map",
     "index.html": "/puzzle-app-student/index.html",
-    "static/css/main.d40dd3af.chunk.css.map": "/puzzle-app-student/static/css/main.d40dd3af.chunk.css.map",
-    "static/js/2.7460c83b.chunk.js.LICENSE.txt": "/puzzle-app-student/static/js/2.7460c83b.chunk.js.LICENSE.txt"
+    "static/css/main.bd6a5925.chunk.css.map": "/puzzle-app-student/static/css/main.bd6a5925.chunk.css.map",
+    "static/js/2.67f79b24.chunk.js.LICENSE.txt": "/puzzle-app-student/static/js/2.67f79b24.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.5b3589b3.js",
-    "static/js/2.7460c83b.chunk.js",
-    "static/css/main.d40dd3af.chunk.css",
-    "static/js/main.f2c4383e.chunk.js"
+    "static/js/2.67f79b24.chunk.js",
+    "static/css/main.bd6a5925.chunk.css",
+    "static/js/main.671bcd14.chunk.js"
   ]
 }
