@@ -15,6 +15,10 @@ body {
 	user-select: none;
 }
 
+button{
+	font-family: inherit;
+}
+
 nav.main-nav {
 	display: flex;
 	justify-content: space-between;
@@ -26,7 +30,6 @@ nav.main-nav {
 		border-radius: 0.2em;
 		color: white;
 		cursor: pointer;
-		font-family: inherit;
 		background-color: color.adjust(variables.$color10, $lightness: -25);
 
 		&:hover {

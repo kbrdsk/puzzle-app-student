@@ -416,6 +416,10 @@ body {
   user-select: none;
 }
 
+button {
+  font-family: inherit;
+}
+
 nav.main-nav {
   display: flex;
   justify-content: space-between;
@@ -427,7 +431,6 @@ nav.main-nav button {
   border-radius: 0.2em;
   color: white;
   cursor: pointer;
-  font-family: inherit;
   background-color: #39beca;
 }
 nav.main-nav button:hover {
