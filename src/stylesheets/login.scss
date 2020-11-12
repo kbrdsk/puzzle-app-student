@@ -39,6 +39,7 @@ div.login-container {
 
 			input {
 				margin-left: 0.5em;
+				user-select: all;
 
 				&:focus {
 					outline: none;
