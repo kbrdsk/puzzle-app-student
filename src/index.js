@@ -13,7 +13,8 @@ import "./stylesheets/index.css";
 const history = createBrowserHistory();
 
 function Routes() {
-	const [user, setUser] = useState(null);
+	const sessionUser = JSON.parse(sessionStorage.getItem("mcub-student-user"));
+	const [user, setUser] = useState(sessionUser);
 	const defaultContext = {
 		user,
 		setUser,
@@ -67,7 +68,13 @@ function ProfileBar({ student, setUser }) {
 			<span className="student-name">
 				{capitalize(student.first)} {capitalize(student.last)}
 			</span>
-			<button onClick={() => setUser(null)} className="log-out">
+			<button
+				onClick={() => {
+					setUser(null);
+					sessionStorage.removeItem("mcub-student-user");
+				}}
+				className="log-out"
+			>
 				Log Out
 			</button>
 		</div>

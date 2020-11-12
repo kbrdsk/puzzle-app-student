@@ -30,7 +30,9 @@ export default function Login(props) {
 				try {
 					const token = (await response.json()).token;
 					const { student } = jwt.decode(token);
-					setUser({ token, student });
+					const user = { token, student };
+					sessionStorage.setItem("mcub-student-user", JSON.stringify(user));
+					setUser(user);
 					props.history.push("/");
 				} catch (error) {
 					console.log(error);
