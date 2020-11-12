@@ -117,6 +117,11 @@ div.dashboard-container div.puzzle-list-container {
   	}
   }*/
 }
+@media (max-width: 290px) {
+  div.dashboard-container div.puzzle-list-container {
+    padding: 2em 0.75em;
+  }
+}
 div.dashboard-container div.puzzle-list-container h2 {
   margin: 0;
   color: #174f54;
@@ -128,6 +133,11 @@ div.dashboard-container div.puzzle-list-container ul {
   grid-auto-rows: auto;
   gap: 1.5em;
   padding: 0;
+}
+@media (max-width: 420px) {
+  div.dashboard-container div.puzzle-list-container ul {
+    grid-template-columns: 1fr;
+  }
 }
 div.dashboard-container div.puzzle-list-container ul li {
   background-color: white;
@@ -371,6 +381,11 @@ div.instance-list-container {
   border-radius: 1em;
   background-color: #ebe8f9;
 }
+@media (max-width: 290px) {
+  div.instance-list-container {
+    padding: 2em 0.75em;
+  }
+}
 div.instance-list-container h2 {
   margin: 0;
   color: #4930b2;
@@ -382,6 +397,11 @@ div.instance-list-container ul {
   grid-auto-rows: auto;
   gap: 1.5em;
   padding: 0;
+}
+@media (max-width: 420px) {
+  div.instance-list-container ul {
+    grid-template-columns: 1fr;
+  }
 }
 div.instance-list-container ul li {
   background-color: white;
