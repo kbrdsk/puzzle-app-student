@@ -35,8 +35,8 @@ export default function Login(props) {
 				} catch (error) {
 					console.log(error);
 				}
-			} else if (response.status === 404) {
-				setBadLogin(true);
+			} else if (response.status === 404 || response.status === 403) {
+				setBadLogin(response.status);
 			} else console.log("HTTP error, status = " + response.status);
 		},
 		[first, last, props.history, setUser]
@@ -61,7 +61,11 @@ export default function Login(props) {
 			<div className="login-window">
 				{badLogin ? (
 					<p className="login-error">
-						User not found. Please try again or create a new user.
+						{badLogin === 404
+							? "User not found. Please try again or create a new user."
+							: badLogin === 403
+							? "User already exists."
+							: "An error occurred while attempting to log in."}
 					</p>
 				) : null}
 				<div className="name-container first">
