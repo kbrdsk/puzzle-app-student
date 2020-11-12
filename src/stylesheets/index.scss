@@ -6,14 +6,13 @@
 @use "logic";
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
-* {
-	font-family: "Open Sans", sans-serif;
-	user-select: none;
-}
+
 
 body {
 	padding: 1.5em;
 	padding-top: 0.5em;
+	font-family: "Open Sans", sans-serif;
+	user-select: none;
 }
 
 nav.main-nav {
@@ -27,6 +26,7 @@ nav.main-nav {
 		border-radius: 0.2em;
 		color: white;
 		cursor: pointer;
+		font-family: inherit;
 		background-color: color.adjust(variables.$color10, $lightness: -25);
 
 		&:hover {
@@ -50,20 +50,5 @@ nav.main-nav {
 			color: color.adjust(variables.$color10, $lightness: -35);
 			margin-right: 0.5em;
 		}
-		button.log-out {
-			background-color: color.adjust(variables.$color10, $lightness: -25);
-
-			&:hover {
-				color: color.adjust(variables.$color10, $lightness: -35);
-				background-color: color.adjust(
-					variables.$color10,
-					$lightness: 15
-				);
-			}
-		}
-	}
-
-	button.back-button{
-		font-size: 1em;
 	}
 }

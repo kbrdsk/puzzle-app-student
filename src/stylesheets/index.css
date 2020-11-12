@@ -32,6 +32,7 @@ div.login-container div.login-window div.name-container.last {
 }
 div.login-container div.login-window div.name-container input {
   margin-left: 0.5em;
+  user-select: all;
 }
 div.login-container div.login-window div.name-container input:focus {
   outline: none;
@@ -408,14 +409,11 @@ div.logic.instance textarea {
   height: 13em;
 }
 
-* {
-  font-family: "Open Sans", sans-serif;
-  user-select: none;
-}
-
 body {
   padding: 1.5em;
   padding-top: 0.5em;
+  font-family: "Open Sans", sans-serif;
+  user-select: none;
 }
 
 nav.main-nav {
@@ -429,6 +427,7 @@ nav.main-nav button {
   border-radius: 0.2em;
   color: white;
   cursor: pointer;
+  font-family: inherit;
   background-color: #39beca;
 }
 nav.main-nav button:hover {
@@ -448,16 +447,6 @@ nav.main-nav div.profile-bar {
 nav.main-nav div.profile-bar span.student-name {
   color: #2c9aa4;
   margin-right: 0.5em;
-}
-nav.main-nav div.profile-bar button.log-out {
-  background-color: #39beca;
-}
-nav.main-nav div.profile-bar button.log-out:hover {
-  color: #2c9aa4;
-  background-color: #daf3f5;
-}
-nav.main-nav button.back-button {
-  font-size: 1em;
 }
 
 /*# sourceMappingURL=index.css.map */
