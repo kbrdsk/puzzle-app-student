@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import { UserContext } from "../../login/user-context";
 
 export default function Instance(props) {
-	const name = props.name;
-	const sessionDataKey = `calcudoku-instance-data-${name}`;
+	const name = useMemo(() => props.name, [props.name]);
+	const sessionDataKey = useMemo(() => `calcudoku-instance-data-${name}`, [
+		name,
+	]);
 	const [size, setSize] = useState(null);
 	const [grid, setGrid] = useState(null);
 	const [activeSquare, setActiveSquare] = useState(null);
