@@ -3,6 +3,7 @@ import { UserContext } from "../../login/user-context";
 
 export default function Instance(props) {
 	const name = props.name;
+	const sessionDataKey = `calcudoku-instance-data-${name}`;
 	const [size, setSize] = useState(null);
 	const [grid, setGrid] = useState(null);
 	const [activeSquare, setActiveSquare] = useState(null);
@@ -12,6 +13,14 @@ export default function Instance(props) {
 	const dburl = `${process.env.REACT_APP_API_URL}/puzzles/calcudoku/${name}`;
 
 	useEffect(() => {
+		const sessionData = JSON.parse(sessionStorage.getItem(sessionDataKey));
+
+		if (sessionData) {
+			setSize(sessionData.size);
+			setGrid(generateGrid(sessionData));
+			return;
+		}
+
 		(async () => {
 			const response = await fetch(dburl, {
 				method: "GET",
@@ -20,6 +29,10 @@ export default function Instance(props) {
 			if (response.ok) {
 				try {
 					const data = await response.json();
+					sessionStorage.setItem(
+						sessionDataKey,
+						JSON.stringify(data)
+					);
 					setSize(data.size);
 					setGrid(generateGrid(data));
 				} catch (error) {
@@ -70,6 +83,13 @@ export default function Instance(props) {
 			},
 			body: JSON.stringify({ puzzleData: work }),
 		});
+
+		const newSessionData = JSON.parse(
+			sessionStorage.getItem(sessionDataKey)
+		);
+		newSessionData.work = work;
+		sessionStorage.setItem(sessionDataKey, JSON.stringify(newSessionData));
+
 		console.log(response.status);
 	};
 
