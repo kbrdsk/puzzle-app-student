@@ -1,8 +1,15 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, {
+	useState,
+	useEffect,
+	useContext,
+	useCallback,
+	useMemo,
+} from "react";
 import { UserContext } from "../../login/user-context";
 
 export default function Instance(props) {
-	const name = props.name;
+	const name = useMemo(() => props.name, [props.name]);
+	const sessionDataKey = useMemo(() => `logic-instance-data-${name}`, [name]);
 	const [description, setDescription] = useState("");
 	const [work, setWork] = useState("");
 	const [updateTimer, setUpdateTimer] = useState(30);
@@ -12,6 +19,14 @@ export default function Instance(props) {
 	const apiurl = `${process.env.REACT_APP_API_URL}/puzzles/logic/${name}`;
 
 	useEffect(() => {
+		const sessionData = JSON.parse(sessionStorage.getItem(sessionDataKey));
+
+		if (sessionData) {
+			setDescription(sessionData.description);
+			setWork(sessionData.work);
+			return;
+		}
+
 		(async () => {
 			const response = await fetch(apiurl, {
 				method: "GET",
@@ -20,6 +35,10 @@ export default function Instance(props) {
 			if (response.ok) {
 				try {
 					const { description, work } = await response.json();
+					sessionStorage.setItem(
+						sessionDataKey,
+						JSON.stringify({ description, work })
+					);
 					setDescription(description);
 					setWork(work);
 				} catch (error) {
@@ -27,7 +46,7 @@ export default function Instance(props) {
 				}
 			} else console.log("HTTP error, status = " + response.status);
 		})();
-	}, [apiurl, token, setWork]);
+	}, [apiurl, token, setWork, sessionDataKey]);
 
 	useEffect(() => {
 		const url = `${process.env.REACT_APP_API_URL}/activepuzzle`;
@@ -65,8 +84,15 @@ export default function Instance(props) {
 			},
 			body: JSON.stringify({ puzzleData: work }),
 		});
+
+		const newSessionData = JSON.parse(
+			sessionStorage.getItem(sessionDataKey)
+		);
+		newSessionData.work = work;
+		sessionStorage.setItem(sessionDataKey, JSON.stringify(newSessionData));
+
 		console.log(response.status);
-	}, [token, work, apiurl]);
+	}, [token, work, apiurl, sessionDataKey]);
 
 	useEffect(() => {
 		const clearHistoryListener = props.history.listen(updateWork);
