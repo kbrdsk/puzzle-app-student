@@ -19,7 +19,10 @@ function Routes() {
 		setUser,
 	};
 	return (
-		<BrowserRouter history={history}>
+		<BrowserRouter
+			history={history}
+			basename={process.env.REACT_APP_ROUTER_BASENAME}
+		>
 			<UserContext.Provider value={defaultContext}>
 				{user ? (
 					<div>
