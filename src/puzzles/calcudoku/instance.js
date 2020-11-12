@@ -41,7 +41,7 @@ export default function Instance(props) {
 				}
 			} else console.log("HTTP error, status = " + response.status);
 		})();
-	}, [dburl, token]);
+	}, [dburl, token, sessionDataKey]);
 
 	useEffect(() => {
 		const url = `${process.env.REACT_APP_API_URL}/activepuzzle`;
