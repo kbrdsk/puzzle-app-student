@@ -5,6 +5,7 @@ export default function Instance(props) {
 	const name = props.name;
 	const [description, setDescription] = useState("");
 	const [work, setWork] = useState("");
+	const [updateTimer, setUpdateTimer] = useState(30);
 	const {
 		user: { token },
 	} = useContext(UserContext);
@@ -82,6 +83,21 @@ export default function Instance(props) {
 			window.removeEventListener("beforeunload", updateWork);
 		};
 	}, [updateWork]);
+
+	useEffect(() => {
+		if (updateTimer === 0) {
+			setUpdateTimer(30);
+			updateWork();
+		}
+	}, [updateTimer, updateWork]);
+
+	useEffect(() => {
+		const timeInterval = setInterval(
+			() => setUpdateTimer((timer) => timer - 1),
+			1000
+		);
+		return () => clearInterval(timeInterval);
+	}, [setUpdateTimer]);
 
 	return (
 		<div className="logic instance">
