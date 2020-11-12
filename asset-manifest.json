@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/puzzle-app-student/static/css/main.bd6a5925.chunk.css",
-    "main.js": "/puzzle-app-student/static/js/main.671bcd14.chunk.js",
-    "main.js.map": "/puzzle-app-student/static/js/main.671bcd14.chunk.js.map",
+    "main.js": "/puzzle-app-student/static/js/main.7f7c15be.chunk.js",
+    "main.js.map": "/puzzle-app-student/static/js/main.7f7c15be.chunk.js.map",
     "runtime-main.js": "/puzzle-app-student/static/js/runtime-main.5b3589b3.js",
     "runtime-main.js.map": "/puzzle-app-student/static/js/runtime-main.5b3589b3.js.map",
     "static/js/2.67f79b24.chunk.js": "/puzzle-app-student/static/js/2.67f79b24.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.5b3589b3.js",
     "static/js/2.67f79b24.chunk.js",
     "static/css/main.bd6a5925.chunk.css",
-    "static/js/main.671bcd14.chunk.js"
+    "static/js/main.7f7c15be.chunk.js"
   ]
 }
