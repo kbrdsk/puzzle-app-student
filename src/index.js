@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
 import Login from "./login/index";
@@ -20,10 +20,7 @@ function Routes() {
 		setUser,
 	};
 	return (
-		<BrowserRouter
-			history={history}
-			basename={process.env.REACT_APP_ROUTER_BASENAME}
-		>
+		<HashRouter history={history} basename="/">
 			<UserContext.Provider value={defaultContext}>
 				{user ? (
 					<div>
@@ -50,7 +47,7 @@ function Routes() {
 					</Switch>
 				)}
 			</UserContext.Provider>
-		</BrowserRouter>
+		</HashRouter>
 	);
 }
 
