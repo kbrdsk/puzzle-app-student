@@ -5,6 +5,7 @@ import { UserContext } from "./user-context";
 export default function Login(props) {
 	const [first, setFirst] = useState();
 	const [last, setLast] = useState();
+	const [fetching, setFetching] = useState(false);
 	const [badLogin, setBadLogin] = useState(false);
 	const { setUser } = useContext(UserContext);
 
@@ -21,6 +22,7 @@ export default function Login(props) {
 				setBadLogin("missing name");
 				return;
 			}
+			setFetching(create ? "create" : "login");
 			const studentData = { first, last };
 			const uri =
 				`${process.env.REACT_APP_API_URL}/students` +
@@ -32,6 +34,7 @@ export default function Login(props) {
 				},
 				body: JSON.stringify(studentData),
 			});
+			setFetching(false);
 			if (response.ok) {
 				setBadLogin(false);
 				try {
@@ -71,6 +74,13 @@ export default function Login(props) {
 	return (
 		<div className="login-container">
 			<div className="login-window">
+				{fetching ? (
+					<div className="fetching-indicator">
+						{fetching === "create"
+							? "Creating new user..."
+							: "Logging in..."}
+					</div>
+				) : null}
 				{badLogin ? (
 					<p className="login-error">
 						{badLogin === 404
