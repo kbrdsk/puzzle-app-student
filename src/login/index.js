@@ -17,6 +17,10 @@ export default function Login(props) {
 
 	const login = useCallback(
 		async (create) => {
+			if (!(first && last)) {
+				setBadLogin("missing name");
+				return;
+			}
 			const studentData = { first, last };
 			const uri =
 				`${process.env.REACT_APP_API_URL}/students` +
@@ -73,6 +77,8 @@ export default function Login(props) {
 							? "User not found. Please try again or create a new user."
 							: badLogin === 403
 							? "User already exists."
+							: badLogin === "missing name"
+							? "Please enter both your first and last name."
 							: "An error occurred while attempting to log in."}
 					</p>
 				) : null}
