@@ -21,6 +21,7 @@ export default function Instance(props) {
 		if (sessionData) {
 			setSize(sessionData.size);
 			setGrid(generateGrid(sessionData));
+			setSaveStatus("saved");
 			return;
 		}
 
@@ -38,6 +39,7 @@ export default function Instance(props) {
 					);
 					setSize(data.size);
 					setGrid(generateGrid(data));
+					setSaveStatus("saved");
 				} catch (error) {
 					setGrid([]);
 					console.log(error);
