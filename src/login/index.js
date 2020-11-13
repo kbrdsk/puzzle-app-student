@@ -89,7 +89,7 @@ export default function Login(props) {
 							? "User already exists."
 							: badLogin === "missing name"
 							? "Please enter both your first and last name."
-							: "An error occurred while attempting to log in."}
+							: "An error occurred, please try again."}
 					</p>
 				) : null}
 				<div className="name-container first">
