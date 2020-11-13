@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useContext, useMemo } from "react";
 import { UserContext } from "../../login/user-context";
 
+const parsedOperations = {
+	"-": "-",
+	"+": "+",
+	"*": "x",
+	"/": "÷",
+};
+
 export default function Instance(props) {
 	const name = useMemo(() => props.name, [props.name]);
 	const sessionDataKey = useMemo(() => `calcudoku-instance-data-${name}`, [
@@ -232,7 +239,7 @@ function generateGrid(puzzleData) {
 				square.col >= col && (square.row >= row || square.col > col)
 		);
 		const result = isTopLeft ? cage.result : null;
-		const operation = isTopLeft ? cage.operation : null;
+		const operation = isTopLeft ? parsedOperations[cage.operation] : null;
 		const value = entry ? entry.value : null;
 		return { col, row, value, neighbors, result, operation };
 	});
