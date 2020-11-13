@@ -2,7 +2,7 @@ import React from "react";
 
 export default function List(props) {
 	const history = props.history;
-	const instanceList = props.instanceList;
+	const instanceList = props.instanceList.sort(sortInstances);
 
 	return (
 		<div className="calcudoku-page-container">
@@ -20,7 +20,7 @@ export default function List(props) {
 	);
 }
 
-function renderInstanceListing(history, {instance, title}) {
+function renderInstanceListing(history, { instance, title }) {
 	return (
 		<li
 			key={instance}
@@ -33,4 +33,19 @@ function renderInstanceListing(history, {instance, title}) {
 
 function capitalize(string) {
 	return string.replace(/^./, (char) => char.toUpperCase());
+}
+
+function sortInstances({ instance: a }, { instance: b }) {
+	const [, sizeA, levelA, numberA] = a.match(/^(\d)x\d([a-z]+)(\d+)$/);
+	const [, sizeB, levelB, numberB] = b.match(/^(\d)x\d([a-z]+)(\d+)$/);
+	if (sizeA < sizeB) return -1;
+	if (sizeB > sizeA) return 1;
+	if (
+		levelA === "beginner" &&
+		["intermediate", "expert"].includes(levelB)
+	)
+		return -1;
+	if (levelA === "intermediate" && levelB === "expert") return -1;
+	if (levelA === levelB && numberA < numberB) return -1;
+	return 1;
 }
