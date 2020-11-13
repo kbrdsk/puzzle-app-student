@@ -187,6 +187,12 @@ div.puzzle-container[size="4"] div.grid-container {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
 }
+@media (max-width: 420px) {
+  div.puzzle-container[size="4"] div.grid-container {
+    height: 15em;
+    width: 15em;
+  }
+}
 div.puzzle-container[size="4"] div.grid-container div.calcudoku-square {
   position: relative;
   background-color: white;
@@ -194,6 +200,11 @@ div.puzzle-container[size="4"] div.grid-container div.calcudoku-square {
   padding: 0.5em;
   border: solid 2px;
   cursor: pointer;
+}
+@media (max-width: 420px) {
+  div.puzzle-container[size="4"] div.grid-container div.calcudoku-square {
+    border: solid 1px;
+  }
 }
 div.puzzle-container[size="4"] div.grid-container div.calcudoku-square.active {
   background-color: #e5e5e5;
@@ -224,6 +235,11 @@ div.puzzle-container[size="4"] div.grid-container div.calcudoku-square input {
   text-align: right;
   cursor: pointer;
 }
+@media (max-width: 420px) {
+  div.puzzle-container[size="4"] div.grid-container div.calcudoku-square input {
+    font-size: 2em;
+  }
+}
 div.puzzle-container[size="4"] div.grid-container div.calcudoku-square input::-webkit-inner-spin-button, div.puzzle-container[size="4"] div.grid-container div.calcudoku-square input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -238,10 +254,20 @@ div.puzzle-container[size="4"] div.number-select-container {
   padding: 1em;
   box-sizing: border-box;
 }
+@media (max-width: 420px) {
+  div.puzzle-container[size="4"] div.number-select-container {
+    width: 15em;
+  }
+}
 div.puzzle-container[size="4"] div.number-select-container button {
   font-size: 3em;
   padding: 0.15em 0.5em;
   cursor: pointer;
+}
+@media (max-width: 420px) {
+  div.puzzle-container[size="4"] div.number-select-container button {
+    font-size: 1.5em;
+  }
 }
 div.puzzle-container[size="5"] {
   display: flex;
@@ -259,6 +285,12 @@ div.puzzle-container[size="5"] div.grid-container {
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
 }
+@media (max-width: 420px) {
+  div.puzzle-container[size="5"] div.grid-container {
+    height: 18.75em;
+    width: 18.75em;
+  }
+}
 div.puzzle-container[size="5"] div.grid-container div.calcudoku-square {
   position: relative;
   background-color: white;
@@ -266,6 +298,11 @@ div.puzzle-container[size="5"] div.grid-container div.calcudoku-square {
   padding: 0.5em;
   border: solid 2px;
   cursor: pointer;
+}
+@media (max-width: 420px) {
+  div.puzzle-container[size="5"] div.grid-container div.calcudoku-square {
+    border: solid 1px;
+  }
 }
 div.puzzle-container[size="5"] div.grid-container div.calcudoku-square.active {
   background-color: #e5e5e5;
@@ -296,6 +333,11 @@ div.puzzle-container[size="5"] div.grid-container div.calcudoku-square input {
   text-align: right;
   cursor: pointer;
 }
+@media (max-width: 420px) {
+  div.puzzle-container[size="5"] div.grid-container div.calcudoku-square input {
+    font-size: 2em;
+  }
+}
 div.puzzle-container[size="5"] div.grid-container div.calcudoku-square input::-webkit-inner-spin-button, div.puzzle-container[size="5"] div.grid-container div.calcudoku-square input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -310,10 +352,20 @@ div.puzzle-container[size="5"] div.number-select-container {
   padding: 1em;
   box-sizing: border-box;
 }
+@media (max-width: 420px) {
+  div.puzzle-container[size="5"] div.number-select-container {
+    width: 18.75em;
+  }
+}
 div.puzzle-container[size="5"] div.number-select-container button {
   font-size: 3em;
   padding: 0.15em 0.5em;
   cursor: pointer;
+}
+@media (max-width: 420px) {
+  div.puzzle-container[size="5"] div.number-select-container button {
+    font-size: 1.5em;
+  }
 }
 div.puzzle-container[size="6"] {
   display: flex;
@@ -331,6 +383,12 @@ div.puzzle-container[size="6"] div.grid-container {
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(6, 1fr);
 }
+@media (max-width: 420px) {
+  div.puzzle-container[size="6"] div.grid-container {
+    height: 22.5em;
+    width: 22.5em;
+  }
+}
 div.puzzle-container[size="6"] div.grid-container div.calcudoku-square {
   position: relative;
   background-color: white;
@@ -338,6 +396,11 @@ div.puzzle-container[size="6"] div.grid-container div.calcudoku-square {
   padding: 0.5em;
   border: solid 2px;
   cursor: pointer;
+}
+@media (max-width: 420px) {
+  div.puzzle-container[size="6"] div.grid-container div.calcudoku-square {
+    border: solid 1px;
+  }
 }
 div.puzzle-container[size="6"] div.grid-container div.calcudoku-square.active {
   background-color: #e5e5e5;
@@ -368,6 +431,11 @@ div.puzzle-container[size="6"] div.grid-container div.calcudoku-square input {
   text-align: right;
   cursor: pointer;
 }
+@media (max-width: 420px) {
+  div.puzzle-container[size="6"] div.grid-container div.calcudoku-square input {
+    font-size: 2em;
+  }
+}
 div.puzzle-container[size="6"] div.grid-container div.calcudoku-square input::-webkit-inner-spin-button, div.puzzle-container[size="6"] div.grid-container div.calcudoku-square input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -382,10 +450,20 @@ div.puzzle-container[size="6"] div.number-select-container {
   padding: 1em;
   box-sizing: border-box;
 }
+@media (max-width: 420px) {
+  div.puzzle-container[size="6"] div.number-select-container {
+    width: 22.5em;
+  }
+}
 div.puzzle-container[size="6"] div.number-select-container button {
   font-size: 3em;
   padding: 0.15em 0.5em;
   cursor: pointer;
+}
+@media (max-width: 420px) {
+  div.puzzle-container[size="6"] div.number-select-container button {
+    font-size: 1.5em;
+  }
 }
 
 div.instance-list-container {
