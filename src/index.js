@@ -25,11 +25,16 @@ function Routes() {
 				{user ? (
 					<div>
 						<nav className="main-nav">
-							<BackButton history={history} />
 							<ProfileBar
 								student={user.student}
 								setUser={setUser}
 							/>
+							<Switch>
+								<Route exact path="/" />
+								<Route>
+									<BackButton history={history} />
+								</Route>
+							</Switch>
 						</nav>
 
 						<Switch>
