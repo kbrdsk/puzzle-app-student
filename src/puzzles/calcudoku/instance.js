@@ -9,6 +9,7 @@ export default function Instance(props) {
 	const [size, setSize] = useState(null);
 	const [grid, setGrid] = useState(null);
 	const [activeSquare, setActiveSquare] = useState(null);
+	const [saveStatus, setSaveStatus] = useState(null);
 	const {
 		user: { token },
 	} = useContext(UserContext);
@@ -73,6 +74,7 @@ export default function Instance(props) {
 	}, [token, name]);
 
 	const updateWork = async () => {
+		setSaveStatus("saving");
 		const work = grid.map((sq) => {
 			return { col: sq.col, row: sq.row, value: sq.value };
 		});
@@ -91,6 +93,9 @@ export default function Instance(props) {
 		);
 		newSessionData.work = work;
 		sessionStorage.setItem(sessionDataKey, JSON.stringify(newSessionData));
+
+		if (response.ok) setSaveStatus("saved");
+		else setSaveStatus("error");
 
 		console.log(response.status);
 	};
@@ -185,6 +190,15 @@ export default function Instance(props) {
 		<div>
 			{grid ? (
 				<div className="puzzle-container" size={size}>
+					<div className="saving-indicator">
+						{saveStatus === "saving"
+							? "Saving..."
+							: saveStatus === "error"
+							? "An error occurred while saving."
+							: saveStatus === "saved"
+							? "Saved."
+							: " "}
+					</div>
 					<div className="grid-container" size={size}>
 						{grid.map(renderSquare)}
 					</div>

@@ -11,6 +11,11 @@ $scaling-420px: 1 / 2;
 	flex-direction: column;
 	align-items: center;
 	padding: 2em;
+	div.saving-indicator{
+		align-self: flex-start;
+		margin-bottom: 0.3em;
+		color: #888;
+	}
 	div.grid-container {
 		display: grid;
 		height: $puzzle-dimension;
