@@ -9,7 +9,10 @@ export default function Login(props) {
 	const { setUser } = useContext(UserContext);
 
 	const updateName = (updater, event) => {
-		updater(event.target.value);
+		updater((name) => {
+			const newName = event.target.value.replace(/[^a-zA-Z\-']/, "");
+			return newName.length < 20 ? newName : name;
+		});
 	};
 
 	const login = useCallback(
@@ -31,7 +34,10 @@ export default function Login(props) {
 					const token = (await response.json()).token;
 					const { student } = jwt.decode(token);
 					const user = { token, student };
-					sessionStorage.setItem("mcub-student-user", JSON.stringify(user));
+					sessionStorage.setItem(
+						"mcub-student-user",
+						JSON.stringify(user)
+					);
 					setUser(user);
 					props.history.push("/");
 				} catch (error) {
@@ -76,6 +82,7 @@ export default function Login(props) {
 						type="text"
 						name="firstname"
 						id="firstname"
+						value={first}
 						onChange={updateName.bind(null, setFirst)}
 					/>
 				</div>
@@ -83,8 +90,9 @@ export default function Login(props) {
 					<label htmlFor="lastname">Last Name:</label>
 					<input
 						type="text"
-						name="lasname"
-						id="lasname"
+						name="lastname"
+						id="lastname"
+						value={last}
 						onChange={updateName.bind(null, setLast)}
 					/>
 				</div>
