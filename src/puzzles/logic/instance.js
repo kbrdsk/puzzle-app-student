@@ -12,6 +12,7 @@ export default function Instance(props) {
 	const sessionDataKey = useMemo(() => `logic-instance-data-${name}`, [name]);
 	const [description, setDescription] = useState("");
 	const [work, setWork] = useState("");
+	const [saveStatus, setSaveStatus] = useState(null);
 	const [updateTimer, setUpdateTimer] = useState(30);
 	const {
 		user: { token },
@@ -76,6 +77,7 @@ export default function Instance(props) {
 	}, [token, name]);
 
 	const updateWork = useCallback(async () => {
+		setSaveStatus("saving");
 		const response = await fetch(apiurl, {
 			method: "PUT",
 			headers: {
@@ -91,17 +93,21 @@ export default function Instance(props) {
 		newSessionData.work = work;
 		sessionStorage.setItem(sessionDataKey, JSON.stringify(newSessionData));
 
+		if (response.ok) setSaveStatus("saved");
+		else setSaveStatus("error");
+
 		console.log(response.status);
 	}, [token, work, apiurl, sessionDataKey]);
 
 	useEffect(() => {
+		setSaveStatus(null);
 		const clearHistoryListener = props.history.listen(updateWork);
 		const updateTimer = setTimeout(updateWork, 3000);
 		return () => {
 			clearTimeout(updateTimer);
 			clearHistoryListener();
 		};
-	}, [updateWork, props.history]);
+	}, [updateWork, props.history, setSaveStatus]);
 
 	useEffect(() => {
 		window.addEventListener("beforeunload", updateWork);
@@ -113,9 +119,9 @@ export default function Instance(props) {
 	useEffect(() => {
 		if (updateTimer === 0) {
 			setUpdateTimer(30);
-			updateWork();
+			if(!saveStatus) updateWork();
 		}
-	}, [updateTimer, updateWork]);
+	}, [updateTimer, updateWork, saveStatus]);
 
 	useEffect(() => {
 		const timeInterval = setInterval(
@@ -137,6 +143,15 @@ export default function Instance(props) {
 				value={work}
 				placeholder="Enter your solution or any notes here!"
 			/>
+			<div className="saving-indicator">
+				{saveStatus === "saving"
+					? "Saving..."
+					: saveStatus === "error"
+					? "An error occurred while saving."
+					: saveStatus === "saved"
+					? "Saved."
+					: " "}
+			</div>
 		</div>
 	);
 }
