@@ -4,6 +4,7 @@ import React, {
 	useContext,
 	useCallback,
 	useMemo,
+	useRef,
 } from "react";
 import { UserContext } from "../../login/user-context";
 
@@ -14,17 +15,19 @@ export default function Instance(props) {
 	const [work, setWork] = useState("");
 	const [saveStatus, setSaveStatus] = useState(null);
 	const [updateTimer, setUpdateTimer] = useState(30);
+	const initializing = useRef(true);
 	const {
 		user: { token },
 	} = useContext(UserContext);
 	const apiurl = `${process.env.REACT_APP_API_URL}/puzzles/logic/${name}`;
 
-	useEffect(() => {
+	useMemo(() => {
 		const sessionData = JSON.parse(sessionStorage.getItem(sessionDataKey));
 
 		if (sessionData) {
 			setDescription(sessionData.description);
 			setWork(sessionData.work);
+			setSaveStatus("saved");
 			return;
 		}
 
@@ -42,6 +45,7 @@ export default function Instance(props) {
 					);
 					setDescription(description);
 					setWork(work);
+					setSaveStatus("saved");
 				} catch (error) {
 					console.log(error);
 				}
@@ -100,6 +104,7 @@ export default function Instance(props) {
 	}, [token, work, apiurl, sessionDataKey]);
 
 	useEffect(() => {
+		if (initializing.current) return (initializing.current = false);
 		setSaveStatus(null);
 		const clearHistoryListener = props.history.listen(updateWork);
 		const updateTimer = setTimeout(updateWork, 3000);
@@ -107,7 +112,7 @@ export default function Instance(props) {
 			clearTimeout(updateTimer);
 			clearHistoryListener();
 		};
-	}, [updateWork, props.history, setSaveStatus]);
+	}, [updateWork, props.history, setSaveStatus, initializing]);
 
 	useEffect(() => {
 		window.addEventListener("beforeunload", updateWork);
@@ -119,7 +124,7 @@ export default function Instance(props) {
 	useEffect(() => {
 		if (updateTimer === 0) {
 			setUpdateTimer(30);
-			if(!saveStatus) updateWork();
+			if (!saveStatus) updateWork();
 		}
 	}, [updateTimer, updateWork, saveStatus]);
 
