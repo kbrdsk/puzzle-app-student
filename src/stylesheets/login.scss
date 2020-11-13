@@ -17,6 +17,18 @@ div.login-container {
 			"create    login";
 		border: 3px solid variables.$color10;
 		border-radius: 1em;
+		position: relative;
+		overflow: hidden;
+
+		div.fetching-indicator{
+			position: absolute;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: #fffd;
+			width: 100%;
+			height: 100%;
+		}
 
 		p.login-error {
 			grid-area: error;
@@ -54,6 +66,10 @@ div.login-container {
 			cursor: pointer;
 			border: none;
 			border-radius: 0.3em;
+
+			&:focus{
+				outline: none;
+			}
 
 			&.create-student {
 				grid-area: create;
