@@ -53,6 +53,10 @@ h2.loading-indicator {
 			}
 			cursor: pointer;
 
+			@if $instructionScale != 1 {
+				cursor: default;
+			}
+
 			div.selector {
 				box-sizing: border-box;
 				width: 100%;
@@ -99,6 +103,10 @@ h2.loading-indicator {
 				}
 				text-align: right;
 				cursor: pointer;
+
+				@if $instructionScale != 1 {
+					cursor: default;
+				}
 				&::-webkit-inner-spin-button,
 				&::-webkit-outer-spin-button {
 					-webkit-appearance: none;

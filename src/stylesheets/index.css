@@ -593,6 +593,7 @@ div.puzzle-container.instructions div.grid-container div.calcudoku-square {
   padding: 0.5em;
   border: solid 2px;
   cursor: pointer;
+  cursor: default;
 }
 @media (max-width: 420px) {
   div.puzzle-container.instructions div.grid-container div.calcudoku-square {
@@ -639,6 +640,7 @@ div.puzzle-container.instructions div.grid-container div.calcudoku-square input 
   background-color: white;
   text-align: right;
   cursor: pointer;
+  cursor: default;
   -moz-appearance: textfield;
 }
 @media (max-width: 420px) {
