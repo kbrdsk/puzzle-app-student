@@ -7,20 +7,26 @@ export default function List(props) {
 	return (
 		<div className="calcudoku-page-container">
 			<div className="instance-list-container">
-				<h2>Calcudokus</h2>
-				<ul>
-					<li
-						key="instructions"
-						onClick={() => history.push(`/calcudoku/instructions`)}
-					>
-						<h3>Instructions</h3>
-					</li>
-					{instanceList
-						? instanceList.map(
+				{instanceList.length === 0 ? (
+					<h2 className="fetching-indicator">Loading...</h2>
+				) : (
+					<div>
+						<h2>Calcudokus</h2>
+						<ul>
+							<li
+								key="instructions"
+								onClick={() =>
+									history.push(`/calcudoku/instructions`)
+								}
+							>
+								<h3>Instructions</h3>
+							</li>
+							{instanceList.map(
 								renderInstanceListing.bind(null, history)
-						  )
-						: null}
-				</ul>
+							)}
+						</ul>
+					</div>
+				)}
 			</div>
 		</div>
 	);
