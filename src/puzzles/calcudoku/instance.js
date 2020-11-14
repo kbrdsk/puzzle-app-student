@@ -175,6 +175,7 @@ export default function Instance(props) {
 					{square.operation}
 				</div>
 				<input type="number" value={square.value || ""} disabled />
+				<div className="selector"></div>
 			</div>
 		);
 	};
