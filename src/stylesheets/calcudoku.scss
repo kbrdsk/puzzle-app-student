@@ -5,10 +5,6 @@
 $base-dimension: 30em;
 $scaling-420px: 1 / 2;
 
-h2.loading-indicator {
-	text-align: center;
-}
-
 @mixin puzzle-container($puzzle-size, $instructionScale) {
 	$puzzle-dimension: $base-dimension * $puzzle-size / 4 * $instructionScale;
 	display: flex;
@@ -145,6 +141,10 @@ h2.loading-indicator {
 			cursor: pointer;
 		}
 	}
+}
+
+h2.loading-indicator {
+	text-align: center;
 }
 
 div.puzzle-container {
