@@ -136,7 +136,7 @@ export default function Instance(props) {
 		return () => clearInterval(timeInterval);
 	}, [setUpdateTimer]);
 
-	return (
+	return description ? (
 		<div className="logic instance">
 			<p className="puzzle-description">{description}</p>
 			<textarea
@@ -158,5 +158,7 @@ export default function Instance(props) {
 					: " "}
 			</div>
 		</div>
+	) : (
+		<h2 className="loading-indicator">Loading...</h2>
 	);
 }
