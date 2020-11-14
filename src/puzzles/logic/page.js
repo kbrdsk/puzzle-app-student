@@ -5,14 +5,16 @@ import Instance from "./instance";
 import { UserContext } from "../../login/user-context";
 
 export default function Page(props) {
-	const [instanceList, setInstanceList] = useState([]);
+	const cachedList = sessionStorage.getItem("logic-instance-list");
+	const [instanceList, setInstanceList] = useState(
+		cachedList ? JSON.parse(cachedList) : []
+	);
 	const {
 		user: { token },
 	} = useContext(UserContext);
 	const match = props.match;
 
 	useEffect(() => {
-		const cachedList = sessionStorage.getItem("logic-instance-list");
 		if (cachedList) {
 			setInstanceList(JSON.parse(cachedList));
 		} else {
@@ -36,7 +38,7 @@ export default function Page(props) {
 				} else console.log("HTTP error, status = " + response.status);
 			})();
 		}
-	}, [token]);
+	}, [token, cachedList]);
 
 	const renderInstanceRoute = (match, { instance }) => {
 		return (

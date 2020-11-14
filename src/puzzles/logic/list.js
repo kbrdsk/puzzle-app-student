@@ -7,14 +7,18 @@ export default function List(props) {
 	return (
 		<div className="logic-puzzles page-container">
 			<div className="instance-list-container">
-				<h2>Logic Puzzles</h2>
-				<ul>
-					{instanceList
-						? instanceList.map(
+				{instanceList.length === 0 ? (
+					<h2 className="fetching-indicator">Loading...</h2>
+				) : (
+					<div>
+						<h2>Logic Puzzles</h2>
+						<ul>
+							{instanceList.map(
 								renderInstanceListing.bind(null, history)
-						  )
-						: null}
-				</ul>
+							)}
+						</ul>
+					</div>
+				)}
 			</div>
 		</div>
 	);
