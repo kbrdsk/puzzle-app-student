@@ -5,7 +5,7 @@ import * as logic from "./logic/index";
 export const puzzleList = [calcudoku, logic];
 
 export const potd = {
-	uri: "/calcudoku/4x4beginner1",
+	uri: "/calcudoku/instructions",
 	Preview: POTDPreview,
 };
 

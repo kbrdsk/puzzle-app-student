@@ -9,6 +9,12 @@ export default function List(props) {
 			<div className="instance-list-container">
 				<h2>Calcudokus</h2>
 				<ul>
+					<li
+						key="instructions"
+						onClick={() => history.push(`/calcudoku/instructions`)}
+					>
+						<h3>Instructions</h3>
+					</li>
 					{instanceList
 						? instanceList.map(
 								renderInstanceListing.bind(null, history)
@@ -40,10 +46,7 @@ function sortInstances({ instance: a }, { instance: b }) {
 	const [, sizeB, levelB, numberB] = b.match(/^(\d)x\d([a-z]+)(\d+)$/);
 	if (sizeA < sizeB) return -1;
 	if (sizeB > sizeA) return 1;
-	if (
-		levelA === "beginner" &&
-		["intermediate", "expert"].includes(levelB)
-	)
+	if (levelA === "beginner" && ["intermediate", "expert"].includes(levelB))
 		return -1;
 	if (levelA === "intermediate" && levelB === "expert") return -1;
 	if (levelA === levelB && numberA < numberB) return -1;

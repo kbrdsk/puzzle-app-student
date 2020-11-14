@@ -5,8 +5,8 @@
 $base-dimension: 30em;
 $scaling-420px: 1 / 2;
 
-@mixin puzzle-container($puzzle-size) {
-	$puzzle-dimension: $base-dimension * $puzzle-size/ 4;
+@mixin puzzle-container($puzzle-size, $instructionScale) {
+	$puzzle-dimension: $base-dimension * $puzzle-size / 4 * $instructionScale;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -16,7 +16,7 @@ $scaling-420px: 1 / 2;
 		width: $puzzle-dimension;
 		@media (max-width: 420px) {
 			width: $puzzle-dimension * 3 / 4;
-			font-size: .7em;
+			font-size: 0.7em;
 			padding-left: 1em;
 		}
 
@@ -75,7 +75,7 @@ $scaling-420px: 1 / 2;
 				box-sizing: border-box;
 				width: 100%;
 				height: 100%;
-				font-size: 4em;
+				font-size: 4em * $instructionScale;
 				@media (max-width: 420px) {
 					font-size: 4em * $scaling-420px;
 				}
@@ -116,15 +116,19 @@ $scaling-420px: 1 / 2;
 
 div.puzzle-container {
 	&[size="4"] {
-		@include puzzle-container(4);
+		@include puzzle-container(4, 1);
 	}
 
 	&[size="5"] {
-		@include puzzle-container(5);
+		@include puzzle-container(5, 1);
 	}
 
 	&[size="6"] {
-		@include puzzle-container(6);
+		@include puzzle-container(6, 1);
+	}
+
+	&.instructions {
+		@include puzzle-container(4, 1 / 2);
 	}
 }
 
@@ -137,4 +141,32 @@ div.instance-list-container {
 		color.adjust(variables.$color7, $lightness: 28),
 		variables.$color7
 	);
+}
+
+div.calcudoku-instructions {
+	display: flex;
+	flex-direction: column;
+	button.try-it {
+		margin: 1em;
+		margin-bottom: 0;
+		padding: 0.7em;
+		cursor: pointer;
+		border: none;
+		border-radius: 0.3em;
+		font-size: 1.5em;
+		background-color: variables.$color4;
+		align-self: center;
+
+		&:focus {
+			outline: none;
+		}
+
+		&:hover {
+			margin-top: 0.8em;
+			border-radius: 0.4em;
+			background-color: color.adjust(variables.$color4, $lightness: 25);
+			color: color.adjust(variables.$color4, $lightness: -5);
+			border: solid 0.2em color.adjust(variables.$color4, $lightness: 0);
+		}
+	}
 }

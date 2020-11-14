@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Route, Switch } from "react-router-dom";
 import List from "./list";
 import Instance from "./instance";
+import Instructions from "./instructions";
 import { UserContext } from "../../login/user-context";
 
 export default function Page(props) {
@@ -50,6 +51,11 @@ export default function Page(props) {
 
 	return (
 		<Switch>
+			<Route
+				key="instructions"
+				path={`${match.url}/instructions`}
+				render={(props) => <Instructions {...props} />}
+			/>
 			{instanceList
 				? instanceList.map(renderInstanceRoute.bind(null, match))
 				: null}
