@@ -90,7 +90,7 @@ function renderPuzzleRoute(puzzle) {
 }
 
 function capitalize(string) {
-	return string.replace(/^./, (char) => char.toUpperCase());
+	return string.replace(/(?<!\w)./g, (char) => char.toUpperCase());
 }
 
 //---------
