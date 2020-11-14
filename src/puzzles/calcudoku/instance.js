@@ -219,7 +219,9 @@ export default function Instance(props) {
 							)}
 					</div>
 				</div>
-			) : null}
+			) : (
+				<h2 className="loading-indicator">Loading...</h2>
+			)}
 		</div>
 	);
 }
