@@ -32,9 +32,14 @@ nav.main-nav {
 		cursor: pointer;
 		background-color: color.adjust(variables.$color10, $lightness: -25);
 
-		&:hover {
-			color: color.adjust(variables.$color10, $lightness: -35);
-			background-color: color.adjust(variables.$color10, $lightness: 15);
+		@media (hover: hover) {
+			&:hover {
+				color: color.adjust(variables.$color10, $lightness: -35);
+				background-color: color.adjust(
+					variables.$color10,
+					$lightness: 15
+				);
+			}
 		}
 
 		&:focus {

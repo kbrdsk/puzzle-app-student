@@ -817,9 +817,11 @@ nav.main-nav button.log-out {
   cursor: pointer;
   background-color: #39beca;
 }
-nav.main-nav button.log-out:hover {
-  color: #2c9aa4;
-  background-color: #daf3f5;
+@media (hover: hover) {
+  nav.main-nav button.log-out:hover {
+    color: #2c9aa4;
+    background-color: #daf3f5;
+  }
 }
 nav.main-nav button.log-out:focus {
   outline: none;
