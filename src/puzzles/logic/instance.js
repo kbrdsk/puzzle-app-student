@@ -115,11 +115,14 @@ export default function Instance(props) {
 	}, [updateWork, props.history, setSaveStatus, initializing]);
 
 	useEffect(() => {
-		window.addEventListener("beforeunload", updateWork);
+		const conditionalUpdater = () => {
+			if(saveStatus !== "saved") updateWork();
+		}
+		window.addEventListener("beforeunload", conditionalUpdater);
 		return () => {
-			window.removeEventListener("beforeunload", updateWork);
+			window.removeEventListener("beforeunload", conditionalUpdater);
 		};
-	}, [updateWork]);
+	}, [updateWork, saveStatus]);
 
 	useEffect(() => {
 		if (updateTimer === 0) {
