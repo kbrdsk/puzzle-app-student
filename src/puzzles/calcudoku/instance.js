@@ -15,6 +15,7 @@ export default function Instance(props) {
 	]);
 	const [size, setSize] = useState(null);
 	const [grid, setGrid] = useState(null);
+	const [cages, setCages] = useState(null);
 	const [activeSquare, setActiveSquare] = useState(null);
 	const [saveStatus, setSaveStatus] = useState(null);
 	const {
@@ -28,6 +29,7 @@ export default function Instance(props) {
 		if (sessionData) {
 			setSize(sessionData.size);
 			setGrid(generateGrid(sessionData));
+			setCages(sessionData.cages);
 			setSaveStatus("saved");
 			return;
 		}
@@ -46,6 +48,7 @@ export default function Instance(props) {
 					);
 					setSize(data.size);
 					setGrid(generateGrid(data));
+					setCages(data.cages);
 					setSaveStatus("saved");
 				} catch (error) {
 					setGrid([]);
@@ -164,10 +167,19 @@ export default function Instance(props) {
 	});
 
 	const renderSquare = (square) => {
+		const isBeginner =
+			name.match("4x4beginner1") || name.match("4x4beginner2");
+		const matchSquare = squareMatcher(square);
+		const cage =
+			square.result && cages
+				? cages.find((cage) => cage.squares.find(matchSquare))
+				: null;
 		const classList =
 			"calcudoku-square " +
 			square.neighbors.join(" ") +
-			(square === activeSquare ? " active" : "");
+			(square === activeSquare ? " active" : "") +
+			(isBeginner && isDuplicate(grid, square) ? " duplicate" : "") +
+			(isBeginner && cage && hasError(grid, cage) ? " cageError" : "");
 		return (
 			<div className={classList} onClick={() => setActiveSquare(square)}>
 				<div className="cage-indicator">
@@ -269,4 +281,47 @@ function neighborList(square, cage) {
 
 function squareMatcher({ col, row }) {
 	return (square) => square.col === col && square.row === row;
+}
+
+function isDuplicate(grid, { col, row, value }) {
+	return grid.some(
+		(square) =>
+			(square.row === row || square.col === col) &&
+			!(square.row === row && square.col === col) &&
+			square.value === value
+	);
+}
+
+function hasError(grid, { squares, operation, result }) {
+	const gridValues = squares.map(
+		(square) => +grid.find(squareMatcher(square)).value
+	);
+	if (gridValues.some((val) => !val)) return false;
+	let reducer, startVal;
+	switch (operation) {
+		case "+":
+			startVal = 0;
+			reducer = (index) => (a, b) => a + b;
+			break;
+		case "-":
+			startVal = 0;
+			reducer = (index) => (a, b, i) => (i === index ? a + b : a - b);
+			break;
+		case "*":
+			startVal = 1;
+			reducer = (index) => (a, b) => a * b;
+			break;
+		case "/":
+			startVal = 1;
+			reducer = (index) => (a, b, i) => (i === index ? a * b : a / b);
+			break;
+		default:
+			startVal = 0;
+			reducer = (index) => (a, b) => b;
+	}
+	const results = gridValues.map((val, index, gridvals) =>
+		gridvals.reduce(reducer(index), startVal)
+	);
+
+	return !results.includes(+result);
 }

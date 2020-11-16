@@ -226,6 +226,12 @@ div.puzzle-container[size="4"] div.grid-container div.calcudoku-square {
     padding: 0.15em;
   }
 }
+div.puzzle-container[size="4"] div.grid-container div.calcudoku-square.duplicate input {
+  color: red;
+}
+div.puzzle-container[size="4"] div.grid-container div.calcudoku-square.cageError div.cage-indicator {
+  color: red;
+}
 div.puzzle-container[size="4"] div.grid-container div.calcudoku-square div.selector {
   box-sizing: border-box;
   width: 100%;
@@ -357,6 +363,12 @@ div.puzzle-container[size="5"] div.grid-container div.calcudoku-square {
     border: solid 1px;
     padding: 0.15em;
   }
+}
+div.puzzle-container[size="5"] div.grid-container div.calcudoku-square.duplicate input {
+  color: red;
+}
+div.puzzle-container[size="5"] div.grid-container div.calcudoku-square.cageError div.cage-indicator {
+  color: red;
 }
 div.puzzle-container[size="5"] div.grid-container div.calcudoku-square div.selector {
   box-sizing: border-box;
@@ -490,6 +502,12 @@ div.puzzle-container[size="6"] div.grid-container div.calcudoku-square {
     padding: 0.15em;
   }
 }
+div.puzzle-container[size="6"] div.grid-container div.calcudoku-square.duplicate input {
+  color: red;
+}
+div.puzzle-container[size="6"] div.grid-container div.calcudoku-square.cageError div.cage-indicator {
+  color: red;
+}
 div.puzzle-container[size="6"] div.grid-container div.calcudoku-square div.selector {
   box-sizing: border-box;
   width: 100%;
@@ -622,6 +640,12 @@ div.puzzle-container.instructions div.grid-container div.calcudoku-square {
     border: solid 1px;
     padding: 0.15em;
   }
+}
+div.puzzle-container.instructions div.grid-container div.calcudoku-square.duplicate input {
+  color: red;
+}
+div.puzzle-container.instructions div.grid-container div.calcudoku-square.cageError div.cage-indicator {
+  color: red;
 }
 div.puzzle-container.instructions div.grid-container div.calcudoku-square div.selector {
   box-sizing: border-box;

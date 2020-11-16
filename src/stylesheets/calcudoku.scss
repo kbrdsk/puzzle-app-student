@@ -51,6 +51,18 @@ $scaling-420px: 1 / 2;
 			}
 			cursor: pointer;
 
+			&.duplicate {
+				input {
+					color: red;
+				}
+			}
+
+			&.cageError {
+				div.cage-indicator {
+					color: red;
+				}
+			}
+
 			@if $instructionScale != 1 {
 				cursor: default;
 			}
