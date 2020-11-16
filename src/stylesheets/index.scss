@@ -30,6 +30,7 @@ nav.main-nav {
 		border-radius: 0.2em;
 		color: white;
 		cursor: pointer;
+		padding-bottom: 0.2em;
 		background-color: color.adjust(variables.$color10, $lightness: -25);
 
 		@media (hover: hover) {

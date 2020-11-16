@@ -815,6 +815,7 @@ nav.main-nav button.log-out {
   border-radius: 0.2em;
   color: white;
   cursor: pointer;
+  padding-bottom: 0.2em;
   background-color: #39beca;
 }
 @media (hover: hover) {
