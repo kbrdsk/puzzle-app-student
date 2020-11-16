@@ -7,7 +7,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
 
-
 body {
 	padding: 1.5em;
 	padding-top: 0.5em;
@@ -15,7 +14,7 @@ body {
 	user-select: none;
 }
 
-button{
+button {
 	font-family: inherit;
 }
 
@@ -26,7 +25,7 @@ nav.main-nav {
 	align-items: center;
 	padding: 0.3em;
 
-	button {
+	button.log-out {
 		border: none;
 		border-radius: 0.2em;
 		color: white;
@@ -53,6 +52,19 @@ nav.main-nav {
 		span.student-name {
 			color: color.adjust(variables.$color10, $lightness: -35);
 			margin-right: 0.5em;
+		}
+	}
+
+	svg.back-button {
+		height: 2em;
+		width: 2em;
+		fill: color.adjust(variables.$color10, $lightness: -25);
+		cursor: pointer;
+
+		&:hover {
+			fill: color.adjust(variables.$color10, $lightness: 15);
+			stroke: color.adjust(variables.$color10, $lightness: -25);
+			stroke-width: 80;
 		}
 	}
 }

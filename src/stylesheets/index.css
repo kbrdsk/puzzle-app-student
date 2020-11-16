@@ -810,18 +810,18 @@ nav.main-nav {
   align-items: center;
   padding: 0.3em;
 }
-nav.main-nav button {
+nav.main-nav button.log-out {
   border: none;
   border-radius: 0.2em;
   color: white;
   cursor: pointer;
   background-color: #39beca;
 }
-nav.main-nav button:hover {
+nav.main-nav button.log-out:hover {
   color: #2c9aa4;
   background-color: #daf3f5;
 }
-nav.main-nav button:focus {
+nav.main-nav button.log-out:focus {
   outline: none;
 }
 nav.main-nav div.profile-bar {
@@ -834,6 +834,17 @@ nav.main-nav div.profile-bar {
 nav.main-nav div.profile-bar span.student-name {
   color: #2c9aa4;
   margin-right: 0.5em;
+}
+nav.main-nav svg.back-button {
+  height: 2em;
+  width: 2em;
+  fill: #39beca;
+  cursor: pointer;
+}
+nav.main-nav svg.back-button:hover {
+  fill: #daf3f5;
+  stroke: #39beca;
+  stroke-width: 80;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -12,6 +12,17 @@ import "./stylesheets/index.css";
 
 const history = createBrowserHistory();
 
+const backArrowPath = (
+	<path
+		d={
+			"M1792 1024v128q0 53-32.5 90.5t-84.5 37.5h-704l293 294q38 36 " +
+			"38 90t-38 90l-75 76q-37 37-90 37-52 0-91-37l-651-652q-37-37-" +
+			"37-90 0-52 37-91l651-650q38-38 91-38 52 0 90 38l75 74q38 38 " +
+			"38 91t-38 91l-293 293h704q52 0 84.5 37.5t32.5 90.5z"
+		}
+	/>
+);
+
 function Routes() {
 	const sessionUser = JSON.parse(sessionStorage.getItem("mcub-student-user"));
 	const [user, setUser] = useState(sessionUser);
@@ -58,9 +69,16 @@ function Routes() {
 
 function BackButton({ history }) {
 	return (
-		<button className="back-button" onClick={history.back}>
-			Back
-		</button>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="2048"
+			height="2048"
+			viewBox="0 0 2048 2048"
+			onClick={history.back}
+			className="back-button"
+		>
+			{backArrowPath}
+		</svg>
 	);
 }
 
