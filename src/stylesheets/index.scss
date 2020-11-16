@@ -61,10 +61,12 @@ nav.main-nav {
 		fill: color.adjust(variables.$color10, $lightness: -25);
 		cursor: pointer;
 
-		&:hover {
-			fill: color.adjust(variables.$color10, $lightness: 15);
-			stroke: color.adjust(variables.$color10, $lightness: -25);
-			stroke-width: 80;
+		@media (hover: hover) {
+			&:hover {
+				fill: color.adjust(variables.$color10, $lightness: 15);
+				stroke: color.adjust(variables.$color10, $lightness: -25);
+				stroke-width: 80;
+			}
 		}
 	}
 }

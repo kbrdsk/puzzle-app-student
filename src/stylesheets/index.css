@@ -841,10 +841,12 @@ nav.main-nav svg.back-button {
   fill: #39beca;
   cursor: pointer;
 }
-nav.main-nav svg.back-button:hover {
-  fill: #daf3f5;
-  stroke: #39beca;
-  stroke-width: 80;
+@media (hover: hover) {
+  nav.main-nav svg.back-button:hover {
+    fill: #daf3f5;
+    stroke: #39beca;
+    stroke-width: 80;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */
