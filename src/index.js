@@ -42,9 +42,7 @@ function Routes() {
 							/>
 							<Switch>
 								<Route exact path="/" />
-								<Route>
-									<BackButton history={history} />
-								</Route>
+								<Route component={BackButton} />
 							</Switch>
 						</nav>
 
@@ -68,13 +66,15 @@ function Routes() {
 }
 
 function BackButton({ history }) {
+	const prevURL = window.location.href.match(/#(.*)\/[^/]+$/)[1];
+	console.log(prevURL);
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			width="2048"
 			height="2048"
 			viewBox="0 0 2048 2048"
-			onClick={history.back}
+			onClick={() => history.push(prevURL)}
 			className="back-button"
 		>
 			{backArrowPath}
