@@ -167,8 +167,6 @@ export default function Instance(props) {
 	});
 
 	const renderSquare = (square) => {
-		const isBeginner =
-			name.match("4x4beginner1") || name.match("4x4beginner2");
 		const matchSquare = squareMatcher(square);
 		const cage =
 			square.result && cages
@@ -178,8 +176,14 @@ export default function Instance(props) {
 			"calcudoku-square " +
 			square.neighbors.join(" ") +
 			(square === activeSquare ? " active" : "") +
-			(isBeginner && isDuplicate(grid, square) ? " duplicate" : "") +
-			(isBeginner && cage && hasError(grid, cage) ? " cageError" : "");
+			(name.match("4x4beginner1") && isDuplicate(grid, square)
+				? " duplicate"
+				: "") +
+			((name.match("4x4beginner1") || name.match("4x4beginner2")) &&
+			cage &&
+			hasError(grid, cage)
+				? " cageError"
+				: "");
 		return (
 			<div className={classList} onClick={() => setActiveSquare(square)}>
 				<div className="cage-indicator">
