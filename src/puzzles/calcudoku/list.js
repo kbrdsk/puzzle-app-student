@@ -51,7 +51,7 @@ function sortInstances({ instance: a }, { instance: b }) {
 	const [, sizeA, levelA, numberA] = a.match(/^(\d)x\d([a-z]+)(\d+)$/);
 	const [, sizeB, levelB, numberB] = b.match(/^(\d)x\d([a-z]+)(\d+)$/);
 	if (sizeA < sizeB) return -1;
-	if (sizeB > sizeA) return 1;
+	if (sizeA > sizeB) return 1;
 	if (levelA === "beginner" && ["intermediate", "expert"].includes(levelB))
 		return -1;
 	if (levelA === "intermediate" && levelB === "expert") return -1;
