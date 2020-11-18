@@ -66,6 +66,7 @@ nav.main-nav {
 		width: 2em;
 		fill: color.adjust(variables.$color10, $lightness: -25);
 		cursor: pointer;
+		user-select: none;
 
 		@media (hover: hover) {
 			&:hover {

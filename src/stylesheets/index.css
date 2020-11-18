@@ -867,6 +867,7 @@ nav.main-nav svg.back-button {
   width: 2em;
   fill: #39beca;
   cursor: pointer;
+  user-select: none;
 }
 @media (hover: hover) {
   nav.main-nav svg.back-button:hover {
