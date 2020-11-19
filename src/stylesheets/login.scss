@@ -2,7 +2,7 @@
 
 div.login-container {
 	height: 90vh;
-	width: 90vw;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -20,7 +20,7 @@ div.login-container {
 		position: relative;
 		overflow: hidden;
 
-		div.fetching-indicator{
+		div.fetching-indicator {
 			position: absolute;
 			display: flex;
 			align-items: center;
@@ -67,7 +67,7 @@ div.login-container {
 			border: none;
 			border-radius: 0.3em;
 
-			&:focus{
+			&:focus {
 				outline: none;
 			}
 
@@ -78,6 +78,20 @@ div.login-container {
 			&.login-student {
 				grid-area: login;
 				background-color: variables.$color10;
+			}
+		}
+
+		@media (max-width: 420px) {
+			padding: 0.5em;
+			div.name-container{
+				font-size: 0.7em;
+				input{
+					display: block;
+				}
+			}
+
+			button{
+				font-size: 0.7em;
 			}
 		}
 	}

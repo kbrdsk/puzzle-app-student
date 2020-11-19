@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
 div.login-container {
   height: 90vh;
-  width: 90vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,6 +66,20 @@ div.login-container div.login-window button.create-student {
 div.login-container div.login-window button.login-student {
   grid-area: login;
   background-color: #9edfe5;
+}
+@media (max-width: 420px) {
+  div.login-container div.login-window {
+    padding: 0.5em;
+  }
+  div.login-container div.login-window div.name-container {
+    font-size: 0.7em;
+  }
+  div.login-container div.login-window div.name-container input {
+    display: block;
+  }
+  div.login-container div.login-window button {
+    font-size: 0.7em;
+  }
 }
 
 div.dashboard-container {
