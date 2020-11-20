@@ -13,50 +13,48 @@ export default function Instance(props) {
 	const sessionDataKey = useMemo(() => `calcudoku-instance-data-${name}`, [
 		name,
 	]);
-	const [size, setSize] = useState(null);
-	const [grid, setGrid] = useState(null);
-	const [cages, setCages] = useState(null);
+	const sessionData = useMemo(
+		() => JSON.parse(sessionStorage.getItem(sessionDataKey)),
+		[sessionDataKey]
+	);
+	const [size, setSize] = useState(sessionData ? sessionData.size : null);
+	const [grid, setGrid] = useState(
+		sessionData ? generateGrid(sessionData) : null
+	);
+	const [cages, setCages] = useState(sessionData ? sessionData.cages : null);
 	const [activeSquare, setActiveSquare] = useState(null);
-	const [saveStatus, setSaveStatus] = useState(null);
+	const [saveStatus, setSaveStatus] = useState(sessionData ? "saved" : null);
 	const {
 		user: { token },
 	} = useContext(UserContext);
 	const dburl = `${process.env.REACT_APP_API_URL}/puzzles/calcudoku/${name}`;
 
 	useEffect(() => {
-		const sessionData = JSON.parse(sessionStorage.getItem(sessionDataKey));
-
-		if (sessionData) {
-			setSize(sessionData.size);
-			setGrid(generateGrid(sessionData));
-			setCages(sessionData.cages);
-			setSaveStatus("saved");
-			return;
+		if (!sessionData) {
+			(async () => {
+				const response = await fetch(dburl, {
+					method: "GET",
+					headers: { authorization: token },
+				});
+				if (response.ok) {
+					try {
+						const data = await response.json();
+						sessionStorage.setItem(
+							sessionDataKey,
+							JSON.stringify(data)
+						);
+						setSize(data.size);
+						setGrid(generateGrid(data));
+						setCages(data.cages);
+						setSaveStatus("saved");
+					} catch (error) {
+						setGrid([]);
+						console.log(error);
+					}
+				} else console.log("HTTP error, status = " + response.status);
+			})();
 		}
-
-		(async () => {
-			const response = await fetch(dburl, {
-				method: "GET",
-				headers: { authorization: token },
-			});
-			if (response.ok) {
-				try {
-					const data = await response.json();
-					sessionStorage.setItem(
-						sessionDataKey,
-						JSON.stringify(data)
-					);
-					setSize(data.size);
-					setGrid(generateGrid(data));
-					setCages(data.cages);
-					setSaveStatus("saved");
-				} catch (error) {
-					setGrid([]);
-					console.log(error);
-				}
-			} else console.log("HTTP error, status = " + response.status);
-		})();
-	}, [dburl, token, sessionDataKey]);
+	}, [dburl, token, sessionData, sessionDataKey]);
 
 	useEffect(() => {
 		const url = `${process.env.REACT_APP_API_URL}/activepuzzle`;
