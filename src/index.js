@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
@@ -30,6 +30,19 @@ function Routes() {
 		user,
 		setUser,
 	};
+
+	useEffect(() => {
+		if (user) {
+			(async () => {
+				try {
+					await fetchUserData(user);
+				} catch (error) {
+					console.log(error);
+				}
+			})();
+		}
+	}, [user]);
+
 	return (
 		<HashRouter history={history} basename="/">
 			<UserContext.Provider value={defaultContext}>
@@ -105,6 +118,41 @@ function renderPuzzleRoute(puzzle) {
 	return (
 		<Route key={puzzle.id} path={`/${puzzle.id}`} component={puzzle.Page} />
 	);
+}
+
+async function fetchUserData({ token }) {
+	const url = `${process.env.REACT_APP_API_URL}/data`;
+	const response = await fetch(url, {
+		method: "GET",
+		headers: {
+			authorization: token,
+		},
+	});
+	if (response.ok) {
+		const data = await response.json();
+		for (let puzzleName in data) {
+			const listKey = `${puzzleName}-instance-list`;
+			if (!sessionStorage.getItem(listKey)) {
+				const list = [];
+				for (let puzzle of data[puzzleName]) {
+					const { puzzleId, title } = puzzle;
+					const instanceKey = `${puzzleName}-instance-data-${puzzleId}`;
+					if (!sessionStorage.getItem(instanceKey)) {
+						sessionStorage.setItem(
+							instanceKey,
+							JSON.stringify(puzzle)
+						);
+					}
+					list.push({ instance: puzzleId, title });
+				}
+				sessionStorage.setItem(listKey, JSON.stringify(list));
+			}
+		}
+		console.log("data fetched");
+		console.log(sessionStorage);
+	} else {
+		console.log(`HTTP error, status = ${response.status}`);
+	}
 }
 
 function capitalize(string) {
