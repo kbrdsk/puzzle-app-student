@@ -27,32 +27,39 @@ export default function Login(props) {
 			const uri =
 				`${process.env.REACT_APP_API_URL}/students` +
 				(create ? "" : "/login");
-			const response = await fetch(uri, {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(studentData),
-			});
-			setFetching(false);
-			if (response.ok) {
-				setBadLogin(false);
-				try {
-					const token = (await response.json()).token;
-					const { student } = jwt.decode(token);
-					const user = { token, student };
-					sessionStorage.setItem(
-						"mcub-student-user",
-						JSON.stringify(user)
-					);
-					setUser(user);
-					props.history.push("/");
-				} catch (error) {
-					console.log(error);
+			try {
+				const response = await fetch(uri, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(studentData),
+				});
+				setFetching(false);
+				if (response.ok) {
+					setBadLogin(false);
+					try {
+						const token = (await response.json()).token;
+						const { student } = jwt.decode(token);
+						const user = { token, student };
+						sessionStorage.setItem(
+							"mcub-student-user",
+							JSON.stringify(user)
+						);
+						setUser(user);
+						props.history.push("/");
+					} catch (error) {
+						console.log(error);
+					}
+				} else {
+					setBadLogin(response.status);
+					console.log("HTTP error, status = " + response.status);
 				}
-			} else if (response.status === 404 || response.status === 403) {
-				setBadLogin(response.status);
-			} else console.log("HTTP error, status = " + response.status);
+			} catch (error) {
+				setFetching(false);
+				setBadLogin(500);
+				console.log(error);
+			}
 		},
 		[first, last, props.history, setUser]
 	);
