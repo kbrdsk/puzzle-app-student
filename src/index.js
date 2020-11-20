@@ -132,21 +132,16 @@ async function fetchUserData({ token }) {
 		const data = await response.json();
 		for (let puzzleName in data) {
 			const listKey = `${puzzleName}-instance-list`;
-			if (!sessionStorage.getItem(listKey)) {
-				const list = [];
-				for (let puzzle of data[puzzleName]) {
-					const { puzzleId, title } = puzzle;
-					const instanceKey = `${puzzleName}-instance-data-${puzzleId}`;
-					if (!sessionStorage.getItem(instanceKey)) {
-						sessionStorage.setItem(
-							instanceKey,
-							JSON.stringify(puzzle)
-						);
-					}
-					list.push({ instance: puzzleId, title });
-				}
-				sessionStorage.setItem(listKey, JSON.stringify(list));
+			const list = [];
+			for (let puzzle of data[puzzleName]) {
+				const { puzzleId, title } = puzzle;
+				const instanceKey = `${puzzleName}-instance-data-${puzzleId}`;
+
+				sessionStorage.setItem(instanceKey, JSON.stringify(puzzle));
+
+				list.push({ instance: puzzleId, title });
 			}
+			sessionStorage.setItem(listKey, JSON.stringify(list));
 		}
 		console.log("data fetched");
 		console.log(sessionStorage);
