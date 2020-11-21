@@ -33,6 +33,12 @@ div.login-container {
 		p.login-error {
 			grid-area: error;
 			margin-top: -1em;
+
+			@media (max-width: 420px){
+				margin-top: -0.5em;
+				margin-bottom: 0;
+			}
+
 			font-size: 0.7em;
 			color: red;
 		}

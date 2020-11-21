@@ -30,6 +30,12 @@ div.login-container div.login-window p.login-error {
   font-size: 0.7em;
   color: red;
 }
+@media (max-width: 420px) {
+  div.login-container div.login-window p.login-error {
+    margin-top: -0.5em;
+    margin-bottom: 0;
+  }
+}
 div.login-container div.login-window div.name-container {
   margin: 0.5em;
   display: flex;
