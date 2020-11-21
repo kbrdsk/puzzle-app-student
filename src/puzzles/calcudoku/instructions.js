@@ -146,9 +146,10 @@ export default function Instructions({ history }) {
 			</h2>
 
 			<p>
-				The goal of each puzzle is to fill the grid with digits –– 1
-				through 4 for a 4×4 grid, 1 through 5 for a 5×5, etc. –– so that
-				no digit appears more than once in any row or any column.
+				The goal of each puzzle is to fill the grid using only certain
+				digits –– 1 through 4 for a 4×4 grid, 1 through 5 for a 5×5,
+				etc. –– so that no digit appears more than once in any row or
+				any column.
 			</p>
 			<Instance data={example1} />
 			<p>
