@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Route, Switch } from "react-router-dom";
-import List from "./list";
+import List from "../instance-list";
 import Instance from "./instance";
 import { UserContext } from "../../login/user-context";
 
@@ -59,7 +59,11 @@ export default function Page(props) {
 				exact
 				path={match.url}
 				render={(props) => (
-					<List {...props} instanceList={instanceList} />
+					<List
+						{...props}
+						instanceList={instanceList}
+						title="Logic Puzzles"
+					/>
 				)}
 			/>
 		</Switch>

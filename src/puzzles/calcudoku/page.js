@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Route, Switch } from "react-router-dom";
-import List from "./list";
+import List from "../instance-list";
 import Instance from "./instance";
 import Instructions from "./instructions";
 import { UserContext } from "../../login/user-context";
@@ -65,9 +65,28 @@ export default function Page(props) {
 				exact
 				path={match.url}
 				render={(props) => (
-					<List {...props} instanceList={instanceList} />
+					<List
+						{...props}
+						instanceList={[
+							{ instance: "instructions", title: "instructions" },
+							...instanceList.sort(sortInstances),
+						]}
+						title="Calcudokus"
+					/>
 				)}
 			/>
 		</Switch>
 	);
+}
+
+function sortInstances({ instance: a }, { instance: b }) {
+	const [, sizeA, levelA, numberA] = a.match(/^(\d)x\d([a-z]+)(\d+)$/);
+	const [, sizeB, levelB, numberB] = b.match(/^(\d)x\d([a-z]+)(\d+)$/);
+	if (sizeA < sizeB) return -1;
+	if (sizeA > sizeB) return 1;
+	if (levelA === "beginner" && ["intermediate", "expert"].includes(levelB))
+		return -1;
+	if (levelA === "intermediate" && levelB === "expert") return -1;
+	if (levelA === levelB && numberA < numberB) return -1;
+	return 1;
 }
