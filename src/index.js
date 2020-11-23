@@ -7,6 +7,7 @@ import Login from "./login/index";
 import { UserContext } from "./login/user-context";
 import Home from "./home/index";
 import { puzzleList } from "./puzzles/index";
+import InstanceRouter from "./puzzles/instance-router";
 
 import "./stylesheets/index.css";
 
@@ -37,7 +38,7 @@ function Routes() {
 				try {
 					await fetchUserData(user);
 				} catch (error) {
-					console.log(error);
+					console;.log(error);
 				}
 			})();
 		}
@@ -80,7 +81,6 @@ function Routes() {
 
 function BackButton({ history }) {
 	const prevURL = window.location.href.match(/#(.*)\/[^/]+$/)[1];
-	console.log(prevURL);
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -115,8 +115,22 @@ function ProfileBar({ student, setUser }) {
 }
 
 function renderPuzzleRoute(puzzle) {
+	const { Instance, id, Instructions, instanceSort, name } = puzzle;
 	return (
-		<Route key={puzzle.id} path={`/${puzzle.id}`} component={puzzle.Page} />
+		<Route
+			key={puzzle.id}
+			path={`/${puzzle.id}`}
+			render={(props) => (
+				<InstanceRouter
+					{...props}
+					Instance={Instance}
+					id={id}
+					Instructions={Instructions}
+					instanceSort={instanceSort}
+					name={name}
+				/>
+			)}
+		/>
 	);
 }
 
@@ -143,8 +157,6 @@ async function fetchUserData({ token }) {
 			}
 			sessionStorage.setItem(listKey, JSON.stringify(list));
 		}
-		console.log("data fetched");
-		console.log(sessionStorage);
 	} else {
 		console.log(`HTTP error, status = ${response.status}`);
 	}

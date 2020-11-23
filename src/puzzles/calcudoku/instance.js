@@ -70,7 +70,6 @@ export default function Instance(props) {
 					puzzleId: name,
 				}),
 			});
-			console.log(response.status);
 		})();
 
 		return () => {
@@ -106,8 +105,6 @@ export default function Instance(props) {
 
 		if (response.ok) setSaveStatus("saved");
 		else setSaveStatus("error");
-
-		console.log(response.status);
 	};
 
 	const downHandler = ({ key }) => {
