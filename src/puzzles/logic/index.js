@@ -1,5 +1,5 @@
 import React from "react";
-import Page from "./page";
+import Instance from "./instance";
 
 const name = "Logic Puzzles";
 const id = "logic";
@@ -8,4 +8,6 @@ function ListPreview() {
 	return <div className="list-preview">Find all logic puzzles here</div>;
 }
 
-export { Page, name, id, ListPreview };
+const instanceSort = () => -1;
+
+export { name, id, ListPreview, instanceSort, Instance };
