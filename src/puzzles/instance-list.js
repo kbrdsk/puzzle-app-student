@@ -1,6 +1,16 @@
 import React from "react";
 
-export default function List({history, instanceList, title}) {
+export default function List({ history, instanceList, title, puzzleType }) {
+	const renderInstanceListing = (history, { instance, title }) => {
+		return (
+			<li
+				key={instance}
+				onClick={() => history.push(`/${puzzleType}/${instance}`)}
+			>
+				<h3>{capitalize(title)}</h3>
+			</li>
+		);
+	};
 	return (
 		<div className="calcudoku-page-container">
 			<div className="instance-list-container">
@@ -21,19 +31,6 @@ export default function List({history, instanceList, title}) {
 	);
 }
 
-function renderInstanceListing(history, { instance, title }) {
-	return (
-		<li
-			key={instance}
-			onClick={() => history.push(`/calcudoku/${instance}`)}
-		>
-			<h3>{capitalize(title)}</h3>
-		</li>
-	);
-}
-
 function capitalize(string) {
 	return string.replace(/^./, (char) => char.toUpperCase());
 }
-
-

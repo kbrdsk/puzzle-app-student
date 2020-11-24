@@ -74,7 +74,12 @@ export default function InstanceRouter(props) {
 				exact
 				path={match.url}
 				render={(props) => (
-					<List {...props} instanceList={instanceList} title={name} />
+					<List
+						{...props}
+						instanceList={instanceList}
+						title={name}
+						puzzleType={id}
+					/>
 				)}
 			/>
 		</Switch>
