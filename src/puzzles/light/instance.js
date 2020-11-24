@@ -75,6 +75,27 @@ export default function Instance(props) {
 		};
 	}, [token, name]);
 
+	const updateWork = async (work) => {
+		setSaveStatus("saving");
+		const response = await fetch(apiurl, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+				authorization: token,
+			},
+			body: JSON.stringify({ puzzleData: work }),
+		});
+
+		const newSessionData = JSON.parse(
+			sessionStorage.getItem(sessionDataKey)
+		);
+		newSessionData.work = work;
+		sessionStorage.setItem(sessionDataKey, JSON.stringify(newSessionData));
+
+		if (response.ok) setSaveStatus("saved");
+		else setSaveStatus("error");
+	};
+
 	const neighborList = ({ row, col }) => {
 		switch (neighborType) {
 			case "x":
@@ -97,7 +118,9 @@ export default function Instance(props) {
 	};
 
 	const triggerSquare = (square) => {
-		setWork([...work, square]);
+		const updatedWork = [...work, square];
+		setWork(updatedWork);
+		updateWork(updatedWork);
 	};
 
 	const renderSquare = (row, ...[, col]) => {
@@ -131,6 +154,15 @@ export default function Instance(props) {
 		<div className="light-puzzle-container">
 			<div className="light-grid" cols={cols} rows={rows}>
 				{new Array(rows).fill(null).map(renderRow)}
+			</div>
+			<div className="saving-indicator">
+				{saveStatus === "saving"
+					? "Saving..."
+					: saveStatus === "error"
+					? "An error occurred while saving."
+					: saveStatus === "saved"
+					? "Saved."
+					: " "}
 			</div>
 		</div>
 	);
