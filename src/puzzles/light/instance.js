@@ -1,10 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useContext, useEffect } from "react";
+import { UserContext } from "../../login/user-context";
 
-export default function Instance() {
-	const [cols, setCols] = useState(4);
-	const [rows, setRows] = useState(4);
-	const [work, setWork] = useState([]);
-	const [neighborType, setNeighborType] = useState("+");
+export default function Instance(props) {
+	const name = useMemo(() => props.name, [props.name]);
+	const sessionDataKey = useMemo(() => `light-instance-data-${name}`, [name]);
+	const sessionData = useMemo(
+		() => JSON.parse(sessionStorage.getItem(sessionDataKey)),
+		[sessionDataKey]
+	);
+	const [data, setData] = useState(
+		sessionData
+			? sessionData
+			: { size: {}, work: [], beginstate: [], neighborType: "+" }
+	);
+	const [work, setWork] = useState(data.work);
+	const {
+		size: { cols, rows },
+		beginstate,
+		neighborType,
+	} = data;
+	const [saveStatus, setSaveStatus] = useState(sessionData ? "saved" : null);
+	const {
+		user: { token },
+	} = useContext(UserContext);
+	const apiurl = `${process.env.REACT_APP_API_URL}/puzzles/light/${name}`;
+
+	useEffect(() => {
+		if (!sessionData) {
+			(async () => {
+				const response = await fetch(apiurl, {
+					method: "GET",
+					headers: { authorization: token },
+				});
+				if (response.ok) {
+					try {
+						const responseData = await response.json();
+						sessionStorage.setItem(
+							sessionDataKey,
+							JSON.stringify(responseData)
+						);
+						setData(responseData);
+						setSaveStatus("saved");
+					} catch (error) {
+						console.log(error);
+					}
+				} else console.log("HTTP error, status = " + response.status);
+			})();
+		}
+	}, [apiurl, token, sessionData, sessionDataKey]);
 
 	const neighborList = ({ row, col }) => {
 		switch (neighborType) {
@@ -36,7 +79,11 @@ export default function Instance() {
 		const activatedNeighbors = work.filter((square) =>
 			neighbors.some(squareMatcher(square))
 		);
-		const isActive = activatedNeighbors.length % 2 > 0;
+		const isActive =
+			(activatedNeighbors.length +
+				(beginstate.some(squareMatcher({ row, col })) ? 1 : 0)) %
+				2 >
+			0;
 		const classList = `light-square ${isActive ? "active" : "inactive"}`;
 		return (
 			<div
