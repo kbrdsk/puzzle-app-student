@@ -1,8 +1,9 @@
 //import * as Test from "./test/index";
 import * as calcudoku from "./calcudoku/index";
 import * as logic from "./logic/index";
+import * as light from "./light/index";
 
-export const puzzleList = [calcudoku, logic];
+export const puzzleList = [calcudoku, logic, light];
 
 export const potd = {
 	uri: "/calcudoku/instructions",
