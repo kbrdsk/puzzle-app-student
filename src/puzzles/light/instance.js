@@ -49,6 +49,32 @@ export default function Instance(props) {
 		}
 	}, [apiurl, token, sessionData, sessionDataKey]);
 
+	useEffect(() => {
+		const url = `${process.env.REACT_APP_API_URL}/activepuzzle`;
+		(async () => {
+			const response = await fetch(url, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					authorization: token,
+				},
+				body: JSON.stringify({
+					puzzleName: "calcudoku",
+					puzzleId: name,
+				}),
+			});
+		})();
+
+		return () => {
+			fetch(url, {
+				method: "DELETE",
+				headers: {
+					authorization: token,
+				},
+			});
+		};
+	}, [token, name]);
+
 	const neighborList = ({ row, col }) => {
 		switch (neighborType) {
 			case "x":
