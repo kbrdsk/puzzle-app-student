@@ -1,0 +1,30 @@
+div.light-puzzle-container {
+	div.light-grid {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		div.grid-row {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			div.light-square {
+				height: 4em;
+				width: 4em;
+				margin: 0.5em;
+				border-radius: 1em;
+				cursor: pointer;
+
+				&.active {
+					background-color: #0f0;
+				}
+
+				&.inactive {
+					background-color: #000;
+				}
+			}
+		}
+	}
+}
