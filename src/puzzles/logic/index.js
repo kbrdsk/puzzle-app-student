@@ -8,6 +8,6 @@ function ListPreview() {
 	return <div className="list-preview">Find all logic puzzles here</div>;
 }
 
-const instanceSort = () => -1;
+const instanceSort = () => 1;
 
 export { name, id, ListPreview, instanceSort, Instance };
