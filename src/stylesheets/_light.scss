@@ -1,3 +1,5 @@
+@use "variables";
+
 div.light-puzzle-container {
 	div.light-grid {
 		display: flex;
@@ -18,7 +20,7 @@ div.light-puzzle-container {
 				cursor: pointer;
 
 				&.active {
-					background-color: #0f0;
+					background-color: variables.$color10;
 				}
 
 				&.inactive {

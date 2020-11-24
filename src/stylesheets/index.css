@@ -855,7 +855,7 @@ div.light-puzzle-container div.light-grid div.grid-row div.light-square {
   cursor: pointer;
 }
 div.light-puzzle-container div.light-grid div.grid-row div.light-square.active {
-  background-color: #0f0;
+  background-color: #9edfe5;
 }
 div.light-puzzle-container div.light-grid div.grid-row div.light-square.inactive {
   background-color: #000;
