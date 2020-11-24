@@ -59,7 +59,7 @@ export default function Instance(props) {
 					authorization: token,
 				},
 				body: JSON.stringify({
-					puzzleName: "calcudoku",
+					puzzleName: "light",
 					puzzleId: name,
 				}),
 			});
