@@ -38,7 +38,7 @@ function Routes() {
 				try {
 					await fetchUserData(user);
 				} catch (error) {
-					console;.log(error);
+					console.log(error);
 				}
 			})();
 		}
