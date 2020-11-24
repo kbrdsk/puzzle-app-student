@@ -52,7 +52,7 @@ export default function Instance(props) {
 	useEffect(() => {
 		const url = `${process.env.REACT_APP_API_URL}/activepuzzle`;
 		(async () => {
-			const response = await fetch(url, {
+			await fetch(url, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
@@ -155,6 +155,14 @@ export default function Instance(props) {
 			<div className="light-grid" cols={cols} rows={rows}>
 				{new Array(rows).fill(null).map(renderRow)}
 			</div>
+			<button
+				onClick={() => {
+					setWork([]);
+					updateWork([]);
+				}}
+			>
+				Reset
+			</button>
 			<div className="saving-indicator">
 				{saveStatus === "saving"
 					? "Saving..."
