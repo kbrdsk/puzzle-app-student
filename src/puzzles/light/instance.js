@@ -11,10 +11,16 @@ export default function Instance(props) {
 	const [data, setData] = useState(
 		sessionData
 			? sessionData
-			: { size: {}, work: [], beginstate: [], neighborType: "+" }
+			: {
+					size: {},
+					work: [],
+					beginstate: [],
+					neighborType: "+",
+					workPosition: 0,
+			  }
 	);
 	const [work, setWork] = useState(data.work);
-	const [workPosition, setWorkPosition] = useState(work.length);
+	const [workPosition, setWorkPosition] = useState(data.workPosition || 0);
 	const {
 		size: { cols, rows },
 		beginstate,
@@ -42,7 +48,6 @@ export default function Instance(props) {
 						);
 						setData(responseData);
 						setWork(responseData.work);
-						setWorkPosition(responseData.work.length - 1);
 						setSaveStatus("saved");
 					} catch (error) {
 						console.log(error);
@@ -93,6 +98,7 @@ export default function Instance(props) {
 			sessionStorage.getItem(sessionDataKey)
 		);
 		newSessionData.work = work;
+		newSessionData.workPosition = work.length;
 		sessionStorage.setItem(sessionDataKey, JSON.stringify(newSessionData));
 
 		if (response.ok) setSaveStatus("saved");
@@ -154,28 +160,32 @@ export default function Instance(props) {
 		);
 	};
 
+	const jumpTo = (position) => {
+		setWorkPosition(position);
+		const newSessionData = JSON.parse(
+			sessionStorage.getItem(sessionDataKey)
+		);
+		newSessionData.workPosition = position;
+		sessionStorage.setItem(sessionDataKey, JSON.stringify(newSessionData));
+	};
+
 	return (
 		<div className="light-puzzle-container">
 			<div className="light-grid" cols={cols} rows={rows}>
 				{new Array(rows).fill(null).map(renderRow)}
 			</div>
 			<div className="controller">
-				<JumpBack
-					jump={() => setWorkPosition(0)}
-					isactive={workPosition > 0}
-				/>
+				<JumpBack jump={() => jumpTo(0)} isactive={workPosition > 0} />
 				<StepBack
-					step={() => setWorkPosition(Math.max(workPosition - 1, 0))}
+					step={() => jumpTo(Math.max(workPosition - 1, 0))}
 					isactive={workPosition > 0}
 				/>
 				<StepForward
-					step={() =>
-						setWorkPosition(Math.min(workPosition + 1, work.length))
-					}
+					step={() => jumpTo(Math.min(workPosition + 1, work.length))}
 					isactive={workPosition < work.length}
 				/>
 				<JumpForward
-					jump={() => setWorkPosition(work.length)}
+					jump={() => jumpTo(work.length)}
 					isactive={workPosition < work.length}
 				/>
 			</div>
