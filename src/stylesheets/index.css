@@ -888,6 +888,10 @@ div.light-puzzle-container div.controller svg.nav-button.step {
     fill: #ae9cf9;
   }
 }
+div.light-puzzle-container div.controller svg.nav-button[isactive=false] {
+  cursor: default;
+  fill: #ddd;
+}
 
 body {
   padding: 1.5em;

@@ -39,6 +39,10 @@ div.light-puzzle-container {
 		display: flex;
 		align-items: center;
 		svg.nav-button {
+			fill: color.adjust(variables.$color3, $lightness: -25);
+			cursor: pointer;
+			user-select: none;
+
 			&.jump {
 				height: 2em;
 				width: 2em;
@@ -47,14 +51,16 @@ div.light-puzzle-container {
 				height: 3em;
 				width: 3em;
 			}
-			fill: color.adjust(variables.$color3, $lightness: -25);
-			cursor: pointer;
-			user-select: none;
 
 			@media (hover: hover) {
 				&:hover {
 					fill: color.adjust(variables.$color3, $lightness: 15);
 				}
+			}
+
+			&[isactive="false"] {
+				cursor: default;
+				fill: #ddd;
 			}
 		}
 	}

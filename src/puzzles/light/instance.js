@@ -132,12 +132,12 @@ export default function Instance(props) {
 		const activatedNeighbors = work
 			.slice(0, workPosition)
 			.filter((square) => neighbors.some(squareMatcher(square)));
-		const isActive =
+		const isactive =
 			(activatedNeighbors.length +
 				(beginstate.some(squareMatcher({ row, col })) ? 1 : 0)) %
 				2 >
 			0;
-		const classList = `light-square ${isActive ? "active" : "inactive"}`;
+		const classList = `light-square ${isactive ? "active" : "inactive"}`;
 		return (
 			<div
 				className={classList}
@@ -160,16 +160,24 @@ export default function Instance(props) {
 				{new Array(rows).fill(null).map(renderRow)}
 			</div>
 			<div className="controller">
-				<JumpBack jump={() => setWorkPosition(0)} />
+				<JumpBack
+					jump={() => setWorkPosition(0)}
+					isactive={workPosition > 0}
+				/>
 				<StepBack
 					step={() => setWorkPosition(Math.max(workPosition - 1, 0))}
+					isactive={workPosition > 0}
 				/>
 				<StepForward
 					step={() =>
 						setWorkPosition(Math.min(workPosition + 1, work.length))
 					}
+					isactive={workPosition < work.length}
 				/>
-				<JumpForward jump={() => setWorkPosition(work.length)} />
+				<JumpForward
+					jump={() => setWorkPosition(work.length)}
+					isactive={workPosition < work.length}
+				/>
 			</div>
 			<div className="saving-indicator">
 				{saveStatus === "saving"
@@ -188,7 +196,7 @@ function squareMatcher({ row, col }) {
 	return (square) => square.col === col && square.row === row;
 }
 
-function StepBack({ step }) {
+function StepBack({ step, isactive }) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -197,6 +205,7 @@ function StepBack({ step }) {
 			viewBox="0 0 2048 2048"
 			onClick={step}
 			className="step back nav-button"
+			isactive={isactive.toString()}
 		>
 			<path
 				d="M1344 576v896q0 26-19 45t-45
@@ -207,7 +216,7 @@ function StepBack({ step }) {
 	);
 }
 
-function JumpBack({ jump }) {
+function JumpBack({ jump, isactive }) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -216,6 +225,7 @@ function JumpBack({ jump }) {
 			viewBox="0 0 2048 2048"
 			onClick={jump}
 			className="jump back nav-button"
+			isactive={isactive.toString()}
 		>
 			<path
 				d="M1811 269q19-19 32-13t13 32v1472q0 
@@ -227,7 +237,7 @@ function JumpBack({ jump }) {
 	);
 }
 
-function StepForward({ step }) {
+function StepForward({ step, isactive }) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -236,6 +246,7 @@ function StepForward({ step }) {
 			viewBox="0 0 2048 2048"
 			onClick={step}
 			className="step forward nav-button"
+			isactive={isactive.toString()}
 		>
 			<path
 				d="M1280 1024q0 26-19 45l-448 448q-19 19-45 
@@ -246,7 +257,7 @@ function StepForward({ step }) {
 	);
 }
 
-function JumpForward({ jump }) {
+function JumpForward({ jump, isactive }) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -255,6 +266,7 @@ function JumpForward({ jump }) {
 			viewBox="0 0 2048 2048"
 			onClick={jump}
 			className="jump forward nav-button"
+			isactive={isactive.toString()}
 		>
 			<path
 				d="M237 1779q-19 19-32 13t-13-32v-1472q0-26 13-32t32 13l710 
