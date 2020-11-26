@@ -14,6 +14,7 @@ export default function Instance(props) {
 			: { size: {}, work: [], beginstate: [], neighborType: "+" }
 	);
 	const [work, setWork] = useState(data.work);
+	const [workPosition, setWorkPosition] = useState(work.length - 1);
 	const {
 		size: { cols, rows },
 		beginstate,
@@ -40,6 +41,8 @@ export default function Instance(props) {
 							JSON.stringify(responseData)
 						);
 						setData(responseData);
+						setWork(responseData.work);
+						setWorkPosition(responseData.work.length - 1);
 						setSaveStatus("saved");
 					} catch (error) {
 						console.log(error);
@@ -118,16 +121,17 @@ export default function Instance(props) {
 	};
 
 	const triggerSquare = (square) => {
-		const updatedWork = [...work, square];
+		const updatedWork = [...work.slice(0, workPosition), square];
+		setWorkPosition(workPosition + 1);
 		setWork(updatedWork);
 		updateWork(updatedWork);
 	};
 
 	const renderSquare = (row, ...[, col]) => {
 		const neighbors = neighborList({ row, col });
-		const activatedNeighbors = work.filter((square) =>
-			neighbors.some(squareMatcher(square))
-		);
+		const activatedNeighbors = work
+			.slice(0, workPosition)
+			.filter((square) => neighbors.some(squareMatcher(square)));
 		const isActive =
 			(activatedNeighbors.length +
 				(beginstate.some(squareMatcher({ row, col })) ? 1 : 0)) %
@@ -155,14 +159,18 @@ export default function Instance(props) {
 			<div className="light-grid" cols={cols} rows={rows}>
 				{new Array(rows).fill(null).map(renderRow)}
 			</div>
-			<button
-				onClick={() => {
-					setWork([]);
-					updateWork([]);
-				}}
-			>
-				Reset
-			</button>
+			<div className="controller">
+				<JumpBack jump={() => setWorkPosition(0)} />
+				<StepBack
+					step={() => setWorkPosition(Math.max(workPosition - 1, 0))}
+				/>
+				<StepForward
+					step={() =>
+						setWorkPosition(Math.min(workPosition + 1, work.length))
+					}
+				/>
+				<JumpForward jump={() => setWorkPosition(work.length)} />
+			</div>
 			<div className="saving-indicator">
 				{saveStatus === "saving"
 					? "Saving..."
@@ -178,4 +186,81 @@ export default function Instance(props) {
 
 function squareMatcher({ row, col }) {
 	return (square) => square.col === col && square.row === row;
+}
+
+function StepBack({ step }) {
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="2048"
+			height="2048"
+			viewBox="0 0 2048 2048"
+			onClick={step}
+			className="step back nav-button"
+		>
+			<path
+				d="M1344 576v896q0 26-19 45t-45
+				19-45-19l-448-448q-19-19-19-45t19-45l448-448q19-19 45-19t45 19
+				19 45z"
+			/>
+		</svg>
+	);
+}
+
+function JumpBack({ jump }) {
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="2048"
+			height="2048"
+			viewBox="0 0 2048 2048"
+			onClick={jump}
+			className="jump back nav-button"
+		>
+			<path
+				d="M1811 269q19-19 32-13t13 32v1472q0 
+			26-13 32t-32-13l-710-710q-8-9-13-19v710q0 
+			26-13 32t-32-13l-710-710q-19-19-19-45t19-45l710-710q19-19 
+			32-13t13 32v710q5-11 13-19z"
+			/>
+		</svg>
+	);
+}
+
+function StepForward({ step }) {
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="2048"
+			height="2048"
+			viewBox="0 0 2048 2048"
+			onClick={step}
+			className="step forward nav-button"
+		>
+			<path
+				d="M1280 1024q0 26-19 45l-448 448q-19 19-45 
+				19t-45-19-19-45v-896q0-26 19-45t45-19 45 
+				19l448 448q19 19 19 45z"
+			/>
+		</svg>
+	);
+}
+
+function JumpForward({ jump }) {
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="2048"
+			height="2048"
+			viewBox="0 0 2048 2048"
+			onClick={jump}
+			className="jump forward nav-button"
+		>
+			<path
+				d="M237 1779q-19 19-32 13t-13-32v-1472q0-26 13-32t32 13l710 
+				710q8 8 13 19v-710q0-26 13-32t32 13l710 710q19 19 19 45t-19 
+				45l-710 710q-19 19-32 13t-13-32v-710q-5 10-13 19z"
+			/>
+		</svg>
+	);
 }

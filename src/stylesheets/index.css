@@ -836,6 +836,11 @@ div.logic.instance div.saving-indicator {
   color: #888;
 }
 
+div.light-puzzle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 div.light-puzzle-container div.light-grid {
   display: flex;
   flex-direction: column;
@@ -859,6 +864,29 @@ div.light-puzzle-container div.light-grid div.grid-row div.light-square.active {
 }
 div.light-puzzle-container div.light-grid div.grid-row div.light-square.inactive {
   background-color: #000;
+}
+div.light-puzzle-container div.controller {
+  height: 4em;
+  display: flex;
+  align-items: center;
+}
+div.light-puzzle-container div.controller svg.nav-button {
+  fill: #2e0cbc;
+  cursor: pointer;
+  user-select: none;
+}
+div.light-puzzle-container div.controller svg.nav-button.jump {
+  height: 2em;
+  width: 2em;
+}
+div.light-puzzle-container div.controller svg.nav-button.step {
+  height: 3em;
+  width: 3em;
+}
+@media (hover: hover) {
+  div.light-puzzle-container div.controller svg.nav-button:hover {
+    fill: #ae9cf9;
+  }
 }
 
 body {
