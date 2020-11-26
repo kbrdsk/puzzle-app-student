@@ -67,9 +67,9 @@ div.light-puzzle-container {
 	}
 
 	div.saving-indicator {
-		position: absolute;
-		bottom: 0;
-		right: 2em;
+		margin-top: -2.7em;
+		padding-left: 20em;
 		color: #888;
+		z-index: -1;
 	}
 }
