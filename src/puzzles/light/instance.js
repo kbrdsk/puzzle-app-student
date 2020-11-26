@@ -14,7 +14,7 @@ export default function Instance(props) {
 			: { size: {}, work: [], beginstate: [], neighborType: "+" }
 	);
 	const [work, setWork] = useState(data.work);
-	const [workPosition, setWorkPosition] = useState(work.length - 1);
+	const [workPosition, setWorkPosition] = useState(work.length);
 	const {
 		size: { cols, rows },
 		beginstate,
