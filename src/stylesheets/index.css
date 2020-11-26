@@ -837,6 +837,7 @@ div.logic.instance div.saving-indicator {
 }
 
 div.light-puzzle-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -891,6 +892,12 @@ div.light-puzzle-container div.controller svg.nav-button.step {
 div.light-puzzle-container div.controller svg.nav-button[isactive=false] {
   cursor: default;
   fill: #ddd;
+}
+div.light-puzzle-container div.saving-indicator {
+  position: absolute;
+  bottom: 0;
+  right: 2em;
+  color: #888;
 }
 
 body {
