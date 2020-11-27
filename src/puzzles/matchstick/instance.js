@@ -11,7 +11,7 @@ export default function Instance(props) {
 		<div className="matchstick puzzle-container">
 			<Canvas
 				puzzleData={puzzleData}
-				sicks={sticks}
+				sticks={sticks}
 				setSticks={setSticks}
 			/>
 		</div>
