@@ -8,14 +8,20 @@ function ListPreview() {
 	return <div className="list-preview">Find all light puzzles here</div>;
 }
 
-function instanceSort({ instance: a }, { instance: b }) {
-	const [, levelA, numberA] = a.match(/^([a-z]+)(\d+)$/);
-	const [, levelB, numberB] = b.match(/^([a-z]+)(\d+)$/);
-	if (levelA === "beginner" && ["intermediate", "expert"].includes(levelB))
-		return -1;
-	if (levelA === "intermediate" && levelB === "expert") return -1;
-	if (levelA === levelB && numberA < numberB) return -1;
-	return 1;
-}
+const instanceList = [
+	{ instance: "beginner1", title: "Beginner 1" },
+	{ instance: "beginner2", title: "Beginner 2" },
+	{ instance: "beginner3", title: "Beginner 3" },
+	{ instance: "beginner4", title: "Beginner 4" },
+	{ instance: "beginner5", title: "Beginner 5" },
+	{ instance: "intermediate1", title: "Intermediate 1" },
+	{ instance: "intermediate2", title: "Intermediate 2" },
+	{ instance: "intermediate3", title: "Intermediate 3" },
+	{ instance: "intermediate4", title: "Intermediate 4" },
+	{ instance: "intermediate5", title: "Intermediate 5" },
+	{ instance: "expert1", title: "Expert 1" },
+	{ instance: "expert2", title: "Expert 2" },
+	{ instance: "expert3", title: "Expert 3" },
+];
 
-export { name, id, ListPreview, instanceSort, Instance };
+export { name, id, ListPreview, Instance, instanceList };

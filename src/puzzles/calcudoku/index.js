@@ -9,16 +9,15 @@ function ListPreview() {
 	return <div className="list-preview">Find all calcudokus here</div>;
 }
 
-function instanceSort({ instance: a }, { instance: b }) {
-	const [, sizeA, levelA, numberA] = a.match(/^(\d)x\d([a-z]+)(\d+)$/);
-	const [, sizeB, levelB, numberB] = b.match(/^(\d)x\d([a-z]+)(\d+)$/);
-	if (sizeA < sizeB) return -1;
-	if (sizeA > sizeB) return 1;
-	if (levelA === "beginner" && ["intermediate", "expert"].includes(levelB))
-		return -1;
-	if (levelA === "intermediate" && levelB === "expert") return -1;
-	if (levelA === levelB && numberA < numberB) return -1;
-	return 1;
-}
+const instanceList = [
+	{ instance: "instructions", title: "Instructions" },
+	{ instance: "4x4beginner1", title: "4x4 Beginner 1" },
+	{ instance: "4x4beginner2", title: "4x4 Beginner 2" },
+	{ instance: "4x4beginner3", title: "4x4 Beginner 3" },
+	{ instance: "4x4intermediate1", title: "4x4 Intermediate 1" },
+	{ instance: "4x4intermediate2", title: "4x4 Intermediate 2" },
+	{ instance: "4x4expert1", title: "4x4 Expert 1" },
+	{ instance: "5x5beginner1", title: "5x5 Beginner 1" },
+];
 
-export { name, id, ListPreview, instanceSort, Instructions, Instance };
+export { name, id, ListPreview, Instructions, Instance, instanceList };

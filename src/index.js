@@ -115,7 +115,7 @@ function ProfileBar({ student, setUser }) {
 }
 
 function renderPuzzleRoute(puzzle) {
-	const { Instance, id, Instructions, instanceSort, name } = puzzle;
+	const { Instance, id, Instructions, name, instanceList } = puzzle;
 	return (
 		<Route
 			key={puzzle.id}
@@ -126,8 +126,8 @@ function renderPuzzleRoute(puzzle) {
 					Instance={Instance}
 					id={id}
 					Instructions={Instructions}
-					instanceSort={instanceSort}
 					name={name}
+					instanceList={instanceList}
 				/>
 			)}
 		/>
@@ -145,17 +145,11 @@ async function fetchUserData({ token }) {
 	if (response.ok) {
 		const data = await response.json();
 		for (let puzzleName in data) {
-			const listKey = `${puzzleName}-instance-list`;
-			const list = [];
 			for (let puzzle of data[puzzleName]) {
-				const { puzzleId, title } = puzzle;
+				const { puzzleId } = puzzle;
 				const instanceKey = `${puzzleName}-instance-data-${puzzleId}`;
-
 				sessionStorage.setItem(instanceKey, JSON.stringify(puzzle));
-
-				list.push({ instance: puzzleId, title });
 			}
-			sessionStorage.setItem(listKey, JSON.stringify(list));
 		}
 	} else {
 		console.log(`HTTP error, status = ${response.status}`);
