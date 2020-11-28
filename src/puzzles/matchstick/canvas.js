@@ -149,7 +149,9 @@ export default function Canvas(props) {
 	};
 
 	const touchDragHandler = (e) => {
-		e.preventDefault();
+		if (activeStick || activePoint) {
+			e.preventDefault();
+		}
 		const touch = e.touches[0];
 		const touchLocation = getMouseLoc(e, touch);
 		pointDrag(touchLocation);
