@@ -10,7 +10,7 @@ import {
 
 export default function Canvas(props) {
   const canvasRef = useRef(null);
-  const { puzzleData, sticks, setSticks } = props;
+  const { puzzleData, sticks, setSticks, updateWork } = props;
   const {
     height,
     width,
@@ -167,6 +167,11 @@ export default function Canvas(props) {
     setActivePoint(null);
   };
 
+  const upHandler = () => {
+    updateWork();
+    clearSelection();
+  };
+
   const draw = useCallback(
     (ctx) => {
       ctx.clearRect(0, 0, width, height);
@@ -236,13 +241,12 @@ export default function Canvas(props) {
       height={height}
       width={width}
       onTouchStart={touchHandler}
-      onTouchEnd={clearSelection}
+      onTouchEnd={upHandler}
       onTouchMove={touchDragHandler}
       onMouseDown={mouseDownHandler}
-      onMouseUp={clearSelection}
+      onMouseUp={upHandler}
       onMouseLeave={clearSelection}
       onMouseMove={mouseMoveHandler}
-      {...props}
     />
   );
 }
