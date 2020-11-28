@@ -9,8 +9,8 @@ div.matchstick.puzzle-container {
 	div.display-container {
 		position: relative;
 		canvas {
-			height: 90vw;
-			width: 90vw;
+			height: min(90vw, 80vh);
+			width: min(90vw, 80vh);
 			border: solid 2px variables.$color10;
 			border-radius: 3vw;
 
@@ -24,8 +24,8 @@ div.matchstick.puzzle-container {
 			cursor: pointer;
 			user-select: none;
 			position: absolute;
-			top: 5vw;
-			left: 5vw;
+			top: min(5vw, 5vh);
+			left: min(5vw, 5vh);
 			height: 2.5em;
 			width: 2.5em;
 			z-index: 1;
@@ -49,8 +49,8 @@ div.matchstick.puzzle-container {
 
 		div.saving-indicator {
 			position: absolute;
-			right: 5vw;
-			bottom: 5vw;
+			right: min(5vw, 5vh);
+			bottom: min(5vw, 5vh);
 			color: #888;
 			z-index: -1;
 		}
