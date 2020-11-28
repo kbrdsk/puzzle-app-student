@@ -905,37 +905,48 @@ div.matchstick.puzzle-container {
   flex-direction: column;
   align-items: center;
 }
-div.matchstick.puzzle-container canvas {
+div.matchstick.puzzle-container div.display-container {
+  position: relative;
+}
+div.matchstick.puzzle-container div.display-container canvas {
   height: 90vw;
   width: 90vw;
   border: solid 2px #9edfe5;
   border-radius: 3vw;
 }
-div.matchstick.puzzle-container canvas.selecting {
+div.matchstick.puzzle-container div.display-container canvas.selecting {
   cursor: pointer;
 }
-div.matchstick.puzzle-container svg.nav-button.reset {
+div.matchstick.puzzle-container div.display-container svg.nav-button.reset {
   fill: #2e0cbc;
   cursor: pointer;
   user-select: none;
+  position: absolute;
+  top: 5vw;
+  left: 5vw;
   height: 2.5em;
   width: 2.5em;
-  align-self: flex-start;
-  margin: 2vw 0 -7vw 3vw;
   z-index: 1;
 }
+@media (max-width: 420px) {
+  div.matchstick.puzzle-container div.display-container svg.nav-button.reset {
+    height: 2em;
+    width: 2em;
+  }
+}
 @media (hover: hover) {
-  div.matchstick.puzzle-container svg.nav-button.reset:hover {
+  div.matchstick.puzzle-container div.display-container svg.nav-button.reset:hover {
     fill: #ae9cf9;
   }
 }
-div.matchstick.puzzle-container svg.nav-button.reset[isactive=false] {
+div.matchstick.puzzle-container div.display-container svg.nav-button.reset[isactive=false] {
   cursor: default;
   fill: #ddd;
 }
-div.matchstick.puzzle-container div.saving-indicator {
-  align-self: flex-end;
-  margin: -5vw 5vw 0 0;
+div.matchstick.puzzle-container div.display-container div.saving-indicator {
+  position: absolute;
+  right: 5vw;
+  bottom: 5vw;
   color: #888;
   z-index: -1;
 }

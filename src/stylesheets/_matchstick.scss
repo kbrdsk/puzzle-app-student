@@ -6,43 +6,53 @@ div.matchstick.puzzle-container {
 	flex-direction: column;
 	align-items: center;
 
-	canvas {
-		height: 90vw;
-		width: 90vw;
-		border: solid 2px variables.$color10;
-		border-radius: 3vw;
+	div.display-container {
+		position: relative;
+		canvas {
+			height: 90vw;
+			width: 90vw;
+			border: solid 2px variables.$color10;
+			border-radius: 3vw;
 
-		&.selecting {
-			cursor: pointer;
-		}
-	}
-
-	svg.nav-button.reset {
-		fill: color.adjust(variables.$color3, $lightness: -25);
-		cursor: pointer;
-		user-select: none;
-		height: 2.5em;
-		width: 2.5em;
-		align-self: flex-start;
-		margin: 2vw 0 -7vw 3vw;
-		z-index: 1;
-
-		@media (hover: hover) {
-			&:hover {
-				fill: color.adjust(variables.$color3, $lightness: 15);
+			&.selecting {
+				cursor: pointer;
 			}
 		}
 
-		&[isactive="false"] {
-			cursor: default;
-			fill: #ddd;
-		}
-	}
+		svg.nav-button.reset {
+			fill: color.adjust(variables.$color3, $lightness: -25);
+			cursor: pointer;
+			user-select: none;
+			position: absolute;
+			top: 5vw;
+			left: 5vw;
+			height: 2.5em;
+			width: 2.5em;
+			z-index: 1;
 
-	div.saving-indicator {
-		align-self: flex-end;
-		margin: -5vw 5vw 0 0;
-		color: #888;
-		z-index: -1;
+			@media (max-width: 420px){
+				height: 2em;
+				width: 2em;
+			}
+
+			@media (hover: hover) {
+				&:hover {
+					fill: color.adjust(variables.$color3, $lightness: 15);
+				}
+			}
+
+			&[isactive="false"] {
+				cursor: default;
+				fill: #ddd;
+			}
+		}
+
+		div.saving-indicator {
+			position: absolute;
+			right: 5vw;
+			bottom: 5vw;
+			color: #888;
+			z-index: -1;
+		}
 	}
 }

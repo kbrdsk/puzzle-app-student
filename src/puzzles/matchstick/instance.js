@@ -116,21 +116,23 @@ export default function Instance(props) {
 	return (
 		<div className="matchstick puzzle-container">
 			<p className="description">{data.description}</p>
-			<Reset reset={reset} isactive={true} />
-			<Canvas
-				puzzleData={data}
-				sticks={work}
-				setSticks={setWork}
-				updateWork={updateWork}
-			/>
-			<div className="saving-indicator">
-				{saveStatus === "saving"
-					? "Saving..."
-					: saveStatus === "error"
-					? "An error occurred while saving."
-					: saveStatus === "saved"
-					? "Saved."
-					: " "}
+			<div className="matchstick display-container">
+				<Reset reset={reset} isactive={true} />
+				<Canvas
+					puzzleData={data}
+					sticks={work}
+					setSticks={setWork}
+					updateWork={updateWork}
+				/>
+				<div className="saving-indicator">
+					{saveStatus === "saving"
+						? "Saving..."
+						: saveStatus === "error"
+						? "An error occurred while saving."
+						: saveStatus === "saved"
+						? "Saved."
+						: " "}
+				</div>
 			</div>
 		</div>
 	);
