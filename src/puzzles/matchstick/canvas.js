@@ -17,6 +17,7 @@ export default function Canvas(props) {
     selectionProximity,
     startingConfiguration,
     stickLength,
+    stickWidth,
   } = puzzleData;
   const [activePoint, setActivePoint] = useState(null);
   const [activeStick, setActiveStick] = useState(null);
@@ -176,7 +177,7 @@ export default function Canvas(props) {
     (ctx) => {
       ctx.clearRect(0, 0, width, height);
       ctx.beginPath();
-      ctx.lineWidth = 3;
+      ctx.lineWidth = stickWidth;
       ctx.lineCap = "round";
       ctx.strokeStyle = "#ddd";
       for (let [initial, terminal] of startingConfiguration) {
@@ -187,7 +188,7 @@ export default function Canvas(props) {
       const pointSelection = getPointSelection(mouseLoc) || activePoint;
       for (let [initial, terminal] of sticks) {
         ctx.beginPath();
-        ctx.lineWidth = 3;
+        ctx.lineWidth = stickWidth;
         ctx.strokeStyle = "#000";
         ctx.moveTo(initial.x, initial.y);
         ctx.lineTo(terminal.x, terminal.y);
@@ -195,9 +196,15 @@ export default function Canvas(props) {
       }
       if (pointSelection) {
         ctx.beginPath();
-        ctx.arc(pointSelection.x, pointSelection.y, 5, 0, 2 * Math.PI);
+        ctx.arc(
+          pointSelection.x,
+          pointSelection.y,
+          stickWidth * 2,
+          0,
+          2 * Math.PI
+        );
         ctx.fillStyle = "#7354f488";
-        ctx.shadowBlur = 2;
+        ctx.shadowBlur = stickWidth;
         ctx.shadowColor = ctx.fillStyle;
         ctx.fill();
         ctx.shadowBlur = 0;
@@ -208,7 +215,7 @@ export default function Canvas(props) {
           const [initial, terminal] = stickSelection;
           ctx.beginPath();
           ctx.strokeStyle = "#9edfe588";
-          ctx.lineWidth = 10;
+          ctx.lineWidth = stickWidth * 3;
           ctx.moveTo(initial.x, initial.y);
           ctx.lineTo(terminal.x, terminal.y);
           ctx.stroke();
@@ -225,6 +232,7 @@ export default function Canvas(props) {
       getStickSelection,
       activePoint,
       activeStick,
+      stickWidth,
     ]
   );
 
