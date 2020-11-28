@@ -860,6 +860,14 @@ div.light-puzzle-container div.light-grid div.grid-row div.light-square {
   border-radius: 1em;
   cursor: pointer;
 }
+@media (max-width: 420px) {
+  div.light-puzzle-container div.light-grid div.grid-row div.light-square {
+    height: 3em;
+    width: 3em;
+    margin: 0.4em;
+    border-radius: 0.75em;
+  }
+}
 div.light-puzzle-container div.light-grid div.grid-row div.light-square.active {
   background-color: #9edfe5;
 }
@@ -898,6 +906,12 @@ div.light-puzzle-container div.saving-indicator {
   padding-left: 20em;
   color: #888;
   z-index: -1;
+}
+@media (max-width: 420px) {
+  div.light-puzzle-container div.saving-indicator {
+    padding-left: 12em;
+    margin-top: -0.75em;
+  }
 }
 
 div.matchstick.puzzle-container {
