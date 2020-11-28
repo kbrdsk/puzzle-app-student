@@ -7,10 +7,10 @@ import * as matchstick from "./matchstick/index";
 export const puzzleList = [calcudoku, logic, light, matchstick];
 
 export const potd = {
-	uri: "/calcudoku/instructions",
+	uri: "/light/beginner1",
 	Preview: POTDPreview,
 };
 
 function POTDPreview() {
-	return <div className="potd-preview">Like Sudokus, but with a twist!</div>;
+	return <div className="potd-preview">Light up all the lights!</div>;
 }
