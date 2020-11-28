@@ -900,6 +900,46 @@ div.light-puzzle-container div.saving-indicator {
   z-index: -1;
 }
 
+div.matchstick.puzzle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+div.matchstick.puzzle-container canvas {
+  height: 90vw;
+  width: 90vw;
+  border: solid 2px #9edfe5;
+  border-radius: 3vw;
+}
+div.matchstick.puzzle-container canvas.selecting {
+  cursor: pointer;
+}
+div.matchstick.puzzle-container svg.nav-button.reset {
+  fill: #2e0cbc;
+  cursor: pointer;
+  user-select: none;
+  height: 2.5em;
+  width: 2.5em;
+  align-self: flex-start;
+  margin: 2vw 0 -7vw 3vw;
+  z-index: 1;
+}
+@media (hover: hover) {
+  div.matchstick.puzzle-container svg.nav-button.reset:hover {
+    fill: #ae9cf9;
+  }
+}
+div.matchstick.puzzle-container svg.nav-button.reset[isactive=false] {
+  cursor: default;
+  fill: #ddd;
+}
+div.matchstick.puzzle-container div.saving-indicator {
+  align-self: flex-end;
+  margin: -5vw 5vw 0 0;
+  color: #888;
+  z-index: -1;
+}
+
 body {
   padding: 1.5em;
   padding-top: 0.5em;

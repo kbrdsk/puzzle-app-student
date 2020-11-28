@@ -116,13 +116,13 @@ export default function Instance(props) {
 	return (
 		<div className="matchstick puzzle-container">
 			<p className="description">{data.description}</p>
+			<Reset reset={reset} isactive={true} />
 			<Canvas
 				puzzleData={data}
 				sticks={work}
 				setSticks={setWork}
 				updateWork={updateWork}
 			/>
-			<Reset reset={reset} isactive={true} />
 			<div className="saving-indicator">
 				{saveStatus === "saving"
 					? "Saving..."
@@ -144,7 +144,7 @@ function Reset({ reset, isactive }) {
 			height="2048"
 			viewBox="0 0 2048 2048"
 			onClick={reset}
-			className="jump back nav-button"
+			className="reset nav-button"
 			isactive={isactive.toString()}
 		>
 			<path

@@ -247,6 +247,11 @@ export default function Canvas(props) {
       onMouseUp={upHandler}
       onMouseLeave={clearSelection}
       onMouseMove={mouseMoveHandler}
+      className={
+        getStickSelection(mouseLoc) || getPointSelection(mouseLoc)
+          ? "selecting"
+          : ""
+      }
     />
   );
 }
