@@ -129,12 +129,20 @@ div.light-puzzle-container {
 	div.saving-indicator {
 		margin-top: -2.7em;
 		padding-left: 20em;
-		color: #888;
+		color: #aaa;
 		z-index: -1;
 
 		@media (max-width: 420px) {
 			padding-left: 12em;
 			margin-top: -0.75em;
+		}
+	}
+
+	div.moves-indicator {
+		align-self: flex-start;
+
+		span.moves {
+			color: variables.$color3;
 		}
 	}
 }

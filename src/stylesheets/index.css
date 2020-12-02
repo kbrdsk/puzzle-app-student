@@ -943,7 +943,7 @@ div.light-puzzle-container div.controller svg.nav-button[isactive=false] {
 div.light-puzzle-container div.saving-indicator {
   margin-top: -2.7em;
   padding-left: 20em;
-  color: #888;
+  color: #aaa;
   z-index: -1;
 }
 @media (max-width: 420px) {
@@ -951,6 +951,12 @@ div.light-puzzle-container div.saving-indicator {
     padding-left: 12em;
     margin-top: -0.75em;
   }
+}
+div.light-puzzle-container div.moves-indicator {
+  align-self: flex-start;
+}
+div.light-puzzle-container div.moves-indicator span.moves {
+  color: #7354f4;
 }
 
 div.matchstick.puzzle-container {

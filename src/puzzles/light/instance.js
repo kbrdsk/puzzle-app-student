@@ -171,6 +171,9 @@ export default function Instance(props) {
 
 	return (
 		<div className="light-puzzle-container">
+			<div className="moves-indicator">
+				Moves: <span className="moves">{workPosition}</span>
+			</div>
 			<div className="light-grid" cols={cols} rows={rows}>
 				{new Array(rows).fill(null).map(renderRow)}
 			</div>
