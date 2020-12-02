@@ -35,11 +35,21 @@ div.light.category-container {
 				border: none;
 				padding: 0.3em 0.5em;
 				border-radius: 0.3em;
-				color: color.adjust(variables.$color10, $lightness: -20);
 				background-color: color.adjust(
 					variables.$color10,
-					$lightness: 15
+					$lightness: -25
 				);
+				color: white;
+			}
+
+			@media (hover: hover) {
+				&:hover {
+					color: color.adjust(variables.$color10, $lightness: -35);
+					background-color: color.adjust(
+						variables.$color10,
+						$lightness: 15
+					);
+				}
 			}
 
 			&.instance {

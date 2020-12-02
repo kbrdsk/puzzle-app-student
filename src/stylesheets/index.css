@@ -866,8 +866,14 @@ div.light.category-container div.selector-container button.selector.next, div.li
   border: none;
   padding: 0.3em 0.5em;
   border-radius: 0.3em;
-  color: #4ec4cf;
-  background-color: #daf3f5;
+  background-color: #39beca;
+  color: white;
+}
+@media (hover: hover) {
+  div.light.category-container div.selector-container button.selector:hover {
+    color: #2c9aa4;
+    background-color: #daf3f5;
+  }
 }
 div.light.category-container div.selector-container button.selector.instance {
   height: 1em;
@@ -1041,15 +1047,15 @@ nav.main-nav {
 nav.main-nav button.log-out {
   border: none;
   border-radius: 0.2em;
-  color: white;
   cursor: pointer;
   padding-bottom: 0.2em;
-  background-color: #39beca;
+  color: #2c9aa4;
+  background-color: #daf3f5;
 }
 @media (hover: hover) {
   nav.main-nav button.log-out:hover {
-    color: #2c9aa4;
-    background-color: #daf3f5;
+    background-color: #39beca;
+    color: white;
   }
 }
 nav.main-nav button.log-out:focus {

@@ -30,18 +30,18 @@ nav.main-nav {
 	button.log-out {
 		border: none;
 		border-radius: 0.2em;
-		color: white;
 		cursor: pointer;
 		padding-bottom: 0.2em;
-		background-color: color.adjust(variables.$color10, $lightness: -25);
+		color: color.adjust(variables.$color10, $lightness: -35);
+		background-color: color.adjust(variables.$color10, $lightness: 15);
 
 		@media (hover: hover) {
 			&:hover {
-				color: color.adjust(variables.$color10, $lightness: -35);
 				background-color: color.adjust(
 					variables.$color10,
-					$lightness: 15
+					$lightness: -25
 				);
+				color: white;
 			}
 		}
 
