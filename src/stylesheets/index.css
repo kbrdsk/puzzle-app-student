@@ -836,6 +836,45 @@ div.logic.instance div.saving-indicator {
   color: #888;
 }
 
+div.light.category-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+div.light.category-container div.selector-container {
+  display: flex;
+  align-items: center;
+  padding: 2em;
+}
+div.light.category-container button.selector {
+  margin: 0.5em;
+  cursor: pointer;
+}
+div.light.category-container button.selector:focus {
+  outline: none;
+}
+div.light.category-container button.selector.next, div.light.category-container button.selector.previous {
+  border: none;
+  padding: 0.3em 0.5em;
+  border-radius: 0.3em;
+  color: #4ec4cf;
+  background-color: #daf3f5;
+}
+div.light.category-container button.selector.instance {
+  height: 1em;
+  width: 1em;
+  border-radius: 1em;
+  border: none;
+  background-color: #9edfe5;
+}
+div.light.category-container button.selector.instance.selected {
+  background-color: #31adb9;
+}
+div.light.category-container button.selector.inactive {
+  opacity: 0.3;
+  cursor: default;
+}
+
 div.light-puzzle-container {
   position: relative;
   display: flex;
@@ -869,7 +908,7 @@ div.light-puzzle-container div.light-grid div.grid-row div.light-square {
   }
 }
 div.light-puzzle-container div.light-grid div.grid-row div.light-square.active {
-  background-color: #9edfe5;
+  background-color: #c1b4fa;
 }
 div.light-puzzle-container div.light-grid div.grid-row div.light-square.inactive {
   background-color: #000;

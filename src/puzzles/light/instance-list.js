@@ -44,15 +44,19 @@ export default function List({ history, name, match }) {
 
 	return (
 		<div className="light category-container">
-			<h2>{`Light Puzzles - ${capitalize(name)} `}</h2>
+			{/*<h2>{`Light Puzzles - ${capitalize(name)} `}</h2>;*/}
+			<Switch>
+				{instanceList.map(renderInstanceRoute.bind(null, match))}
+				<Route render={() => history.push("/light")} />
+			</Switch>
 			<div className="selector-container">
 				<button
 					className={`previous selector  ${
-						current === 0 ? "inactive" : "active"
+						current === 1 ? "inactive" : "active"
 					}`}
 					onClick={previous}
 				>
-					Previous
+					Prev
 				</button>
 				{instanceList.map(renderInstanceSelector)}
 				<button
@@ -64,10 +68,6 @@ export default function List({ history, name, match }) {
 					Next
 				</button>
 			</div>
-			<Switch>
-				{instanceList.map(renderInstanceRoute.bind(null, match))}
-				<Route render={() => history.push("/light")} />
-			</Switch>
 		</div>
 	);
 }
