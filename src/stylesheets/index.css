@@ -837,40 +837,49 @@ div.logic.instance div.saving-indicator {
 }
 
 div.light.category-container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
+  justify-items: center;
+}
+div.light.category-container.beginner {
+  grid-template-rows: 17em 3em;
+}
+div.light.category-container.intermediate {
+  grid-template-rows: 22em 3em;
+}
+div.light.category-container.expert {
+  grid-template-rows: 35em 3em;
 }
 div.light.category-container div.selector-container {
   display: flex;
   align-items: center;
-  padding: 2em;
+  align-self: center;
 }
-div.light.category-container button.selector {
+div.light.category-container div.selector-container button.selector {
   margin: 0.5em;
   cursor: pointer;
 }
-div.light.category-container button.selector:focus {
+div.light.category-container div.selector-container button.selector:focus {
   outline: none;
 }
-div.light.category-container button.selector.next, div.light.category-container button.selector.previous {
+div.light.category-container div.selector-container button.selector.next, div.light.category-container div.selector-container button.selector.previous {
   border: none;
   padding: 0.3em 0.5em;
   border-radius: 0.3em;
   color: #4ec4cf;
   background-color: #daf3f5;
 }
-div.light.category-container button.selector.instance {
+div.light.category-container div.selector-container button.selector.instance {
   height: 1em;
   width: 1em;
   border-radius: 1em;
   border: none;
   background-color: #9edfe5;
 }
-div.light.category-container button.selector.instance.selected {
+div.light.category-container div.selector-container button.selector.instance.selected {
   background-color: #31adb9;
 }
-div.light.category-container button.selector.inactive {
+div.light.category-container div.selector-container button.selector.inactive {
   opacity: 0.3;
   cursor: default;
 }
@@ -945,6 +954,7 @@ div.light-puzzle-container div.saving-indicator {
   padding-left: 20em;
   color: #aaa;
   z-index: -1;
+  font-size: 0.8em;
 }
 @media (max-width: 420px) {
   div.light-puzzle-container div.saving-indicator {

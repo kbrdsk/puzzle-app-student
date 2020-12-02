@@ -43,7 +43,7 @@ export default function List({ history, name, match }) {
 	const previous = () => setCurrent(Math.max(current - 1, 1));
 
 	return (
-		<div className="light category-container">
+		<div className={`light category-container ${name}`}>
 			{/*<h2>{`Light Puzzles - ${capitalize(name)} `}</h2>;*/}
 			<Switch>
 				{instanceList.map(renderInstanceRoute.bind(null, match))}

@@ -2,51 +2,65 @@
 @use "sass:color";
 
 div.light.category-container {
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	&.beginner {
+		grid-template-rows: 17em 3em;
+	}
+
+	&.intermediate {
+		grid-template-rows: 22em 3em;
+	}
+
+	&.expert {
+		grid-template-rows: 35em 3em;
+	}
 	align-items: center;
+	justify-items: center;
 
 	div.selector-container {
 		display: flex;
 		align-items: center;
-		padding: 2em;
-	}
+		align-self: center;
 
-	button.selector {
-		margin: 0.5em;
-		cursor: pointer;
+		button.selector {
+			margin: 0.5em;
+			cursor: pointer;
 
-		&:focus {
-			outline: none;
-		}
+			&:focus {
+				outline: none;
+			}
 
-		&.next,
-		&.previous {
-			border: none;
-			padding: 0.3em 0.5em;
-			border-radius: 0.3em;
-			color: color.adjust(variables.$color10, $lightness: -20);
-			background-color: color.adjust(variables.$color10, $lightness: 15);
-		}
-
-		&.instance {
-			height: 1em;
-			width: 1em;
-			border-radius: 1em;
-			border: none;
-			background-color: variables.$color10;
-
-			&.selected {
+			&.next,
+			&.previous {
+				border: none;
+				padding: 0.3em 0.5em;
+				border-radius: 0.3em;
+				color: color.adjust(variables.$color10, $lightness: -20);
 				background-color: color.adjust(
 					variables.$color10,
-					$lightness: -30
+					$lightness: 15
 				);
 			}
-		}
 
-		&.inactive {
-			opacity: 0.3;
-			cursor: default;
+			&.instance {
+				height: 1em;
+				width: 1em;
+				border-radius: 1em;
+				border: none;
+				background-color: variables.$color10;
+
+				&.selected {
+					background-color: color.adjust(
+						variables.$color10,
+						$lightness: -30
+					);
+				}
+			}
+
+			&.inactive {
+				opacity: 0.3;
+				cursor: default;
+			}
 		}
 	}
 }
@@ -131,6 +145,7 @@ div.light-puzzle-container {
 		padding-left: 20em;
 		color: #aaa;
 		z-index: -1;
+		font-size: 0.8em;
 
 		@media (max-width: 420px) {
 			padding-left: 12em;
