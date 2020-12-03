@@ -801,27 +801,6 @@ div.calcudoku-instructions {
   display: flex;
   flex-direction: column;
 }
-div.calcudoku-instructions button.try-it {
-  margin: 1em;
-  margin-bottom: 0;
-  padding: 0.7em;
-  cursor: pointer;
-  border: none;
-  border-radius: 0.3em;
-  font-size: 1.5em;
-  background-color: #7e6cfb;
-  align-self: center;
-}
-div.calcudoku-instructions button.try-it:focus {
-  outline: none;
-}
-div.calcudoku-instructions button.try-it:hover {
-  margin-top: 0.8em;
-  border-radius: 0.4em;
-  background-color: #ebe8fe;
-  color: #6853fa;
-  border: solid 0.2em #7e6cfb;
-}
 
 div.logic.instance p.puzzle-description {
   white-space: pre-wrap;
@@ -1039,6 +1018,27 @@ body {
 
 button {
   font-family: inherit;
+}
+button.try-it {
+  margin: 1em;
+  margin-bottom: 0;
+  padding: 0.7em;
+  cursor: pointer;
+  border: none;
+  border-radius: 0.3em;
+  font-size: 1.5em;
+  background-color: #7e6cfb;
+  align-self: center;
+}
+button.try-it:focus {
+  outline: none;
+}
+button.try-it:hover {
+  margin-top: 0.8em;
+  border-radius: 0.4em;
+  background-color: #ebe8fe;
+  color: #6853fa;
+  border: solid 0.2em #7e6cfb;
 }
 
 nav.main-nav {

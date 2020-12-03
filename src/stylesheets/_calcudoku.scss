@@ -191,27 +191,4 @@ div.instance-list-container {
 div.calcudoku-instructions {
 	display: flex;
 	flex-direction: column;
-	button.try-it {
-		margin: 1em;
-		margin-bottom: 0;
-		padding: 0.7em;
-		cursor: pointer;
-		border: none;
-		border-radius: 0.3em;
-		font-size: 1.5em;
-		background-color: variables.$color4;
-		align-self: center;
-
-		&:focus {
-			outline: none;
-		}
-
-		&:hover {
-			margin-top: 0.8em;
-			border-radius: 0.4em;
-			background-color: color.adjust(variables.$color4, $lightness: 25);
-			color: color.adjust(variables.$color4, $lightness: -5);
-			border: solid 0.2em color.adjust(variables.$color4, $lightness: 0);
-		}
-	}
 }
