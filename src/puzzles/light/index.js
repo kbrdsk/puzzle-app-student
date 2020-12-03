@@ -1,5 +1,6 @@
 import React from "react";
 import List from "./instance-list";
+import Instructions from "./instructions";
 
 const name = "Light Puzzles";
 const id = "light";
@@ -9,6 +10,7 @@ function ListPreview() {
 }
 
 const instanceList = [
+	{ instance: "instructions", title: "Instructions" },
 	{ instance: "small", title: "Small" },
 	{ instance: "medium", title: "Medium" },
 	{ instance: "large", title: "Large" },
@@ -19,4 +21,4 @@ const instanceList = [
 
 const Instance = List;
 
-export { name, id, ListPreview, instanceList, Instance };
+export { name, id, ListPreview, instanceList, Instance, Instructions };
