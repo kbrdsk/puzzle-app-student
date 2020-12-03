@@ -838,17 +838,21 @@ div.logic.instance div.saving-indicator {
 
 div.light.category-container {
   display: grid;
+  max-height: 85vh;
+  max-width: 90vw;
   align-items: center;
   justify-items: center;
 }
 div.light.category-container.small, div.light.category-container.smallx {
-  grid-template-rows: 17em 3em;
+  grid-template-rows: 5fr 1fr;
+  height: 18em;
 }
 div.light.category-container.medium, div.light.category-container.mediumx {
-  grid-template-rows: 22em 3em;
+  grid-template-rows: 7fr 1fr;
+  height: 23em;
 }
 div.light.category-container.large, div.light.category-container.largex {
-  grid-template-rows: 35em 3em;
+  grid-template-rows: 12fr 1fr;
 }
 div.light.category-container div.selector-container {
   display: flex;
@@ -916,9 +920,9 @@ div.light-puzzle-container div.light-grid div.grid-row div.light-square {
 }
 @media (max-width: 420px) {
   div.light-puzzle-container div.light-grid div.grid-row div.light-square {
-    height: 3em;
-    width: 3em;
-    margin: 0.4em;
+    height: 2.6em;
+    width: 2.6em;
+    margin: 0.3em;
     border-radius: 0.75em;
   }
 }

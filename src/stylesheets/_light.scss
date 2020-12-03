@@ -3,19 +3,23 @@
 
 div.light.category-container {
 	display: grid;
+	max-height: 85vh;
+	max-width: 90vw;
 	&.small,
 	&.smallx {
-		grid-template-rows: 17em 3em;
+		grid-template-rows: 5fr 1fr;
+		height: 18em;
 	}
 
 	&.medium,
 	&.mediumx {
-		grid-template-rows: 22em 3em;
+		grid-template-rows: 7fr 1fr;
+		height: 23em;
 	}
 
 	&.large,
 	&.largex {
-		grid-template-rows: 35em 3em;
+		grid-template-rows: 12fr 1fr;
 	}
 	align-items: center;
 	justify-items: center;
@@ -101,9 +105,9 @@ div.light-puzzle-container {
 				border-radius: 1em;
 
 				@media (max-width: 420px) {
-					height: 3em;
-					width: 3em;
-					margin: 0.4em;
+					height: 2.6em;
+					width: 2.6em;
+					margin: 0.3em;
 					border-radius: 0.75em;
 				}
 				cursor: pointer;
