@@ -3,15 +3,18 @@
 
 div.light.category-container {
 	display: grid;
-	&.beginner {
+	&.small,
+	&.smallx {
 		grid-template-rows: 17em 3em;
 	}
 
-	&.intermediate {
+	&.medium,
+	&.mediumx {
 		grid-template-rows: 22em 3em;
 	}
 
-	&.expert {
+	&.large,
+	&.largex {
 		grid-template-rows: 35em 3em;
 	}
 	align-items: center;

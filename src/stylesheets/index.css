@@ -841,13 +841,13 @@ div.light.category-container {
   align-items: center;
   justify-items: center;
 }
-div.light.category-container.beginner {
+div.light.category-container.small, div.light.category-container.smallx {
   grid-template-rows: 17em 3em;
 }
-div.light.category-container.intermediate {
+div.light.category-container.medium, div.light.category-container.mediumx {
   grid-template-rows: 22em 3em;
 }
-div.light.category-container.expert {
+div.light.category-container.large, div.light.category-container.largex {
   grid-template-rows: 35em 3em;
 }
 div.light.category-container div.selector-container {

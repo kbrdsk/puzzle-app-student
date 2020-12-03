@@ -9,9 +9,12 @@ function ListPreview() {
 }
 
 const instanceList = [
-	{ instance: "beginner", title: "Beginner" },
-	{ instance: "intermediate", title: "Intermediate" },
-	{ instance: "expert", title: "Expert" },
+	{ instance: "small", title: "Small" },
+	{ instance: "medium", title: "Medium" },
+	{ instance: "large", title: "Large" },
+	{ instance: "smallx", title: "Small-X" },
+	{ instance: "mediumx", title: "Medium-X" },
+	{ instance: "largex", title: "Large-X" },
 ];
 
 const Instance = List;

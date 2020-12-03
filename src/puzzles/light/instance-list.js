@@ -2,14 +2,9 @@ import React, { useState, useEffect } from "react";
 import Instance from "./instance";
 import { Route, Switch } from "react-router-dom";
 
-const instances = {
-	beginner: Array.from({ length: 5 }, (...[, i]) => i + 1),
-	intermediate: Array.from({ length: 5 }, (...[, i]) => i + 1),
-	expert: Array.from({ length: 3 }, (...[, i]) => i + 1),
-};
+const instanceList = Array.from({ length: 5 }, (...[, i]) => i + 1);
 
 export default function List({ history, name, match }) {
-	const instanceList = instances[name];
 	const [current, setCurrent] = useState(1);
 
 	useEffect(() => {
@@ -38,7 +33,7 @@ export default function List({ history, name, match }) {
 		></button>
 	);
 
-	const next = () => setCurrent(Math.min(current + 1, instanceList.length));
+	const next = () => setCurrent(Math.min(current + 1, 5));
 
 	const previous = () => setCurrent(Math.max(current - 1, 1));
 
