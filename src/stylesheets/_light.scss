@@ -46,7 +46,7 @@ div.light.category-container {
 			}
 
 			@media (hover: hover) {
-				&:hover {
+				&.active:hover {
 					color: color.adjust(variables.$color10, $lightness: -35);
 					background-color: color.adjust(
 						variables.$color10,

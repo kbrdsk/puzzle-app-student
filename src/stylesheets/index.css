@@ -870,7 +870,7 @@ div.light.category-container div.selector-container button.selector.next, div.li
   color: white;
 }
 @media (hover: hover) {
-  div.light.category-container div.selector-container button.selector:hover {
+  div.light.category-container div.selector-container button.selector.active:hover {
     color: #2c9aa4;
     background-color: #daf3f5;
   }
