@@ -939,17 +939,10 @@ div.light-puzzle-container div.controller svg.nav-button[isactive=false] {
   fill: #ddd;
 }
 div.light-puzzle-container div.saving-indicator {
-  margin-top: -2.7em;
-  padding-left: 20em;
-  color: #aaa;
+  position: absolute;
+  left: 85%;
+  color: #bbb;
   z-index: -1;
-  font-size: 0.8em;
-}
-@media (max-width: 420px) {
-  div.light-puzzle-container div.saving-indicator {
-    padding-left: 12em;
-    margin-top: -0.75em;
-  }
 }
 div.light-puzzle-container div.moves-indicator {
   align-self: flex-start;
