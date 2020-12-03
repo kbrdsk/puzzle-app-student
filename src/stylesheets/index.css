@@ -190,6 +190,9 @@ div.dashboard-container div.puzzle-list-container ul li h3 {
 div.dashboard-container div.puzzle-list-container ul li div.list-preview {
   margin: 0.5em;
 }
+div.dashboard-container div.puzzle-list-container ul li.completed {
+  opacity: 0.5;
+}
 
 h2.loading-indicator {
   text-align: center;
@@ -795,6 +798,9 @@ div.instance-list-container ul li h3 {
 }
 div.instance-list-container ul li div.list-preview {
   margin: 0.5em;
+}
+div.instance-list-container ul li.completed {
+  opacity: 0.5;
 }
 
 div.calcudoku-instructions {

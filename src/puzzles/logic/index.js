@@ -1,5 +1,6 @@
 import React from "react";
 import Instance from "./instance";
+import { fetchUserData } from "../../index";
 
 const name = "Logic Puzzles";
 const id = "logic";
@@ -23,5 +24,7 @@ const instanceList = [
 	{ instance: "bear", title: "Bear" },
 	{ instance: "hats", title: "Hats" },
 ];
+
+instanceList.fetchCompletionStatus = fetchUserData;
 
 export { name, id, ListPreview, Instance, instanceList };

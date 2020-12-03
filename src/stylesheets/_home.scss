@@ -50,6 +50,9 @@
 			div.list-preview {
 				margin: 0.5em;
 			}
+			&.completed {
+				opacity: 0.5;
+			}
 		}
 	}
 }

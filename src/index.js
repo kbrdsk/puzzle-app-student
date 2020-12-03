@@ -134,7 +134,7 @@ function renderPuzzleRoute(puzzle) {
 	);
 }
 
-async function fetchUserData({ token }) {
+export async function fetchUserData({ token }) {
 	const url = `${process.env.REACT_APP_API_URL}/data`;
 	const response = await fetch(url, {
 		method: "GET",
