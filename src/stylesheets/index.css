@@ -967,7 +967,7 @@ div.light-instructions div.steps {
   align-self: center;
 }
 div.light-instructions div.steps div.step {
-  margin: 2em 0;
+  margin-bottom: 2em;
 }
 @media (min-width: 600px) {
   div.light-instructions div.steps div.step {
