@@ -7,7 +7,7 @@ import * as matchstick from "./matchstick/index";
 export const puzzleList = [calcudoku, logic, light, matchstick];
 
 export const potd = {
-	uri: "/light/beginner1",
+	uri: "/light/instructions",
 	Preview: POTDPreview,
 };
 
