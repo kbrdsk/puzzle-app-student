@@ -178,3 +178,23 @@ div.light-puzzle-container {
 		}
 	}
 }
+
+div.light-instructions {
+	display: flex;
+	flex-direction: column;
+	div.steps {
+		max-width: 800px;
+		align-self: center;
+		div.step {
+			@media (min-width: 600px) {
+				display: flex;
+				justify-content: space-between;
+			}
+			margin: 2em 0;
+
+			p {
+				margin-right: 3em;
+			}
+		}
+	}
+}

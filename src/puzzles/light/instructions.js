@@ -2,38 +2,39 @@ import React, { useState } from "react";
 
 const example1 = { size: { cols: 1, rows: 1 }, beginstate: [], work: [] };
 const example2 = { size: { cols: 3, rows: 1 }, beginstate: [], work: [] };
-const example3 = { size: { cols: 3, rows: 3 }, beginstate: [], work: [] };
+/*const example3 = { size: { cols: 3, rows: 3 }, beginstate: [], work: [] };
 const example4 = {
 	size: { cols: 3, rows: 3 },
 	beginstate: [],
 	work: [],
 	neighborType: "x",
-};
+};*/
 
 export default function Instructions({ history }) {
 	return (
-		<div className="light instructions">
+		<div className="light-instructions">
 			<h2>
 				Light Puzzle Instructions
 				<hr />
 			</h2>
-			<div className="step">
-				<p>
-					Here, the goal is to light up all the squares. Clicking a
-					square toggles it on and off (clicking a dark square will
-					light it up and clicking a lit square will make it dark
-					again).
-				</p>
-				<Instance data={example1} />
-			</div>
-			<div className="step">
-				<p>
-					However, when you click on a square the same thing will
-					happen to squares that are next to it.
-				</p>
-				<Instance data={example2} />
-			</div>
-			{/*<div className="step">
+			<div className="steps">
+				<div className="step">
+					<p>
+						Here, the goal is to light up all the squares. Clicking
+						a square toggles it on and off (clicking a dark square
+						will light it up and clicking a lit square will make it
+						dark again).
+					</p>
+					<Instance data={example1} />
+				</div>
+				<div className="step">
+					<p>
+						However, when you click on a square the same thing will
+						happen to squares that are next to it.
+					</p>
+					<Instance data={example2} />
+				</div>
+				{/*<div className="step">
 	<p>
 		Puzzles marked with an "X" work a little differently. Clicking a square
 		will light up squares diagonal to it as well.
@@ -47,9 +48,10 @@ export default function Instructions({ history }) {
 		<Instance data={example4} />
 	</div>
 </div>;*/}
-			<div className="step">
-				It can be tempting to click randomly, but take it slow! Try to
-				light up all the squares using as few moves as you can!
+				<div className="step">
+					It can be tempting to click randomly, but take it slow! Try
+					to light up all the squares using as few moves as you can!
+				</div>
 			</div>
 			<button
 				className="try-it"

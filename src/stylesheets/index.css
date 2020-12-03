@@ -958,6 +958,27 @@ div.light-puzzle-container div.moves-indicator span.moves {
   color: #7354f4;
 }
 
+div.light-instructions {
+  display: flex;
+  flex-direction: column;
+}
+div.light-instructions div.steps {
+  max-width: 800px;
+  align-self: center;
+}
+div.light-instructions div.steps div.step {
+  margin: 2em 0;
+}
+@media (min-width: 600px) {
+  div.light-instructions div.steps div.step {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+div.light-instructions div.steps div.step p {
+  margin-right: 3em;
+}
+
 div.matchstick.puzzle-container {
   display: flex;
   flex-direction: column;
