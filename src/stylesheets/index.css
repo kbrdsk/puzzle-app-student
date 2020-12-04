@@ -277,10 +277,10 @@ div.puzzle-container[size="4"] div.grid-container div.calcudoku-square div.selec
   left: 0;
 }
 div.puzzle-container[size="4"] div.grid-container div.calcudoku-square.active {
-  background-color: #e5e5e5;
+  background-color: #dde6f0;
 }
 div.puzzle-container[size="4"] div.grid-container div.calcudoku-square.active input {
-  background-color: #e5e5e5;
+  background-color: #dde6f0;
 }
 div.puzzle-container[size="4"] div.grid-container div.calcudoku-square.n-up {
   border-top: none;
@@ -425,10 +425,10 @@ div.puzzle-container[size="5"] div.grid-container div.calcudoku-square div.selec
   left: 0;
 }
 div.puzzle-container[size="5"] div.grid-container div.calcudoku-square.active {
-  background-color: #e5e5e5;
+  background-color: #dde6f0;
 }
 div.puzzle-container[size="5"] div.grid-container div.calcudoku-square.active input {
-  background-color: #e5e5e5;
+  background-color: #dde6f0;
 }
 div.puzzle-container[size="5"] div.grid-container div.calcudoku-square.n-up {
   border-top: none;
@@ -573,10 +573,10 @@ div.puzzle-container[size="6"] div.grid-container div.calcudoku-square div.selec
   left: 0;
 }
 div.puzzle-container[size="6"] div.grid-container div.calcudoku-square.active {
-  background-color: #e5e5e5;
+  background-color: #dde6f0;
 }
 div.puzzle-container[size="6"] div.grid-container div.calcudoku-square.active input {
-  background-color: #e5e5e5;
+  background-color: #dde6f0;
 }
 div.puzzle-container[size="6"] div.grid-container div.calcudoku-square.n-up {
   border-top: none;
@@ -722,10 +722,10 @@ div.puzzle-container.instructions div.grid-container div.calcudoku-square div.se
   left: 0;
 }
 div.puzzle-container.instructions div.grid-container div.calcudoku-square.active {
-  background-color: #e5e5e5;
+  background-color: #dde6f0;
 }
 div.puzzle-container.instructions div.grid-container div.calcudoku-square.active input {
-  background-color: #e5e5e5;
+  background-color: #dde6f0;
 }
 div.puzzle-container.instructions div.grid-container div.calcudoku-square.n-up {
   border-top: none;

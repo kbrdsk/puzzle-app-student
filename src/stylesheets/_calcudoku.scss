@@ -77,10 +77,18 @@ $scaling-420px: 1 / 2;
 			}
 
 			&.active {
-				background-color: #e5e5e5;
+				background-color: color.adjust(
+					variables.$color7,
+					$lightness: 22,
+					$saturation: -30
+				);
 
 				input {
-					background-color: #e5e5e5;
+					background-color: color.adjust(
+						variables.$color7,
+						$lightness: 22,
+						$saturation: -30
+					);
 				}
 			}
 			&.n-up {
