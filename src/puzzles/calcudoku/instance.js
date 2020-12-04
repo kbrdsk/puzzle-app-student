@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useContext, useMemo } from "react";
+import React, {
+	useState,
+	useEffect,
+	useContext,
+	useMemo,
+	useCallback,
+} from "react";
 import { UserContext } from "../../login/user-context";
 
 const parsedOperations = {
@@ -81,6 +87,36 @@ export default function Instance(props) {
 			});
 		};
 	}, [token, name]);
+
+	const checkComplete = useCallback(() => {
+		const hasCageError = cages.reduce(
+			(acc, cage) => (hasError(grid, cage) ? true : false),
+			false
+		);
+		const hasDuplicate = grid.reduce(
+			(acc, square) => (isDuplicate(grid, square) ? true : false),
+			false
+		);
+
+		return !hasCageError && !hasDuplicate;
+	}, [grid, cages]);
+
+	useEffect(() => {
+		const sessionData = JSON.parse(sessionStorage.getItem(sessionDataKey));
+		if (sessionData.completed) return;
+		else if (checkComplete()) {
+			fetch(`${dburl}/completed`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					authorization: token,
+				},
+				body: JSON.stringify({ completed: true }),
+			});
+			sessionData.completed = true;
+			sessionStorage.setItem(sessionDataKey, JSON.stringify(sessionData));
+		}
+	}, [sessionDataKey, checkComplete, dburl, token]);
 
 	const updateWork = async () => {
 		setSaveStatus("saving");
