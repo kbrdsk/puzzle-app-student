@@ -203,6 +203,10 @@ div.light-instructions {
 	display: flex;
 	flex-direction: column;
 	text-align: center;
+
+	@media (min-width: 600px) {
+		text-align: left;
+	}
 	h2 {
 		color: color.adjust(variables.$color7, $lightness: -40);
 	}
@@ -213,7 +217,6 @@ div.light-instructions {
 			@media (min-width: 600px) {
 				display: flex;
 				justify-content: space-between;
-				text-align: left;
 			}
 			margin-bottom: 2em;
 

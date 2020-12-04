@@ -811,7 +811,7 @@ div.calcudoku-instructions {
   flex-direction: column;
 }
 div.calcudoku-instructions h2 {
-  color: #1d0775;
+  color: #17477a;
 }
 @media (max-width: 600px) {
   div.calcudoku-instructions {
@@ -987,6 +987,11 @@ div.light-instructions {
   flex-direction: column;
   text-align: center;
 }
+@media (min-width: 600px) {
+  div.light-instructions {
+    text-align: left;
+  }
+}
 div.light-instructions h2 {
   color: #17477a;
 }
@@ -1001,7 +1006,6 @@ div.light-instructions div.steps div.step {
   div.light-instructions div.steps div.step {
     display: flex;
     justify-content: space-between;
-    text-align: left;
   }
 }
 @media (min-width: 600px) {
@@ -1104,7 +1108,7 @@ button.try-it:focus {
 }
 button.try-it:hover {
   color: white;
-  background-color: #aa96ff;
+  background-color: #bfafff;
 }
 
 nav.main-nav {
