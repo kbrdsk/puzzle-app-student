@@ -960,6 +960,7 @@ div.light-puzzle-container div.moves-indicator span.moves {
 div.light-instructions {
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 div.light-instructions div.steps {
   max-width: 800px;
@@ -972,12 +973,17 @@ div.light-instructions div.steps div.step {
   div.light-instructions div.steps div.step {
     display: flex;
     justify-content: space-between;
+    text-align: left;
   }
 }
-div.light-instructions div.steps div.step p {
-  margin-right: 3em;
+@media (min-width: 600px) {
+  div.light-instructions div.steps div.step p {
+    margin-right: 3em;
+  }
 }
 div.light-instructions div.steps div.step p.emphasized {
+  margin: 0;
+  text-align: center;
   padding: 0.3em 0.5em;
   border-radius: 0.3em;
   background-color: #c1b4fa;

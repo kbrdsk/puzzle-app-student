@@ -176,6 +176,7 @@ div.light-puzzle-container {
 div.light-instructions {
 	display: flex;
 	flex-direction: column;
+	text-align: center;
 	div.steps {
 		max-width: 800px;
 		align-self: center;
@@ -183,13 +184,18 @@ div.light-instructions {
 			@media (min-width: 600px) {
 				display: flex;
 				justify-content: space-between;
+				text-align: left;
 			}
 			margin-bottom: 2em;
 
 			p {
-				margin-right: 3em;
+				@media (min-width: 600px) {
+					margin-right: 3em;
+				}
 
 				&.emphasized {
+					margin: 0;
+					text-align: center;
 					padding: 0.3em 0.5em;
 					border-radius: 0.3em;
 					background-color: color.adjust(
