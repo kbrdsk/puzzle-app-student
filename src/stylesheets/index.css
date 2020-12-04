@@ -144,7 +144,7 @@ div.dashboard-container div.puzzle-list-container ul li {
   cursor: pointer;
 }
 div.dashboard-container div.puzzle-list-container ul li:hover {
-  background-color: #f0f6fc;
+  background-color: #e9e4fd;
 }
 div.dashboard-container div.puzzle-list-container ul li h3 {
   margin: 0;
