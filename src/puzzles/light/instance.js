@@ -252,7 +252,7 @@ function squareMatcher({ row, col }) {
 	return (square) => square.col === col && square.row === row;
 }
 
-function StepBack({ step, isactive }) {
+export function StepBack({ step, isactive }) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -272,7 +272,7 @@ function StepBack({ step, isactive }) {
 	);
 }
 
-function JumpBack({ jump, isactive }) {
+export function JumpBack({ jump, isactive }) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -293,7 +293,7 @@ function JumpBack({ jump, isactive }) {
 	);
 }
 
-function StepForward({ step, isactive }) {
+export function StepForward({ step, isactive }) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -313,7 +313,7 @@ function StepForward({ step, isactive }) {
 	);
 }
 
-function JumpForward({ jump, isactive }) {
+export function JumpForward({ jump, isactive }) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { JumpBack, JumpForward, StepBack, StepForward } from "./instance";
 
 const example1 = { size: { cols: 1, rows: 1 }, beginstate: [], work: [] };
 const example2 = { size: { cols: 3, rows: 1 }, beginstate: [], work: [] };
@@ -35,8 +36,19 @@ export default function Instructions({ history }) {
 					<Instance data={example2} />
 				</div>
 				<div className="step">
-					It can be tempting to click randomly, but take it slow! Try
-					to light up all the squares using as few moves as you can!
+					<p>
+						You can use the navigation buttons at the bottom of the
+						puzzle to go back and forward through the moves you've
+						made.
+					</p>
+					<Instance data={example2} showNav={true} />
+				</div>
+				<div className="step">
+					<p className="emphasized">
+						It can be tempting to click randomly, but take it slow!
+						Try to light up all the squares using as few moves as
+						you can!
+					</p>
 				</div>
 			</div>
 			<button
@@ -85,8 +97,9 @@ export function InstructionsX({ history }) {
 	);
 }
 
-function Instance({ data, showMoves }) {
+function Instance({ data, showNav }) {
 	const [work, setWork] = useState(data.work);
+	const [workPosition, setWorkPosition] = useState(0);
 	const {
 		size: { cols, rows },
 		beginstate,
@@ -114,13 +127,20 @@ function Instance({ data, showMoves }) {
 		}
 	};
 
-	const triggerSquare = (square) => setWork([...work, square]);
+	const jumpTo = (position) => {
+		setWorkPosition(position);
+	};
+
+	const triggerSquare = (square) => {
+		setWork([...work.slice(0, workPosition), square]);
+		setWorkPosition(workPosition + 1);
+	};
 
 	const renderSquare = (row, ...[, col]) => {
 		const neighbors = neighborList({ row, col });
-		const activatedNeighbors = work.filter((square) =>
-			neighbors.some(squareMatcher(square))
-		);
+		const activatedNeighbors = work
+			.slice(0, workPosition)
+			.filter((square) => neighbors.some(squareMatcher(square)));
 		const isactive =
 			(activatedNeighbors.length +
 				(beginstate.some(squareMatcher({ row, col })) ? 1 : 0)) %
@@ -145,14 +165,31 @@ function Instance({ data, showMoves }) {
 
 	return (
 		<div className="light-puzzle-container">
-			{showMoves ? (
-				<div className="moves-indicator">
-					Moves: <span className="moves">{work.length}</span>
-				</div>
-			) : null}
 			<div className="light-grid" cols={cols} rows={rows}>
 				{new Array(rows).fill(null).map(renderRow)}
-			</div>{" "}
+			</div>
+			{showNav ? (
+				<div className="controller">
+					<JumpBack
+						jump={() => jumpTo(0)}
+						isactive={workPosition > 0}
+					/>
+					<StepBack
+						step={() => jumpTo(Math.max(workPosition - 1, 0))}
+						isactive={workPosition > 0}
+					/>
+					<StepForward
+						step={() =>
+							jumpTo(Math.min(workPosition + 1, work.length))
+						}
+						isactive={workPosition < work.length}
+					/>
+					<JumpForward
+						jump={() => jumpTo(work.length)}
+						isactive={workPosition < work.length}
+					/>
+				</div>
+			) : null}
 		</div>
 	);
 }

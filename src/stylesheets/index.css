@@ -977,6 +977,11 @@ div.light-instructions div.steps div.step {
 div.light-instructions div.steps div.step p {
   margin-right: 3em;
 }
+div.light-instructions div.steps div.step p.emphasized {
+  padding: 0.3em 0.5em;
+  border-radius: 0.3em;
+  background-color: #c1b4fa;
+}
 @media (min-width: 600px) {
   div.light-instructions div.steps div.examples {
     display: flex;
