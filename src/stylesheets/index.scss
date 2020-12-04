@@ -28,7 +28,7 @@ button {
 		border-radius: 0.3em;
 		font-size: 1.5em;
 		background-color: color.adjust(variables.$color7, $saturation: 100);
-		color: white;
+		color: black;
 		align-self: center;
 
 		&:focus {
@@ -36,6 +36,11 @@ button {
 		}
 
 		&:hover {
+			color: color.adjust(
+				variables.$color7,
+				$saturation: 100,
+				$lightness: -40
+			);
 			background-color: color.adjust(
 				variables.$color7,
 				$saturation: 100,

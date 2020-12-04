@@ -1096,13 +1096,14 @@ button.try-it {
   border-radius: 0.3em;
   font-size: 1.5em;
   background-color: #5eacff;
-  color: white;
+  color: black;
   align-self: center;
 }
 button.try-it:focus {
   outline: none;
 }
 button.try-it:hover {
+  color: #004791;
   background-color: #91c7ff;
 }
 
