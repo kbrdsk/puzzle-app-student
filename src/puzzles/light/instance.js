@@ -26,7 +26,9 @@ export default function Instance(props) {
 			  }
 	);
 	const [work, setWork] = useState(data.work);
-	const [workPosition, setWorkPosition] = useState(data.workPosition || 0);
+	const [workPosition, setWorkPosition] = useState(
+		data.workPosition || work.length
+	);
 	const {
 		size: { cols, rows },
 		beginstate,
