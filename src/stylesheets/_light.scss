@@ -40,22 +40,29 @@ div.light.category-container {
 			&.next,
 			&.previous {
 				border: none;
-				padding: 0.3em 0.5em;
+				padding: 0.2em 0.5em 0.3em 0.5em;
+				border: none;
 				border-radius: 0.3em;
 				background-color: color.adjust(
 					variables.$color7,
-					$lightness: -25
+					$lightness: -15
 				);
 				color: white;
+				/*background-color: color.adjust(
+					variables.$color7,
+					$lightness: 22,
+					$saturation: -30
+				);*/
 			}
 
 			@media (hover: hover) {
 				&.active:hover {
-					color: color.adjust(variables.$color7, $lightness: -35);
 					background-color: color.adjust(
 						variables.$color7,
-						$lightness: 15
+						$saturation: 100,
+						$lightness: 10
 					);
+					/*border-color: color.adjust(variables.$color7, $saturation: 50);*/
 				}
 			}
 
@@ -64,13 +71,28 @@ div.light.category-container {
 				width: 1em;
 				border-radius: 1em;
 				border: none;
-				background-color: variables.$color7;
+				background-color: color.adjust(
+					variables.$color7,
+					$lightness: -15
+				);
+
+				@media (hover: hover) {
+					&:hover {
+						background-color: color.adjust(
+							variables.$color7,
+							$saturation: 100,
+							$lightness: 10
+						);
+					}
+				}
 
 				&.selected {
 					background-color: color.adjust(
 						variables.$color7,
-						$lightness: -30
+						$lightness: -15
 					);
+					opacity: 0.3;
+					cursor: default;
 				}
 			}
 
@@ -181,6 +203,9 @@ div.light-instructions {
 	display: flex;
 	flex-direction: column;
 	text-align: center;
+	h2 {
+		color: color.adjust(variables.$color7, $lightness: -40);
+	}
 	div.steps {
 		max-width: 800px;
 		align-self: center;
@@ -204,7 +229,7 @@ div.light-instructions {
 					border-radius: 0.3em;
 					background-color: color.adjust(
 						variables.$color3,
-						$lightness: 20
+						$lightness: 28
 					);
 				}
 			}

@@ -22,12 +22,13 @@ button {
 	&.try-it {
 		margin: 1em;
 		margin-bottom: 0;
-		padding: 0.7em;
+		padding: 0.8em;
 		cursor: pointer;
 		border: none;
 		border-radius: 0.3em;
 		font-size: 1.5em;
-		background-color: variables.$color4;
+		background-color: color.adjust(variables.$color7, $saturation: 100);
+		color: white;
 		align-self: center;
 
 		&:focus {
@@ -35,11 +36,11 @@ button {
 		}
 
 		&:hover {
-			margin-top: 0.8em;
-			border-radius: 0.4em;
-			background-color: color.adjust(variables.$color4, $lightness: 25);
-			color: color.adjust(variables.$color4, $lightness: -5);
-			border: solid 0.2em color.adjust(variables.$color4, $lightness: 0);
+			background-color: color.adjust(
+				variables.$color7,
+				$saturation: 100,
+				$lightness: 10
+			);
 		}
 	}
 }
@@ -56,16 +57,15 @@ nav.main-nav {
 		border-radius: 0.2em;
 		cursor: pointer;
 		padding-bottom: 0.2em;
-		color: color.adjust(variables.$color10, $lightness: -35);
-		background-color: color.adjust(variables.$color10, $lightness: 15);
+		background-color: color.adjust(variables.$color10, $lightness: -25);
+		color: white;
 
 		@media (hover: hover) {
 			&:hover {
 				background-color: color.adjust(
 					variables.$color10,
-					$lightness: -25
+					$lightness: 0
 				);
-				color: white;
 			}
 		}
 
@@ -96,9 +96,7 @@ nav.main-nav {
 
 		@media (hover: hover) {
 			&:hover {
-				fill: color.adjust(variables.$color10, $lightness: 15);
-				stroke: color.adjust(variables.$color10, $lightness: -25);
-				stroke-width: 80;
+				fill: color.adjust(variables.$color10, $lightness: 0);
 			}
 		}
 	}

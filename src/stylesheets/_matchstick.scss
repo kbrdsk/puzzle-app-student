@@ -11,7 +11,7 @@ div.matchstick.puzzle-container {
 		canvas {
 			height: min(90vw, 80vh);
 			width: min(90vw, 80vh);
-			border: solid 2px variables.$color10;
+			border: solid 3px color.adjust(variables.$color7, $lightness: -30);
 			border-radius: 3vw;
 
 			&.selecting {
@@ -20,7 +20,7 @@ div.matchstick.puzzle-container {
 		}
 
 		svg.nav-button.reset {
-			fill: color.adjust(variables.$color3, $lightness: -25);
+			fill: color.adjust(variables.$color7, $lightness: -30);
 			cursor: pointer;
 			user-select: none;
 			position: absolute;
@@ -37,7 +37,7 @@ div.matchstick.puzzle-container {
 
 			@media (hover: hover) {
 				&:hover {
-					fill: color.adjust(variables.$color3, $lightness: 15);
+					fill: color.adjust(variables.$color7, $lightness: 0);
 				}
 			}
 
