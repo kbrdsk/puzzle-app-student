@@ -21,7 +21,7 @@ const instanceList = [
 ];
 
 instanceList.fetchCompletionStatus = async function (user) {
-	await fetchUserData(user);
+	fetchUserData(user);
 	instanceList.forEach(({ instance }) => {
 		if (instance === "instructions") return;
 		let completed = true;
@@ -30,7 +30,7 @@ instanceList.fetchCompletionStatus = async function (user) {
 			const sessionData = JSON.parse(
 				sessionStorage.getItem(sessionDataKey)
 			);
-			completed = sessionData ? sessionData.completed : false;
+			if (!sessionData || !sessionData.completed) completed = false;
 		}
 		sessionStorage.setItem(
 			`light-instance-data-${instance}`,

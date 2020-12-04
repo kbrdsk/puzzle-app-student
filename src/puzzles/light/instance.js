@@ -1,4 +1,10 @@
-import React, { useState, useMemo, useContext, useEffect } from "react";
+import React, {
+	useState,
+	useMemo,
+	useContext,
+	useEffect,
+	useCallback,
+} from "react";
 import { UserContext } from "../../login/user-context";
 
 export default function Instance(props) {
@@ -83,6 +89,69 @@ export default function Instance(props) {
 		};
 	}, [token, name]);
 
+	const neighborList = ({ row, col }) => {
+		switch (neighborType) {
+			case "x":
+				return [
+					{ row: row - 1, col: col - 1 },
+					{ row: row + 1, col: col + 1 },
+					{ row: row + 1, col: col - 1 },
+					{ row: row - 1, col: col + 1 },
+					{ row, col },
+				];
+			default:
+				return [
+					{ row: row - 1, col },
+					{ row: row + 1, col },
+					{ row, col: col - 1 },
+					{ row, col: col + 1 },
+					{ row, col },
+				];
+		}
+	};
+
+	const isActive = useCallback(
+		(square) => {
+			const neighbors = neighborList(square);
+			const activatedNeighbors = work
+				.slice(0, workPosition)
+				.filter((sq) => neighbors.some(squareMatcher(sq)));
+			return (
+				(activatedNeighbors.length +
+					(beginstate.some(squareMatcher(square)) ? 1 : 0)) %
+					2 >
+				0
+			);
+		},
+		[work, workPosition, beginstate]
+	);
+
+	const checkComplete = useCallback(() => {
+		for (let row; row < rows; row++) {
+			for (let col; col < cols; col++) {
+				if (!isActive({ row, col })) return false;
+			}
+		}
+		return true;
+	}, [cols, rows, isActive]);
+
+	useEffect(() => {
+		const sessionData = JSON.parse(sessionStorage.getItem(sessionDataKey));
+		if (sessionData.completed) return;
+		else if (checkComplete()) {
+			fetch(`${apiurl}/completed`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					authorization: token,
+				},
+				body: JSON.stringify({ completed: true }),
+			});
+			sessionData.completed = true;
+			sessionStorage.setItem(sessionDataKey, JSON.stringify(sessionData));
+		}
+	}, [sessionDataKey, checkComplete, apiurl, token]);
+
 	const updateWork = async (work) => {
 		setSaveStatus("saving");
 		const response = await fetch(apiurl, {
@@ -105,27 +174,6 @@ export default function Instance(props) {
 		else setSaveStatus("error");
 	};
 
-	const neighborList = ({ row, col }) => {
-		switch (neighborType) {
-			case "x":
-				return [
-					{ row: row - 1, col: col - 1 },
-					{ row: row + 1, col: col + 1 },
-					{ row: row + 1, col: col - 1 },
-					{ row: row - 1, col: col + 1 },
-					{ row, col },
-				];
-			default:
-				return [
-					{ row: row - 1, col },
-					{ row: row + 1, col },
-					{ row, col: col - 1 },
-					{ row, col: col + 1 },
-					{ row, col },
-				];
-		}
-	};
-
 	const triggerSquare = (square) => {
 		const updatedWork = [...work.slice(0, workPosition), square];
 		setWorkPosition(workPosition + 1);
@@ -134,16 +182,9 @@ export default function Instance(props) {
 	};
 
 	const renderSquare = (row, ...[, col]) => {
-		const neighbors = neighborList({ row, col });
-		const activatedNeighbors = work
-			.slice(0, workPosition)
-			.filter((square) => neighbors.some(squareMatcher(square)));
-		const isactive =
-			(activatedNeighbors.length +
-				(beginstate.some(squareMatcher({ row, col })) ? 1 : 0)) %
-				2 >
-			0;
-		const classList = `light-square ${isactive ? "active" : "inactive"}`;
+		const classList = `light-square ${
+			isActive({ row, col }) ? "active" : "inactive"
+		}`;
 		return (
 			<div
 				className={classList}
