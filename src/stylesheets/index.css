@@ -94,7 +94,7 @@ div.dashboard-container {
 div.dashboard-container div.potd-container {
   cursor: pointer;
   padding: 2em;
-  border: 3px solid #77ade6;
+  border: 3px solid #5facfe;
   border-radius: 1em;
 }
 div.dashboard-container div.potd-container:hover {
@@ -139,16 +139,16 @@ div.dashboard-container div.puzzle-list-container ul {
 div.dashboard-container div.puzzle-list-container ul li {
   background-color: white;
   padding: 1em;
-  border: 3px solid #3a0fec;
+  border: 3px solid #5facfe;
   border-radius: 0.5em;
   cursor: pointer;
 }
 div.dashboard-container div.puzzle-list-container ul li:hover {
-  background-color: #e9e4fd;
+  background-color: #dae9f8;
 }
 div.dashboard-container div.puzzle-list-container ul li h3 {
   margin: 0;
-  color: #1d0775;
+  color: #17477a;
 }
 div.dashboard-container div.puzzle-list-container ul li div.list-preview {
   margin: 0.5em;
@@ -159,10 +159,10 @@ div.dashboard-container div.puzzle-list-container ul li.completed {
 
 div.instance-list-container {
   padding: 2em;
-  border: 3px solid #2e0cbc;
+  border: 3px solid #5facfe;
   margin-top: 2em;
   border-radius: 1em;
-  background-color: #f5f5fc;
+  background-color: #f0f6fc;
 }
 @media (max-width: 290px) {
   div.instance-list-container {
@@ -171,7 +171,7 @@ div.instance-list-container {
 }
 div.instance-list-container h2 {
   margin: 0;
-  color: #1d0775;
+  color: #17477a;
 }
 div.instance-list-container ul {
   list-style-type: none;
@@ -189,16 +189,16 @@ div.instance-list-container ul {
 div.instance-list-container ul li {
   background-color: white;
   padding: 1em;
-  border: 3px solid #5facfe;
+  border: 3px solid #2e0cbc;
   border-radius: 0.5em;
   cursor: pointer;
 }
 div.instance-list-container ul li:hover {
-  background-color: #f0f6fc;
+  background-color: #e9e4fd;
 }
 div.instance-list-container ul li h3 {
   margin: 0;
-  color: #17477a;
+  color: #1d0775;
 }
 div.instance-list-container ul li div.list-preview {
   margin: 0.5em;
@@ -236,8 +236,8 @@ div.puzzle-container[size="4"] div.grid-container {
   height: 30em;
   width: 30em;
   gap: 1px;
-  background-color: #17477a;
-  border: solid 3px #17477a;
+  background-color: #17065d;
+  border: solid 3px #17065d;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
 }
@@ -253,7 +253,7 @@ div.puzzle-container[size="4"] div.grid-container div.calcudoku-square {
   background-color: white;
   box-sizing: border-box;
   padding: 0.5em;
-  border: solid 2px #17477a;
+  border: solid 2px #17065d;
   cursor: pointer;
 }
 @media (max-width: 420px) {
@@ -277,10 +277,10 @@ div.puzzle-container[size="4"] div.grid-container div.calcudoku-square div.selec
   left: 0;
 }
 div.puzzle-container[size="4"] div.grid-container div.calcudoku-square.active {
-  background-color: #dde6f0;
+  background-color: #e9e4fd;
 }
 div.puzzle-container[size="4"] div.grid-container div.calcudoku-square.active input {
-  background-color: #dde6f0;
+  background-color: #e9e4fd;
 }
 div.puzzle-container[size="4"] div.grid-container div.calcudoku-square.n-up {
   border-top: none;
@@ -298,7 +298,7 @@ div.puzzle-container[size="4"] div.grid-container div.calcudoku-square div.cage-
   position: absolute;
   top: 0.2em;
   left: 0.2em;
-  color: #0f2e4f;
+  color: #110445;
 }
 @media (max-width: 420px) {
   div.puzzle-container[size="4"] div.grid-container div.calcudoku-square div.cage-indicator {
@@ -312,7 +312,7 @@ div.puzzle-container[size="4"] div.grid-container div.calcudoku-square input {
   height: 100%;
   font-size: 4em;
   background-color: white;
-  color: #41556a;
+  color: #241c46;
   text-align: right;
   cursor: pointer;
   -moz-appearance: textfield;
@@ -344,10 +344,10 @@ div.puzzle-container[size="4"] div.number-select-container {
 div.puzzle-container[size="4"] div.number-select-container button {
   font-size: 3em;
   padding: 0.15em 0.5em;
-  border: solid 2px #17477a;
+  border: solid 2px #110445;
   border-radius: 0.3em;
-  color: #0f2e4f;
-  background-color: #dde6f0;
+  color: #110445;
+  background-color: #e9e4fd;
   cursor: pointer;
 }
 @media (max-width: 420px) {
@@ -356,8 +356,8 @@ div.puzzle-container[size="4"] div.number-select-container button {
   }
 }
 div.puzzle-container[size="4"] div.number-select-container button:hover {
-  color: #5eacff;
-  border-color: #5eacff;
+  color: #ae9cf9;
+  border-color: #ae9cf9;
 }
 div.puzzle-container[size="5"] {
   display: flex;
@@ -384,8 +384,8 @@ div.puzzle-container[size="5"] div.grid-container {
   height: 37.5em;
   width: 37.5em;
   gap: 1px;
-  background-color: #17477a;
-  border: solid 3px #17477a;
+  background-color: #17065d;
+  border: solid 3px #17065d;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
 }
@@ -401,7 +401,7 @@ div.puzzle-container[size="5"] div.grid-container div.calcudoku-square {
   background-color: white;
   box-sizing: border-box;
   padding: 0.5em;
-  border: solid 2px #17477a;
+  border: solid 2px #17065d;
   cursor: pointer;
 }
 @media (max-width: 420px) {
@@ -425,10 +425,10 @@ div.puzzle-container[size="5"] div.grid-container div.calcudoku-square div.selec
   left: 0;
 }
 div.puzzle-container[size="5"] div.grid-container div.calcudoku-square.active {
-  background-color: #dde6f0;
+  background-color: #e9e4fd;
 }
 div.puzzle-container[size="5"] div.grid-container div.calcudoku-square.active input {
-  background-color: #dde6f0;
+  background-color: #e9e4fd;
 }
 div.puzzle-container[size="5"] div.grid-container div.calcudoku-square.n-up {
   border-top: none;
@@ -446,7 +446,7 @@ div.puzzle-container[size="5"] div.grid-container div.calcudoku-square div.cage-
   position: absolute;
   top: 0.2em;
   left: 0.2em;
-  color: #0f2e4f;
+  color: #110445;
 }
 @media (max-width: 420px) {
   div.puzzle-container[size="5"] div.grid-container div.calcudoku-square div.cage-indicator {
@@ -460,7 +460,7 @@ div.puzzle-container[size="5"] div.grid-container div.calcudoku-square input {
   height: 100%;
   font-size: 4em;
   background-color: white;
-  color: #41556a;
+  color: #241c46;
   text-align: right;
   cursor: pointer;
   -moz-appearance: textfield;
@@ -492,10 +492,10 @@ div.puzzle-container[size="5"] div.number-select-container {
 div.puzzle-container[size="5"] div.number-select-container button {
   font-size: 3em;
   padding: 0.15em 0.5em;
-  border: solid 2px #17477a;
+  border: solid 2px #110445;
   border-radius: 0.3em;
-  color: #0f2e4f;
-  background-color: #dde6f0;
+  color: #110445;
+  background-color: #e9e4fd;
   cursor: pointer;
 }
 @media (max-width: 420px) {
@@ -504,8 +504,8 @@ div.puzzle-container[size="5"] div.number-select-container button {
   }
 }
 div.puzzle-container[size="5"] div.number-select-container button:hover {
-  color: #5eacff;
-  border-color: #5eacff;
+  color: #ae9cf9;
+  border-color: #ae9cf9;
 }
 div.puzzle-container[size="6"] {
   display: flex;
@@ -532,8 +532,8 @@ div.puzzle-container[size="6"] div.grid-container {
   height: 45em;
   width: 45em;
   gap: 1px;
-  background-color: #17477a;
-  border: solid 3px #17477a;
+  background-color: #17065d;
+  border: solid 3px #17065d;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(6, 1fr);
 }
@@ -549,7 +549,7 @@ div.puzzle-container[size="6"] div.grid-container div.calcudoku-square {
   background-color: white;
   box-sizing: border-box;
   padding: 0.5em;
-  border: solid 2px #17477a;
+  border: solid 2px #17065d;
   cursor: pointer;
 }
 @media (max-width: 420px) {
@@ -573,10 +573,10 @@ div.puzzle-container[size="6"] div.grid-container div.calcudoku-square div.selec
   left: 0;
 }
 div.puzzle-container[size="6"] div.grid-container div.calcudoku-square.active {
-  background-color: #dde6f0;
+  background-color: #e9e4fd;
 }
 div.puzzle-container[size="6"] div.grid-container div.calcudoku-square.active input {
-  background-color: #dde6f0;
+  background-color: #e9e4fd;
 }
 div.puzzle-container[size="6"] div.grid-container div.calcudoku-square.n-up {
   border-top: none;
@@ -594,7 +594,7 @@ div.puzzle-container[size="6"] div.grid-container div.calcudoku-square div.cage-
   position: absolute;
   top: 0.2em;
   left: 0.2em;
-  color: #0f2e4f;
+  color: #110445;
 }
 @media (max-width: 420px) {
   div.puzzle-container[size="6"] div.grid-container div.calcudoku-square div.cage-indicator {
@@ -608,7 +608,7 @@ div.puzzle-container[size="6"] div.grid-container div.calcudoku-square input {
   height: 100%;
   font-size: 4em;
   background-color: white;
-  color: #41556a;
+  color: #241c46;
   text-align: right;
   cursor: pointer;
   -moz-appearance: textfield;
@@ -640,10 +640,10 @@ div.puzzle-container[size="6"] div.number-select-container {
 div.puzzle-container[size="6"] div.number-select-container button {
   font-size: 3em;
   padding: 0.15em 0.5em;
-  border: solid 2px #17477a;
+  border: solid 2px #110445;
   border-radius: 0.3em;
-  color: #0f2e4f;
-  background-color: #dde6f0;
+  color: #110445;
+  background-color: #e9e4fd;
   cursor: pointer;
 }
 @media (max-width: 420px) {
@@ -652,8 +652,8 @@ div.puzzle-container[size="6"] div.number-select-container button {
   }
 }
 div.puzzle-container[size="6"] div.number-select-container button:hover {
-  color: #5eacff;
-  border-color: #5eacff;
+  color: #ae9cf9;
+  border-color: #ae9cf9;
 }
 div.puzzle-container.instructions {
   display: flex;
@@ -680,8 +680,8 @@ div.puzzle-container.instructions div.grid-container {
   height: 22.5em;
   width: 22.5em;
   gap: 1px;
-  background-color: #17477a;
-  border: solid 3px #17477a;
+  background-color: #17065d;
+  border: solid 3px #17065d;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
 }
@@ -697,7 +697,7 @@ div.puzzle-container.instructions div.grid-container div.calcudoku-square {
   background-color: white;
   box-sizing: border-box;
   padding: 0.5em;
-  border: solid 2px #17477a;
+  border: solid 2px #17065d;
   cursor: pointer;
   cursor: default;
 }
@@ -722,10 +722,10 @@ div.puzzle-container.instructions div.grid-container div.calcudoku-square div.se
   left: 0;
 }
 div.puzzle-container.instructions div.grid-container div.calcudoku-square.active {
-  background-color: #dde6f0;
+  background-color: #e9e4fd;
 }
 div.puzzle-container.instructions div.grid-container div.calcudoku-square.active input {
-  background-color: #dde6f0;
+  background-color: #e9e4fd;
 }
 div.puzzle-container.instructions div.grid-container div.calcudoku-square.n-up {
   border-top: none;
@@ -743,7 +743,7 @@ div.puzzle-container.instructions div.grid-container div.calcudoku-square div.ca
   position: absolute;
   top: 0.2em;
   left: 0.2em;
-  color: #0f2e4f;
+  color: #110445;
 }
 @media (max-width: 420px) {
   div.puzzle-container.instructions div.grid-container div.calcudoku-square div.cage-indicator {
@@ -757,7 +757,7 @@ div.puzzle-container.instructions div.grid-container div.calcudoku-square input 
   height: 100%;
   font-size: 3em;
   background-color: white;
-  color: #41556a;
+  color: #241c46;
   text-align: right;
   cursor: pointer;
   cursor: default;
@@ -790,10 +790,10 @@ div.puzzle-container.instructions div.number-select-container {
 div.puzzle-container.instructions div.number-select-container button {
   font-size: 3em;
   padding: 0.15em 0.5em;
-  border: solid 2px #17477a;
+  border: solid 2px #110445;
   border-radius: 0.3em;
-  color: #0f2e4f;
-  background-color: #dde6f0;
+  color: #110445;
+  background-color: #e9e4fd;
   cursor: pointer;
 }
 @media (max-width: 420px) {
@@ -802,8 +802,8 @@ div.puzzle-container.instructions div.number-select-container button {
   }
 }
 div.puzzle-container.instructions div.number-select-container button:hover {
-  color: #5eacff;
-  border-color: #5eacff;
+  color: #ae9cf9;
+  border-color: #ae9cf9;
 }
 
 div.calcudoku-instructions {
@@ -811,7 +811,7 @@ div.calcudoku-instructions {
   flex-direction: column;
 }
 div.calcudoku-instructions h2 {
-  color: #17477a;
+  color: #1d0775;
 }
 @media (max-width: 600px) {
   div.calcudoku-instructions {
@@ -1014,7 +1014,7 @@ div.light-instructions div.steps div.step p.emphasized {
   text-align: center;
   padding: 0.3em 0.5em;
   border-radius: 0.3em;
-  background-color: #e1dafd;
+  background-color: #cde1f6;
 }
 @media (min-width: 600px) {
   div.light-instructions div.steps div.examples {
@@ -1044,7 +1044,7 @@ div.matchstick.puzzle-container div.display-container canvas.selecting {
   cursor: pointer;
 }
 div.matchstick.puzzle-container div.display-container svg.nav-button.reset {
-  fill: #1e60a6;
+  fill: #0b032d;
   cursor: pointer;
   user-select: none;
   position: absolute;
@@ -1062,7 +1062,7 @@ div.matchstick.puzzle-container div.display-container svg.nav-button.reset {
 }
 @media (hover: hover) {
   div.matchstick.puzzle-container div.display-container svg.nav-button.reset:hover {
-    fill: #77ade6;
+    fill: #c1b4fa;
   }
 }
 div.matchstick.puzzle-container div.display-container svg.nav-button.reset[isactive=false] {
@@ -1095,7 +1095,7 @@ button.try-it {
   border: none;
   border-radius: 0.3em;
   font-size: 1.5em;
-  background-color: #5eacff;
+  background-color: #957cff;
   color: black;
   align-self: center;
 }
@@ -1104,7 +1104,7 @@ button.try-it:focus {
 }
 button.try-it:hover {
   color: white;
-  background-color: #91c7ff;
+  background-color: #aa96ff;
 }
 
 nav.main-nav {

@@ -27,7 +27,11 @@ button {
 		border: none;
 		border-radius: 0.3em;
 		font-size: 1.5em;
-		background-color: color.adjust(variables.$color7, $saturation: 100);
+		background-color: color.adjust(
+			variables.$color3,
+			$saturation: 100,
+			$lightness: 10
+		);
 		color: black;
 		align-self: center;
 
@@ -38,9 +42,9 @@ button {
 		&:hover {
 			color: white;
 			background-color: color.adjust(
-				variables.$color7,
+				variables.$color3,
 				$saturation: 100,
-				$lightness: 10
+				$lightness: 15
 			);
 		}
 	}

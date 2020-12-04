@@ -62,7 +62,8 @@ div.dashboard-container {
 	div.potd-container {
 		cursor: pointer;
 		padding: 2em;
-		border: 3px solid color.adjust(variables.$color7, $lightness: 0);
+		border: 3px solid
+			color.adjust(variables.$color7, $lightness: 0, $saturation: 30);
 		border-radius: 1em;
 		&:hover {
 			background-color: color.adjust(variables.$color7, $lightness: 28);
@@ -80,20 +81,20 @@ div.dashboard-container {
 			color.adjust(variables.$color10, $lightness: -55),
 			color.adjust(variables.$color12, $lightness: 6),
 			color.adjust(variables.$color10, $lightness: -15),
-			color.adjust(variables.$color3, $lightness: -40),
-			color.adjust(variables.$color3, $lightness: 30),
-			color.adjust(variables.$color3, $lightness: -15)
+			color.adjust(variables.$color7, $lightness: -40),
+			color.adjust(variables.$color7, $lightness: 23),
+			color.adjust(variables.$color7, $lightness: 0, $saturation: 30)
 		);
 	}
 }
 
 div.instance-list-container {
 	@include list(
-		color.adjust(variables.$color3, $lightness: -40),
-		color.adjust(variables.$color5, $lightness: 25, $saturation: -30),
-		color.adjust(variables.$color3, $lightness: -25),
 		color.adjust(variables.$color7, $lightness: -40),
 		color.adjust(variables.$color7, $lightness: 28),
-		color.adjust(variables.$color7, $lightness: 0, $saturation: 30)
+		color.adjust(variables.$color7, $lightness: 0, $saturation: 30),
+		color.adjust(variables.$color3, $lightness: -40),
+		color.adjust(variables.$color3, $lightness: 30),
+		color.adjust(variables.$color3, $lightness: -25)
 	);
 }

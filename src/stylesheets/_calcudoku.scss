@@ -29,8 +29,8 @@ $scaling-420px: 1 / 2;
 		height: $puzzle-dimension;
 		width: $puzzle-dimension;
 		gap: 1px;
-		background-color: color.adjust(variables.$color7, $lightness: -40);
-		border: solid 3px color.adjust(variables.$color7, $lightness: -40);
+		background-color: color.adjust(variables.$color3, $lightness: -45);
+		border: solid 3px color.adjust(variables.$color3, $lightness: -45);
 		grid-template-columns: repeat($puzzle-size, 1fr);
 		grid-template-rows: repeat($puzzle-size, 1fr);
 		@media (max-width: 420px) {
@@ -44,7 +44,7 @@ $scaling-420px: 1 / 2;
 			background-color: white;
 			box-sizing: border-box;
 			padding: 0.5em;
-			border: solid 2px color.adjust(variables.$color7, $lightness: -40);
+			border: solid 2px color.adjust(variables.$color3, $lightness: -45);
 			@media (max-width: 420px) {
 				border: solid 2px * $scaling-420px;
 				padding: 0.3em * $scaling-420px;
@@ -78,16 +78,14 @@ $scaling-420px: 1 / 2;
 
 			&.active {
 				background-color: color.adjust(
-					variables.$color7,
-					$lightness: 22,
-					$saturation: -30
+					variables.$color3,
+					$lightness: 30
 				);
 
 				input {
 					background-color: color.adjust(
-						variables.$color7,
-						$lightness: 22,
-						$saturation: -30
+						variables.$color3,
+						$lightness: 30
 					);
 				}
 			}
@@ -108,7 +106,7 @@ $scaling-420px: 1 / 2;
 				position: absolute;
 				top: 0.2em;
 				left: 0.2em;
-				color: color.adjust(variables.$color7, $lightness: -50);
+				color: color.adjust(variables.$color3, $lightness: -50);
 
 				@media (max-width: 420px) {
 					font-size: 2em * $scaling-420px * $instructionScale;
@@ -122,8 +120,8 @@ $scaling-420px: 1 / 2;
 				font-size: 4em * $instructionScale;
 				background-color: white;
 				color: color.adjust(
-					variables.$color7,
-					$lightness: -35,
+					variables.$color3,
+					$lightness: -45,
 					$saturation: -45
 				);
 				@media (max-width: 420px) {
@@ -164,19 +162,15 @@ $scaling-420px: 1 / 2;
 				font-size: 3em * $scaling-420px;
 			}
 			padding: 0.15em 0.5em;
-			border: solid 2px color.adjust(variables.$color7, $lightness: -40);
+			border: solid 2px color.adjust(variables.$color3, $lightness: -50);
 			border-radius: 0.3em;
-			color: color.adjust(variables.$color7, $lightness: -50);
-			background-color: color.adjust(
-				variables.$color7,
-				$lightness: 22,
-				$saturation: -30
-			);
+			color: color.adjust(variables.$color3, $lightness: -50);
+			background-color: color.adjust(variables.$color3, $lightness: 30);
 			cursor: pointer;
 
 			&:hover {
-				color: color.adjust(variables.$color7, $saturation: 50);
-				border-color: color.adjust(variables.$color7, $saturation: 50);
+				color: color.adjust(variables.$color3, $lightness: 15);
+				border-color: color.adjust(variables.$color3, $lightness: 15);
 			}
 		}
 	}
@@ -206,7 +200,7 @@ div.puzzle-container {
 
 div.calcudoku-instructions {
 	h2 {
-		color: color.adjust(variables.$color7, $lightness: -40);
+		color: color.adjust(variables.$color3, $lightness: -40);
 	}
 	display: flex;
 	flex-direction: column;

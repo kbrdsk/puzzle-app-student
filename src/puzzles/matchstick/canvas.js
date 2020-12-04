@@ -194,7 +194,7 @@ export default function Canvas(props) {
 			for (let [initial, terminal] of sticks) {
 				ctx.beginPath();
 				ctx.lineWidth = stickWidth;
-				ctx.strokeStyle = "#0f2e4f";
+				ctx.strokeStyle = "#0b032d";
 				ctx.moveTo(initial.x, initial.y);
 				ctx.lineTo(terminal.x, terminal.y);
 				ctx.stroke();
@@ -208,19 +208,19 @@ export default function Canvas(props) {
 					0,
 					2 * Math.PI
 				);
-				ctx.fillStyle = "#77ade688";
+				ctx.fillStyle = "#7354f455";
 				ctx.shadowBlur = stickWidth;
 				ctx.shadowColor = ctx.fillStyle;
 				ctx.fill();
 				ctx.shadowBlur = 0;
-				ctx.shadowColor = "#0f2e4f";
+				ctx.shadowColor = "#0b032d";
 			} else {
 				const stickSelection =
 					getStickSelection(mouseLoc) || activeStick;
 				if (stickSelection) {
 					const [initial, terminal] = stickSelection;
 					ctx.beginPath();
-					ctx.strokeStyle = "#77ade688";
+					ctx.strokeStyle = "#7354f455";
 					ctx.lineWidth = stickWidth * 3;
 					ctx.moveTo(initial.x, initial.y);
 					ctx.lineTo(terminal.x, terminal.y);
