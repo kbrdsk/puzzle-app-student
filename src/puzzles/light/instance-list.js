@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Instance from "./instance";
 import { Route, Switch } from "react-router-dom";
+import Instance from "./instance";
+import { InstructionsX } from "./instructions";
 
 const instanceList = Array.from({ length: 5 }, (...[, i]) => i + 1);
 
@@ -8,7 +9,9 @@ export default function List({ history, name, match }) {
 	const [current, setCurrent] = useState(1);
 
 	useEffect(() => {
-		history.push(`/light/${name}/${current}`);
+		if (!name.match("instructions")) {
+			history.push(`/light/${name}/${current}`);
+		}
 	}, [current, name, history]);
 
 	const renderInstanceRoute = (match, instance) => {
@@ -37,7 +40,9 @@ export default function List({ history, name, match }) {
 
 	const previous = () => setCurrent(Math.max(current - 1, 1));
 
-	return (
+	return name === "instructionsx" ? (
+		<InstructionsX history={history} />
+	) : (
 		<div className={`light category-container ${name}`}>
 			{/*<h2>{`Light Puzzles - ${capitalize(name)} `}</h2>;*/}
 			<Switch>

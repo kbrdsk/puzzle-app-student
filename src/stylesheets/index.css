@@ -977,6 +977,15 @@ div.light-instructions div.steps div.step {
 div.light-instructions div.steps div.step p {
   margin-right: 3em;
 }
+@media (min-width: 600px) {
+  div.light-instructions div.steps div.examples {
+    display: flex;
+    justify-content: center;
+  }
+}
+div.light-instructions div.steps div.examples div.example {
+  margin: 0 3em;
+}
 
 div.matchstick.puzzle-container {
   display: flex;

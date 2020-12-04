@@ -15,6 +15,7 @@ const instanceList = [
 	{ instance: "small", title: "Small" },
 	{ instance: "medium", title: "Medium" },
 	{ instance: "large", title: "Large" },
+	{ instance: "instructionsx", title: "Instructions-X" },
 	{ instance: "smallx", title: "Small-X" },
 	{ instance: "mediumx", title: "Medium-X" },
 	{ instance: "largex", title: "Large-X" },
@@ -23,7 +24,7 @@ const instanceList = [
 instanceList.fetchCompletionStatus = async function (user) {
 	fetchUserData(user);
 	instanceList.forEach(({ instance }) => {
-		if (instance === "instructions") return;
+		if (instance.match("instructions")) return;
 		let completed = true;
 		for (let i = 1; i <= 5; i++) {
 			const sessionDataKey = `light-instance-data-${instance}${i}`;

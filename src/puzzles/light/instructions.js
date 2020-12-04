@@ -2,13 +2,13 @@ import React, { useState } from "react";
 
 const example1 = { size: { cols: 1, rows: 1 }, beginstate: [], work: [] };
 const example2 = { size: { cols: 3, rows: 1 }, beginstate: [], work: [] };
-/*const example3 = { size: { cols: 3, rows: 3 }, beginstate: [], work: [] };
+const example3 = { size: { cols: 3, rows: 3 }, beginstate: [], work: [] };
 const example4 = {
 	size: { cols: 3, rows: 3 },
 	beginstate: [],
 	work: [],
 	neighborType: "x",
-};*/
+};
 
 export default function Instructions({ history }) {
 	return (
@@ -34,20 +34,6 @@ export default function Instructions({ history }) {
 					</p>
 					<Instance data={example2} />
 				</div>
-				{/*<div className="step">
-	<p>
-		Puzzles marked with an "X" work a little differently. Clicking a square
-		will light up squares diagonal to it as well.
-	</p>
-	<div className="example">
-		Normal Puzzle
-		<Instance data={example3} />
-	</div>
-	<div className="example">
-		Puzzle-X
-		<Instance data={example4} />
-	</div>
-</div>;*/}
 				<div className="step">
 					It can be tempting to click randomly, but take it slow! Try
 					to light up all the squares using as few moves as you can!
@@ -56,6 +42,42 @@ export default function Instructions({ history }) {
 			<button
 				className="try-it"
 				onClick={() => history.push("/light/small")}
+			>
+				Try It!
+			</button>
+		</div>
+	);
+}
+
+export function InstructionsX({ history }) {
+	return (
+		<div className="light-instructions">
+			<h2>
+				Light Puzzle-X Instructions
+				<hr />
+			</h2>
+			<div className="steps">
+				<div className="step">
+					<p>
+						Puzzles marked with an "X" work a little differently.
+						Clicking a square will light up squares the diagonal to
+						it instead of ones directly next to it.
+					</p>
+				</div>
+				<div className="examples">
+					<div className="example">
+						Normal Puzzle
+						<Instance data={example3} />
+					</div>
+					<div className="example">
+						Puzzle-X
+						<Instance data={example4} />
+					</div>
+				</div>
+			</div>
+			<button
+				className="try-it"
+				onClick={() => history.push("/light/smallx")}
 			>
 				Try It!
 			</button>
