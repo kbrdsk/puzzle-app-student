@@ -855,13 +855,13 @@ div.light.category-container div.selector-container button.selector.next, div.li
   border: none;
   padding: 0.3em 0.5em;
   border-radius: 0.3em;
-  background-color: #39beca;
+  background-color: #226dbb;
   color: white;
 }
 @media (hover: hover) {
   div.light.category-container div.selector-container button.selector.active:hover {
-    color: #2c9aa4;
-    background-color: #daf3f5;
+    color: #1a5490;
+    background-color: #b8d4f2;
   }
 }
 div.light.category-container div.selector-container button.selector.instance {
@@ -869,10 +869,10 @@ div.light.category-container div.selector-container button.selector.instance {
   width: 1em;
   border-radius: 1em;
   border: none;
-  background-color: #9edfe5;
+  background-color: #77ade6;
 }
 div.light.category-container div.selector-container button.selector.instance.selected {
-  background-color: #31adb9;
+  background-color: #1e60a6;
 }
 div.light.category-container div.selector-container button.selector.inactive {
   opacity: 0.3;
@@ -915,7 +915,7 @@ div.light-puzzle-container div.light-grid div.grid-row div.light-square.active {
   background-color: #c1b4fa;
 }
 div.light-puzzle-container div.light-grid div.grid-row div.light-square.inactive {
-  background-color: #000;
+  background-color: #0b032d;
 }
 div.light-puzzle-container div.controller {
   height: 4em;
@@ -923,7 +923,7 @@ div.light-puzzle-container div.controller {
   align-items: center;
 }
 div.light-puzzle-container div.controller svg.nav-button {
-  fill: #2e0cbc;
+  fill: #0b032d;
   cursor: pointer;
   user-select: none;
 }
@@ -937,7 +937,7 @@ div.light-puzzle-container div.controller svg.nav-button.step {
 }
 @media (hover: hover) {
   div.light-puzzle-container div.controller svg.nav-button:hover {
-    fill: #ae9cf9;
+    fill: #c1b4fa;
   }
 }
 div.light-puzzle-container div.controller svg.nav-button[isactive=false] {
@@ -952,9 +952,10 @@ div.light-puzzle-container div.saving-indicator {
 }
 div.light-puzzle-container div.moves-indicator {
   align-self: flex-start;
+  color: #0b032d;
 }
 div.light-puzzle-container div.moves-indicator span.moves {
-  color: #7354f4;
+  color: #3a0fec;
 }
 
 div.light-instructions {

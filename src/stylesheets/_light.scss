@@ -43,7 +43,7 @@ div.light.category-container {
 				padding: 0.3em 0.5em;
 				border-radius: 0.3em;
 				background-color: color.adjust(
-					variables.$color10,
+					variables.$color7,
 					$lightness: -25
 				);
 				color: white;
@@ -51,9 +51,9 @@ div.light.category-container {
 
 			@media (hover: hover) {
 				&.active:hover {
-					color: color.adjust(variables.$color10, $lightness: -35);
+					color: color.adjust(variables.$color7, $lightness: -35);
 					background-color: color.adjust(
-						variables.$color10,
+						variables.$color7,
 						$lightness: 15
 					);
 				}
@@ -64,11 +64,11 @@ div.light.category-container {
 				width: 1em;
 				border-radius: 1em;
 				border: none;
-				background-color: variables.$color10;
+				background-color: variables.$color7;
 
 				&.selected {
 					background-color: color.adjust(
-						variables.$color10,
+						variables.$color7,
 						$lightness: -30
 					);
 				}
@@ -120,7 +120,10 @@ div.light-puzzle-container {
 				}
 
 				&.inactive {
-					background-color: #000;
+					background-color: color.adjust(
+						variables.$color3,
+						$lightness: -55
+					);
 				}
 			}
 		}
@@ -131,7 +134,7 @@ div.light-puzzle-container {
 		display: flex;
 		align-items: center;
 		svg.nav-button {
-			fill: color.adjust(variables.$color3, $lightness: -25);
+			fill: color.adjust(variables.$color3, $lightness: -55);
 			cursor: pointer;
 			user-select: none;
 
@@ -146,7 +149,7 @@ div.light-puzzle-container {
 
 			@media (hover: hover) {
 				&:hover {
-					fill: color.adjust(variables.$color3, $lightness: 15);
+					fill: color.adjust(variables.$color3, $lightness: 20);
 				}
 			}
 
@@ -166,9 +169,10 @@ div.light-puzzle-container {
 
 	div.moves-indicator {
 		align-self: flex-start;
+		color: color.adjust(variables.$color3, $lightness: -55);
 
 		span.moves {
-			color: variables.$color3;
+			color: color.adjust(variables.$color3, $lightness: -15);
 		}
 	}
 }
