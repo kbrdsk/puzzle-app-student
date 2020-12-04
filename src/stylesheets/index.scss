@@ -36,11 +36,7 @@ button {
 		}
 
 		&:hover {
-			color: color.adjust(
-				variables.$color7,
-				$saturation: 100,
-				$lightness: -40
-			);
+			color: white;
 			background-color: color.adjust(
 				variables.$color7,
 				$saturation: 100,

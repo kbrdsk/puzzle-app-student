@@ -1103,7 +1103,7 @@ button.try-it:focus {
   outline: none;
 }
 button.try-it:hover {
-  color: #004791;
+  color: white;
   background-color: #91c7ff;
 }
 
