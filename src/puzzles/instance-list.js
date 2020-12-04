@@ -18,7 +18,6 @@ export default function List({ history, instanceList, title, puzzleType }) {
 
 	const renderInstanceListing = (history, { instance, title }) => {
 		const sessionDataKey = `${puzzleType}-instance-data-${instance}`;
-		//debugger;
 		const sessionData = JSON.parse(sessionStorage.getItem(sessionDataKey));
 		const completed = sessionData ? sessionData.completed : false;
 
