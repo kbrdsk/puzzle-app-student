@@ -1026,6 +1026,9 @@ div.light-instructions div.steps div.step p.emphasized {
   border-radius: 0.3em;
   background-color: #cde1f6;
 }
+div.light-instructions div.steps div.examples {
+  max-width: 95vw;
+}
 @media (min-width: 600px) {
   div.light-instructions div.steps div.examples {
     display: flex;

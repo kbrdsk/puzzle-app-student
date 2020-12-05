@@ -239,6 +239,8 @@ div.light-instructions {
 		}
 
 		div.examples {
+			max-width: 95vw;
+
 			@media (min-width: 600px) {
 				display: flex;
 				justify-content: center;
