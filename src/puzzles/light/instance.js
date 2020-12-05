@@ -129,8 +129,8 @@ export default function Instance(props) {
 	);
 
 	const checkComplete = useCallback(() => {
-		for (let row; row < rows; row++) {
-			for (let col; col < cols; col++) {
+		for (let row = 0; row < rows; row++) {
+			for (let col = 0; col < cols; col++) {
 				if (!isActive({ row, col })) return false;
 			}
 		}
