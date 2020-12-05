@@ -31,7 +31,6 @@
 			grid-template-columns: 1fr;
 		}
 
-		grid-auto-rows: auto;
 		gap: 1.5em;
 		padding: 0;
 		li {
@@ -97,4 +96,10 @@ div.instance-list-container {
 		color.adjust(variables.$color3, $lightness: 30),
 		color.adjust(variables.$color3, $lightness: -25)
 	);
+	ul {
+		grid-auto-flow: column;
+		@media (max-width: 420px) {
+			grid-auto-flow: row;
+		}
+	}
 }

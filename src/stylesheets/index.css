@@ -127,7 +127,6 @@ div.dashboard-container div.puzzle-list-container ul {
   list-style-type: none;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: auto;
   gap: 1.5em;
   padding: 0;
 }
@@ -177,7 +176,6 @@ div.instance-list-container ul {
   list-style-type: none;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: auto;
   gap: 1.5em;
   padding: 0;
 }
@@ -205,6 +203,14 @@ div.instance-list-container ul li div.list-preview {
 }
 div.instance-list-container ul li.completed {
   opacity: 0.5;
+}
+div.instance-list-container ul {
+  grid-auto-flow: column;
+}
+@media (max-width: 420px) {
+  div.instance-list-container ul {
+    grid-auto-flow: row;
+  }
 }
 
 h2.loading-indicator {

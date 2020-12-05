@@ -35,7 +35,13 @@ export default function List({ history, instanceList, title, puzzleType }) {
 	return (
 		<div className="instance-list-container">
 			<h2>{title}</h2>
-			<ul>
+			<ul
+				style={{
+					"grid-template-rows": `repeat(${Math.ceil(
+						instanceList.length / 2
+					)}, 1fr)`,
+				}}
+			>
 				{instanceList.map(renderInstanceListing.bind(null, history))}
 			</ul>
 		</div>
