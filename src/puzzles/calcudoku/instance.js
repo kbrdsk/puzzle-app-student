@@ -90,11 +90,11 @@ export default function Instance(props) {
 
 	const checkComplete = useCallback(() => {
 		const hasCageError = cages.reduce(
-			(acc, cage) => (hasError(grid, cage) ? true : false),
+			(acc, cage) => hasError(grid, cage) || acc,
 			false
 		);
 		const hasDuplicate = grid.reduce(
-			(acc, square) => (isDuplicate(grid, square) ? true : false),
+			(acc, square) => isDuplicate(grid, square) || acc,
 			false
 		);
 
