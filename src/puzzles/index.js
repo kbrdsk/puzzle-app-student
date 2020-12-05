@@ -4,7 +4,7 @@ import * as logic from "./logic/index";
 import * as light from "./light/index";
 import * as matchstick from "./matchstick/index";
 
-export const puzzleList = [logic, calcudoku, light /*matchstick*/];
+export const puzzleList = [logic, calcudoku, light, matchstick];
 
 export const potd = {
 	uri: "/light/instructions",
