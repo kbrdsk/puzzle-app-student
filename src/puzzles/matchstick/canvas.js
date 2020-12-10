@@ -35,6 +35,7 @@ export default function Canvas(props) {
 
 	const getPointSelection = useCallback(
 		(mouseLocation) => {
+			if (activeStick) return;
 			const points = sticks.flatMap((stick) => stick);
 			return points.reduce(
 				(acc, point) => {
@@ -50,11 +51,12 @@ export default function Canvas(props) {
 				null
 			);
 		},
-		[sticks, selectionProximity]
+		[sticks, selectionProximity, activeStick]
 	);
 
 	const getStickSelection = useCallback(
 		(mouseLocation) =>
+			activeStick ||
 			sticks.reduce(
 				(acc, stick) =>
 					distanceFromSegment(mouseLocation, stick) <
@@ -68,7 +70,7 @@ export default function Canvas(props) {
 						: acc,
 				null
 			),
-		[sticks, selectionProximity]
+		[sticks, selectionProximity, activeStick]
 	);
 
 	const selectPoint = (mouseLocation) => {
@@ -183,7 +185,8 @@ export default function Canvas(props) {
 			ctx.clearRect(0, 0, width, height);
 			ctx.beginPath();
 			ctx.lineWidth = stickWidth;
-			ctx.lineCap = "round";/*
+			ctx.lineCap =
+				"round"; /*
 			ctx.strokeStyle = "#f5f5f5";
 			for (let [initial, terminal] of startingConfiguration) {
 				ctx.moveTo(initial.x, initial.y);
