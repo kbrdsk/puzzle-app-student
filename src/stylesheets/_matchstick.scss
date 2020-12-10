@@ -56,3 +56,31 @@ div.matchstick.puzzle-container {
 		}
 	}
 }
+
+div.matchstick-instructions {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+
+	@media (min-width: 600px) {
+		text-align: left;
+	}
+	h2 {
+		color: color.adjust(variables.$color7, $lightness: -40);
+	}
+	div.instructions {
+		max-width: 800px;
+		align-self: center;
+
+		canvas {
+			max-width: 400px;
+			max-height: 400px;
+		}
+		div.display-container {
+			svg.nav-button.reset {
+				top: min(min(5vw, 5vh), 20px);
+				left: min(min(5vw, 5vh), 20px);
+			}
+		}
+	}
+}

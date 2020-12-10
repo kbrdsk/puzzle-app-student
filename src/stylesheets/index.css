@@ -1090,6 +1090,32 @@ div.matchstick.puzzle-container div.display-container div.saving-indicator {
   z-index: -1;
 }
 
+div.matchstick-instructions {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+@media (min-width: 600px) {
+  div.matchstick-instructions {
+    text-align: left;
+  }
+}
+div.matchstick-instructions h2 {
+  color: #17477a;
+}
+div.matchstick-instructions div.instructions {
+  max-width: 800px;
+  align-self: center;
+}
+div.matchstick-instructions div.instructions canvas {
+  max-width: 400px;
+  max-height: 400px;
+}
+div.matchstick-instructions div.instructions div.display-container svg.nav-button.reset {
+  top: min(min(5vw, 5vh), 20px);
+  left: min(min(5vw, 5vh), 20px);
+}
+
 body {
   padding: 1.5em;
   padding-top: 0.5em;
