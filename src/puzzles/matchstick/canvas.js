@@ -183,14 +183,13 @@ export default function Canvas(props) {
 			ctx.clearRect(0, 0, width, height);
 			ctx.beginPath();
 			ctx.lineWidth = stickWidth;
-			ctx.lineCap = "round";
-			ctx.strokeStyle = "#ddd";
+			ctx.lineCap = "round";/*
+			ctx.strokeStyle = "#f5f5f5";
 			for (let [initial, terminal] of startingConfiguration) {
 				ctx.moveTo(initial.x, initial.y);
 				ctx.lineTo(terminal.x, terminal.y);
-			}
+			}*/
 			ctx.stroke();
-			const pointSelection = getPointSelection(mouseLoc) || activePoint;
 			for (let [initial, terminal] of sticks) {
 				ctx.beginPath();
 				ctx.lineWidth = stickWidth;
@@ -199,6 +198,7 @@ export default function Canvas(props) {
 				ctx.lineTo(terminal.x, terminal.y);
 				ctx.stroke();
 			}
+			const pointSelection = getPointSelection(mouseLoc) || activePoint;
 			if (pointSelection) {
 				ctx.beginPath();
 				ctx.arc(
