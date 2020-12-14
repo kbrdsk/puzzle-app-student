@@ -48,7 +48,7 @@ export default function Instructions({ history }) {
 			</div>
 			<button
 				className="try-it"
-				onClick={() => history.push("/matchstick/fish")}
+				onClick={() => history.push("/matchstick")}
 			>
 				Try It!
 			</button>

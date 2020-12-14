@@ -53,7 +53,7 @@ export default function Instructions({ history }) {
 			</div>
 			<button
 				className="try-it"
-				onClick={() => history.push("/light/small")}
+				onClick={() => history.push("/light")}
 			>
 				Try It!
 			</button>
