@@ -6,7 +6,7 @@ import {
 	scalarProduct,
 	magnitude,
 	difference,
-} from "./vector-logic";
+} from "../vector-logic";
 
 export default function Canvas(props) {
 	const canvasRef = useRef(null);
