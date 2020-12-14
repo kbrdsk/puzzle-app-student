@@ -1,0 +1,58 @@
+@use "variables";
+@use "sass:color";
+
+div.puzzle-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	div.display-container {
+		position: relative;
+		canvas {
+			height: min(67.5vw, 60vh);
+			width: min(90vw, 80vh);
+			border: solid 3px color.adjust(variables.$color7, $lightness: -30);
+			border-radius: 3vw;
+
+			&.selecting {
+				cursor: pointer;
+			}
+		}
+
+		svg.nav-button.reset {
+			fill: color.adjust(variables.$color3, $lightness: -55);
+			cursor: pointer;
+			user-select: none;
+			position: absolute;
+			top: min(5vw, 5vh);
+			left: min(5vw, 5vh);
+			height: 2.5em;
+			width: 2.5em;
+			z-index: 1;
+
+			@media (max-width: 420px) {
+				height: 2em;
+				width: 2em;
+			}
+
+			@media (hover: hover) {
+				&:hover {
+					fill: color.adjust(variables.$color3, $lightness: 20);
+				}
+			}
+
+			&[isactive="false"] {
+				cursor: default;
+				fill: #ddd;
+			}
+		}
+
+		div.saving-indicator {
+			position: absolute;
+			right: min(5vw, 5vh);
+			bottom: min(5vw, 5vh);
+			color: #888;
+			z-index: -1;
+		}
+	}
+}
