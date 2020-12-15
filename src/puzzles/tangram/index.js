@@ -3,7 +3,7 @@ import Instance from "./instance";
 import Instructions from "./instructions";
 import { fetchUserData } from "../../index";
 
-const name = "Tangram Puzzles";
+const name = "Tangrams";
 const id = "tangram";
 
 function ListPreview() {
