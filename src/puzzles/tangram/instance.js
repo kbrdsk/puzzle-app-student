@@ -101,16 +101,12 @@ export default function Instance(props) {
 	return (
 		<div className="tangram puzzle-container">
 			<p className="description">{data.description}</p>
-			<Controller data={data} work={work} updateWork={updateWork} />
-			<div className="saving-indicator">
-				{saveStatus === "saving"
-					? "Saving..."
-					: saveStatus === "error"
-					? "An error occurred while saving."
-					: saveStatus === "saved"
-					? "Saved."
-					: " "}
-			</div>
+			<Controller
+				data={data}
+				work={work}
+				updateWork={updateWork}
+				saveStatus={saveStatus}
+			/>
 		</div>
 	);
 }

@@ -1,10 +1,12 @@
 @use "variables";
 @use "sass:color";
 
-div.puzzle-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+div.tangram {
+	&.puzzle-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 
 	div.display-container {
 		position: relative;
@@ -53,6 +55,34 @@ div.puzzle-container {
 			bottom: min(5vw, 5vh);
 			color: #888;
 			z-index: -1;
+		}
+	}
+}
+
+div.tangram-instructions {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+
+	@media (min-width: 600px) {
+		text-align: left;
+	}
+	h2 {
+		color: color.adjust(variables.$color7, $lightness: -40);
+	}
+	p.instructions {
+		max-width: 800px;
+		align-self: center;
+	}
+	div.display-container {
+		align-self: center;
+		svg.nav-button.reset {
+			top: min(min(5vw, 5vh), 20px);
+			left: min(min(5vw, 5vh), 20px);
+		}
+		canvas {
+			max-width: 600px;
+			max-height: 450px;
 		}
 	}
 }

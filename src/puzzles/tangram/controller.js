@@ -14,7 +14,7 @@ import {
 } from "../vector-logic";
 import draw from "./view";
 
-export default function Controller({ data, work, updateWork }) {
+export default function Controller({ data, work, updateWork, saveStatus }) {
 	const canvasRef = useRef(null);
 	const {
 		height,
@@ -244,6 +244,15 @@ export default function Controller({ data, work, updateWork }) {
 						: ""
 				}
 			/>
+			<div className="saving-indicator">
+				{saveStatus === "saving"
+					? "Saving..."
+					: saveStatus === "error"
+					? "An error occurred while saving."
+					: saveStatus === "saved"
+					? "Saved."
+					: " "}
+			</div>
 		</div>
 	);
 }
