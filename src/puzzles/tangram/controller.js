@@ -168,7 +168,13 @@ export default function Controller({ data, work, updateWork }) {
 	};
 
 	const reset = () => {
-		setShapes(createTangrams({ unitLength, startingCenter, work: {} }));
+		const startingPosition = createTangrams({
+			unitLength,
+			startingCenter,
+			work: {},
+		});
+		setShapes(startingPosition);
+		updateWork(startingPosition);
 	};
 
 	const clearSelection = () => {
