@@ -151,9 +151,6 @@ export default function Canvas(props) {
 	};
 
 	const touchDragHandler = (e) => {
-		if (activeStick || activePoint) {
-			e.preventDefault();
-		}
 		const touch = e.touches[0];
 		const touchLocation = getMouseLoc(e, touch);
 		pointDrag(touchLocation);
@@ -250,6 +247,16 @@ export default function Canvas(props) {
 		const context = canvas.getContext("2d");
 		draw(context);
 	}, [draw]);
+
+	useEffect(() => {
+		const preventScroll = (e) =>
+			activeStick || activePoint ? e.preventDefault() : null;
+		document.body.addEventListener("touchmove", preventScroll, {
+			passive: false,
+		});
+		return () =>
+			document.body.removeEventListener("touchmove", preventScroll);
+	}, [activeStick, activePoint]);
 
 	return (
 		<canvas
