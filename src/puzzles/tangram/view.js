@@ -6,9 +6,13 @@ export default function draw({
 	shapes,
 	vertexSelection,
 	shapeSelection,
+	objectiveCenter,
+	unitLength,
 }) {
 	ctx.clearRect(0, 0, width, height);
-	objective.forEach(drawObjective.bind(null, ctx));
+	objective.forEach(
+		drawObjective.bind(null, ctx, objectiveCenter, unitLength)
+	);
 	shapes.forEach(drawShape.bind(null, ctx));
 	if (vertexSelection) {
 		ctx.beginPath();
@@ -41,9 +45,13 @@ function drawShape(
 	ctx.fill();
 }
 
-function drawObjective(ctx, objective) {
+function drawObjective(ctx, objectiveCenter, unitLength, objective) {
+	const adjustedObjective = objective.map(([x, y]) => [
+		objectiveCenter.x + unitLength * x,
+		objectiveCenter.y + unitLength * y,
+	]);
 	ctx.beginPath();
-	const [objectiveStart, ...objectivePoints] = objective;
+	const [objectiveStart, ...objectivePoints] = adjustedObjective;
 	ctx.moveTo(...objectiveStart);
 	objectivePoints.forEach((point) => ctx.lineTo(...point));
 	ctx.closePath();

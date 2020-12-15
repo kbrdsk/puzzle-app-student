@@ -23,6 +23,7 @@ export default function Controller({ data, work, updateWork }) {
 		unitLength,
 		objective,
 		startingCenter,
+		objectiveCenter,
 	} = useMemo(() => data, [data]);
 	const [activeVertex, setActiveVertex] = useState(null);
 	const [activeShape, setActiveShape] = useState(null);
@@ -177,6 +178,7 @@ export default function Controller({ data, work, updateWork }) {
 
 	const upHandler = () => {
 		snapShape();
+		updateWork(shapes);
 		clearSelection();
 	};
 
@@ -201,6 +203,8 @@ export default function Controller({ data, work, updateWork }) {
 			width,
 			shapes,
 			objective,
+			objectiveCenter,
+			unitLength,
 		});
 	}, [
 		activeShape,
@@ -212,6 +216,8 @@ export default function Controller({ data, work, updateWork }) {
 		shapes,
 		objective,
 		mouseLoc,
+		objectiveCenter,
+		unitLength,
 	]);
 
 	return (

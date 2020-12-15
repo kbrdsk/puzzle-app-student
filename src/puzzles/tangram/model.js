@@ -8,16 +8,19 @@ export default function createTangrams({ unitLength, startingCenter, work }) {
       ...positions.largeTriangle1,
       color: "#7d99ed",
       size: unitLength * 2,
+      name: "largeTriangle1",
     }),
     createTriangle({
       ...positions.largeTriangle2,
       color: "#70c2df",
       size: unitLength * 2,
+      name: "largeTriangle2",
     }),
     createTriangle({
       ...positions.mediumTriangle,
       color: "#9edfe5",
       size: unitLength * Math.sqrt(2),
+      name: "mediumTriangle",
     }),
     createSquare({
       ...positions.square,
@@ -33,11 +36,13 @@ export default function createTangrams({ unitLength, startingCenter, work }) {
       ...positions.smallTriangle1,
       color: "#6146d9",
       size: unitLength,
+      name: "smallTriangle1",
     }),
     createTriangle({
       ...positions.smallTriangle2,
       color: "#7e6cfb",
       size: unitLength,
+      name: "smallTriangle2",
     }),
   ];
 }
@@ -61,12 +66,12 @@ function createVertex({ shape, relAngle, distanceFromCenter }) {
   return vertex;
 }
 
-function createTriangle({ size, center, angle, color }) {
+function createTriangle({ size, center, angle, color, name }) {
   const distanceToClosePoint =
     (size * Math.sin(Math.PI / 8)) / Math.sin((5 * Math.PI) / 8);
   const distanceToFarPoint =
     (size * Math.sin(Math.PI / 4)) / Math.sin((5 * Math.PI) / 8);
-  const triangle = { center, color, angle };
+  const triangle = { center, color, angle, name };
   triangle.vertices = [
     { relAngle: 0, distanceFromCenter: distanceToClosePoint },
     {
@@ -83,7 +88,7 @@ function createTriangle({ size, center, angle, color }) {
 
 function createSquare({ size, center, angle, color }) {
   const distanceFromCenter = (size * Math.sqrt(2)) / 2;
-  const square = { center, color, angle };
+  const square = { center, color, angle, name: "square" };
   square.vertices = Array.from({ length: 4 }, (_, i) =>
     createVertex({
       shape: square,
@@ -97,7 +102,7 @@ function createSquare({ size, center, angle, color }) {
 function createParallelogram({ size, center, angle, color }) {
   const distanceToClosePoint = size / 2;
   const distanceToFarPoint = size / Math.sin(Math.atan2(2, 1));
-  const parallelogram = { center, color, angle };
+  const parallelogram = { center, color, angle, name: "parallelogram" };
   parallelogram.vertices = [
     { relAngle: 0, distanceFromCenter: distanceToClosePoint },
     {

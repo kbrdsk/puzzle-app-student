@@ -94,17 +94,20 @@ const objectives = {
 
 const puzzleData = {
 	puzzleId,
-	objective: objectives[puzzleId].map((shape) =>
-		shape.map(([x, y]) => [
-			objectiveCenter.x + unitLength * x,
-			objectiveCenter.y + unitLength * y,
-		])
-	),
+	objective: [
+		[
+			[-Math.sqrt(2), -Math.sqrt(2)],
+			[Math.sqrt(2), -Math.sqrt(2)],
+			[Math.sqrt(2), Math.sqrt(2)],
+			[-Math.sqrt(2), Math.sqrt(2)],
+		],
+	],
 	startingCenter,
 	unitLength,
 	height,
 	width,
 	selectionProximity,
+	objectiveCenter,
 	work: {},
 };
 

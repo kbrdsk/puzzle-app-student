@@ -12,7 +12,14 @@ function ListPreview() {
 
 const instanceList = [
 	{ instance: "instructions", title: "Instructions" },
-	{ instance: "sample", title: "Sample" },
+	{ instance: "triangle", title: "Triangle" },
+	{ instance: "rectangle", title: "Rectangle" },
+	{ instance: "trapezoid", title: "Trapezoid" },
+	{ instance: "twotriangles", title: "Two Triangles" },
+	{ instance: "twosquares", title: "Two Squares" },
+	{ instance: "cube", title: "Cube" },
+	{ instance: "hexagon", title: "Hexagon" },
+	{ instance: "incompleterectangle", title: "Incomplete Rectangle" },
 ];
 
 instanceList.fetchCompletionStatus = fetchUserData;
