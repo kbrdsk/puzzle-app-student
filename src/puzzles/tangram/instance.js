@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useContext, useEffect } from "react";
 import { UserContext } from "../../login/user-context";
-import { puzzleData } from "./test-data";
+import { defaultData } from "./sample-data";
 import Controller from "./controller";
 
 export default function Instance(props) {
@@ -12,7 +12,7 @@ export default function Instance(props) {
 		() => JSON.parse(sessionStorage.getItem(sessionDataKey)),
 		[sessionDataKey]
 	);
-	const [data, setData] = useState(sessionData ? sessionData : puzzleData);
+	const [data, setData] = useState(sessionData ? sessionData : defaultData);
 	const [work, setWork] = useState(data.work);
 	const [saveStatus, setSaveStatus] = useState(sessionData ? "saved" : null);
 	const {
@@ -72,7 +72,7 @@ export default function Instance(props) {
 	}, [token, name]);
 
 	const updateWork = async (shapes) => {
-		const newWork = {...work};
+		const newWork = { ...work };
 		for (let shape of shapes) {
 			const { name, center, angle } = shape;
 			newWork[name] = { center, angle };
