@@ -120,6 +120,13 @@ export default function Controller({ data, work, updateWork, saveStatus }) {
 		}
 	};
 
+	const touchShapeDrag = (touchLocation) => {
+		if (!activeVertex && activeShape) {
+			activeShape.center = touchLocation;
+			setShapes([...shapes]);
+		}
+	};
+
 	const pointDrag = (mouseLocation) => {
 		if (activeVertex) {
 			const { vertices, center } = activeShape;
@@ -198,6 +205,19 @@ export default function Controller({ data, work, updateWork, saveStatus }) {
 		select(getMouseLoc(e));
 	};
 
+	const touchHandler = (e) => {
+		const touch = e.touches[0];
+		const touchLocation = getMouseLoc(e, touch);
+		select(touchLocation);
+	};
+
+	const touchDragHandler = (e) => {
+		const touch = e.touches[0];
+		const touchLocation = getMouseLoc(e, touch);
+		pointDrag(touchLocation);
+		touchShapeDrag(touchLocation);
+	};
+
 	useEffect(() => {
 		const canvas = canvasRef.current;
 		const ctx = canvas.getContext("2d");
@@ -226,6 +246,16 @@ export default function Controller({ data, work, updateWork, saveStatus }) {
 		unitLength,
 	]);
 
+	useEffect(() => {
+		const preventScroll = (e) =>
+			activeShape || activeVertex ? e.preventDefault() : null;
+		const canvas = document.querySelector("canvas");
+		canvas.addEventListener("touchmove", preventScroll, {
+			passive: false,
+		});
+		return () => canvas.removeEventListener("touchmove", preventScroll);
+	}, [activeVertex, activeShape]);
+
 	return (
 		<div className="tangram display-container">
 			<Reset reset={reset} isactive={true} />
@@ -238,6 +268,9 @@ export default function Controller({ data, work, updateWork, saveStatus }) {
 				onMouseUp={upHandler}
 				onMouseLeave={clearSelection}
 				onMouseMove={mouseMoveHandler}
+				onTouchStart={touchHandler}
+				onTouchEnd={upHandler}
+				onTouchMove={touchDragHandler}
 				className={
 					getShapeSelection(mouseLoc) || getVertexSelection(mouseLoc)
 						? "selecting"
