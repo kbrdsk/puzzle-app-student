@@ -8,10 +8,10 @@ import * as tangram from "./tangram/index";
 export const puzzleList = [logic, calcudoku, light, matchstick, /*tangram*/];
 
 export const potd = {
-	uri: "/light/instructions",
+	uri: "/matchstick/instructions",
 	Preview: POTDPreview,
 };
 
 function POTDPreview() {
-	return <div className="potd-preview">Light up all the lights!</div>;
+	return <div className="potd-preview">Creating different images with sticks!</div>;
 }
