@@ -6,7 +6,7 @@ import {
 	scalarProduct,
 	magnitude,
 	difference,
-} from "./vector-logic";
+} from "../vector-logic";
 
 export default function Canvas(props) {
 	const canvasRef = useRef(null);
@@ -35,6 +35,7 @@ export default function Canvas(props) {
 
 	const getPointSelection = useCallback(
 		(mouseLocation) => {
+			if (activeStick) return;
 			const points = sticks.flatMap((stick) => stick);
 			return points.reduce(
 				(acc, point) => {
@@ -50,11 +51,12 @@ export default function Canvas(props) {
 				null
 			);
 		},
-		[sticks, selectionProximity]
+		[sticks, selectionProximity, activeStick]
 	);
 
 	const getStickSelection = useCallback(
 		(mouseLocation) =>
+			activeStick ||
 			sticks.reduce(
 				(acc, stick) =>
 					distanceFromSegment(mouseLocation, stick) <
@@ -68,7 +70,7 @@ export default function Canvas(props) {
 						: acc,
 				null
 			),
-		[sticks, selectionProximity]
+		[sticks, selectionProximity, activeStick]
 	);
 
 	const selectPoint = (mouseLocation) => {
@@ -149,9 +151,6 @@ export default function Canvas(props) {
 	};
 
 	const touchDragHandler = (e) => {
-		if (activeStick || activePoint) {
-			e.preventDefault();
-		}
 		const touch = e.touches[0];
 		const touchLocation = getMouseLoc(e, touch);
 		pointDrag(touchLocation);
@@ -183,14 +182,14 @@ export default function Canvas(props) {
 			ctx.clearRect(0, 0, width, height);
 			ctx.beginPath();
 			ctx.lineWidth = stickWidth;
-			ctx.lineCap = "round";
-			ctx.strokeStyle = "#ddd";
+			ctx.lineCap =
+				"round"; /*
+			ctx.strokeStyle = "#f5f5f5";
 			for (let [initial, terminal] of startingConfiguration) {
 				ctx.moveTo(initial.x, initial.y);
 				ctx.lineTo(terminal.x, terminal.y);
-			}
+			}*/
 			ctx.stroke();
-			const pointSelection = getPointSelection(mouseLoc) || activePoint;
 			for (let [initial, terminal] of sticks) {
 				ctx.beginPath();
 				ctx.lineWidth = stickWidth;
@@ -199,6 +198,7 @@ export default function Canvas(props) {
 				ctx.lineTo(terminal.x, terminal.y);
 				ctx.stroke();
 			}
+			const pointSelection = getPointSelection(mouseLoc) || activePoint;
 			if (pointSelection) {
 				ctx.beginPath();
 				ctx.arc(
@@ -247,6 +247,16 @@ export default function Canvas(props) {
 		const context = canvas.getContext("2d");
 		draw(context);
 	}, [draw]);
+
+	useEffect(() => {
+		const preventScroll = (e) =>
+			activeStick || activePoint ? e.preventDefault() : null;
+		document.body.addEventListener("touchmove", preventScroll, {
+			passive: false,
+		});
+		return () =>
+			document.body.removeEventListener("touchmove", preventScroll);
+	}, [activeStick, activePoint]);
 
 	return (
 		<canvas

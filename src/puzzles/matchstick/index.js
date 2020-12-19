@@ -1,5 +1,6 @@
 import React from "react";
 import Instance from "./instance";
+import Instructions from "./instructions";
 import { fetchUserData } from "../../index";
 
 const name = "Matchstick Puzzles";
@@ -10,6 +11,7 @@ function ListPreview() {
 }
 
 const instanceList = [
+	{ instance: "instructions", title: "Instructions" },
 	{ instance: "fish", title: "Fish" },
 	{ instance: "squares1", title: "Squares 1" },
 	{ instance: "squares2", title: "Squares 2" },
@@ -21,4 +23,4 @@ const instanceList = [
 
 instanceList.fetchCompletionStatus = fetchUserData;
 
-export { name, id, ListPreview, Instance, instanceList };
+export { name, id, ListPreview, Instance, instanceList, Instructions };

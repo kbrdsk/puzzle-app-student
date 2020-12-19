@@ -55,3 +55,10 @@ export function magnitude(vector) {
 function dotProduct(vector1, vector2) {
   return vector1.x * vector2.x + vector1.y * vector2.y;
 }
+
+export function onSameSide(point1, point2, [initial, terminal]) {
+  const vector1 = difference(point1, initial);
+  const vector2 = difference(point2, initial);
+  const orthogonal = orthogonalVector(difference(terminal, initial));
+  return dotProduct(vector1, orthogonal) * dotProduct(vector2, orthogonal) >= 0;
+}

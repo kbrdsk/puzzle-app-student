@@ -175,7 +175,7 @@ export default function Instructions({ history }) {
 			</p>
 			<button
 				className="try-it"
-				onClick={() => history.push("/calcudoku/4x4beginner1")}
+				onClick={() => history.push("/calcudoku")}
 			>
 				Try It!
 			</button>

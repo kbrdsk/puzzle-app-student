@@ -1090,6 +1090,112 @@ div.matchstick.puzzle-container div.display-container div.saving-indicator {
   z-index: -1;
 }
 
+div.matchstick-instructions {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+@media (min-width: 600px) {
+  div.matchstick-instructions {
+    text-align: left;
+  }
+}
+div.matchstick-instructions h2 {
+  color: #17477a;
+}
+div.matchstick-instructions div.instructions {
+  max-width: 800px;
+  align-self: center;
+}
+div.matchstick-instructions div.instructions canvas {
+  max-width: 400px;
+  max-height: 400px;
+}
+div.matchstick-instructions div.instructions div.display-container svg.nav-button.reset {
+  top: min(min(5vw, 5vh), 20px);
+  left: min(min(5vw, 5vh), 20px);
+}
+
+div.tangram.puzzle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+div.tangram div.display-container {
+  position: relative;
+}
+div.tangram div.display-container canvas {
+  height: min(67.5vw, 60vh);
+  width: min(90vw, 80vh);
+  border: solid 3px #1e60a6;
+  border-radius: 3vw;
+}
+div.tangram div.display-container canvas.selecting {
+  cursor: pointer;
+}
+div.tangram div.display-container svg.nav-button.reset {
+  fill: #0b032d;
+  cursor: pointer;
+  user-select: none;
+  position: absolute;
+  top: min(5vw, 5vh);
+  left: min(5vw, 5vh);
+  height: 2.5em;
+  width: 2.5em;
+  z-index: 1;
+}
+@media (max-width: 420px) {
+  div.tangram div.display-container svg.nav-button.reset {
+    height: 2em;
+    width: 2em;
+  }
+}
+@media (hover: hover) {
+  div.tangram div.display-container svg.nav-button.reset:hover {
+    fill: #c1b4fa;
+  }
+}
+div.tangram div.display-container svg.nav-button.reset[isactive=false] {
+  cursor: default;
+  fill: #ddd;
+}
+div.tangram div.display-container div.saving-indicator {
+  position: absolute;
+  right: min(5vw, 5vh);
+  bottom: min(5vw, 5vh);
+  color: #888;
+  z-index: -1;
+}
+
+div.tangram-instructions {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+@media (min-width: 600px) {
+  div.tangram-instructions {
+    text-align: left;
+  }
+}
+div.tangram-instructions h2 {
+  color: #17477a;
+}
+div.tangram-instructions p.instructions {
+  max-width: 800px;
+  align-self: center;
+}
+div.tangram-instructions div.display-container {
+  align-self: center;
+}
+div.tangram-instructions div.display-container svg.nav-button.reset {
+  top: min(min(5vw, 5vh), 20px);
+  left: min(min(5vw, 5vh), 20px);
+}
+div.tangram-instructions div.display-container canvas {
+  max-width: 600px;
+  max-height: 450px;
+}
+
 body {
   padding: 1.5em;
   padding-top: 0.5em;
