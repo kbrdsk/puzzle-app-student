@@ -7,6 +7,7 @@ import React, {
 	useRef,
 } from "react";
 import { UserContext } from "../../login/user-context";
+import { useUpdateActivePuzzle } from "../../api-utils.js";
 
 export default function Instance(props) {
 	const name = useMemo(() => props.name, [props.name]);
@@ -53,31 +54,7 @@ export default function Instance(props) {
 		})();
 	}, [apiurl, token, setWork, sessionDataKey]);
 
-	useEffect(() => {
-		const url = `${process.env.REACT_APP_API_URL}/activepuzzle`;
-		(async () => {
-			const response = await fetch(url, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					authorization: token,
-				},
-				body: JSON.stringify({
-					puzzleName: "logic",
-					puzzleId: name,
-				}),
-			});
-		})();
-
-		return () => {
-			fetch(url, {
-				method: "DELETE",
-				headers: {
-					authorization: token,
-				},
-			});
-		};
-	}, [token, name]);
+	useUpdateActivePuzzle("logic", name);
 
 	const updateWork = useCallback(async () => {
 		setSaveStatus("saving");
@@ -113,8 +90,8 @@ export default function Instance(props) {
 
 	useEffect(() => {
 		const conditionalUpdater = () => {
-			if(saveStatus !== "saved") updateWork();
-		}
+			if (saveStatus !== "saved") updateWork();
+		};
 		window.addEventListener("beforeunload", conditionalUpdater);
 		return () => {
 			window.removeEventListener("beforeunload", conditionalUpdater);

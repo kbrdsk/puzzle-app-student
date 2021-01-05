@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useContext, useEffect } from "react";
 import { UserContext } from "../../login/user-context";
+import { useUpdateActivePuzzle } from "../../api-utils.js";
 import Canvas from "./canvas";
 
 export default function Instance(props) {
@@ -56,31 +57,7 @@ export default function Instance(props) {
 		}
 	}, [apiurl, token, sessionData, sessionDataKey]);
 
-	useEffect(() => {
-		const url = `${process.env.REACT_APP_API_URL}/activepuzzle`;
-		(async () => {
-			await fetch(url, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					authorization: token,
-				},
-				body: JSON.stringify({
-					puzzleName: "matchstick",
-					puzzleId: name,
-				}),
-			});
-		})();
-
-		return () => {
-			fetch(url, {
-				method: "DELETE",
-				headers: {
-					authorization: token,
-				},
-			});
-		};
-	}, [token, name]);
+	useUpdateActivePuzzle("matchstick", name);
 
 	const updateWork = async (newWork = work) => {
 		setSaveStatus("saving");

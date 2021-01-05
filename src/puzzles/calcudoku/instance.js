@@ -6,6 +6,7 @@ import React, {
 	useCallback,
 } from "react";
 import { UserContext } from "../../login/user-context";
+import { useUpdateActivePuzzle } from "../../api-utils.js";
 
 const parsedOperations = {
 	"-": "-",
@@ -62,31 +63,7 @@ export default function Instance(props) {
 		}
 	}, [dburl, token, sessionData, sessionDataKey]);
 
-	useEffect(() => {
-		const url = `${process.env.REACT_APP_API_URL}/activepuzzle`;
-		(async () => {
-			const response = await fetch(url, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					authorization: token,
-				},
-				body: JSON.stringify({
-					puzzleName: "calcudoku",
-					puzzleId: name,
-				}),
-			});
-		})();
-
-		return () => {
-			fetch(url, {
-				method: "DELETE",
-				headers: {
-					authorization: token,
-				},
-			});
-		};
-	}, [token, name]);
+	useUpdateActivePuzzle("calcudoku", name);
 
 	const checkComplete = useCallback(() => {
 		const hasCageError = cages.reduce(
