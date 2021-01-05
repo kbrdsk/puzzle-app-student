@@ -6,7 +6,7 @@ import React, {
 	useCallback,
 } from "react";
 import { UserContext } from "../../login/user-context";
-import { useUpdateActivePuzzle } from "../../api-utils.js";
+import { useUpdateActivePuzzle, useUpdateCompleted } from "../../api-utils.js";
 
 export default function Instance(props) {
 	const name = useMemo(() => props.name, [props.name]);
@@ -114,22 +114,7 @@ export default function Instance(props) {
 		return true;
 	}, [cols, rows, isActive]);
 
-	useEffect(() => {
-		const sessionData = JSON.parse(sessionStorage.getItem(sessionDataKey));
-		if (sessionData.completed) return;
-		else if (checkComplete()) {
-			fetch(`${apiurl}/completed`, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-					authorization: token,
-				},
-				body: JSON.stringify({ completed: true }),
-			});
-			sessionData.completed = true;
-			sessionStorage.setItem(sessionDataKey, JSON.stringify(sessionData));
-		}
-	}, [sessionDataKey, checkComplete, apiurl, token]);
+	useUpdateCompleted("light", name, checkComplete);
 
 	const updateWork = async (work) => {
 		setSaveStatus("saving");
