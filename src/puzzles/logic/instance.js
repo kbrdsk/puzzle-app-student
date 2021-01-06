@@ -7,7 +7,7 @@ import React, {
 	useRef,
 } from "react";
 import { UserContext } from "../../login/user-context";
-import { useUpdateActivePuzzle } from "../../api-utils.js";
+import { useUpdateActivePuzzle, useUpdateWork } from "../../api-utils.js";
 
 export default function Instance(props) {
 	const name = useMemo(() => props.name, [props.name]);
@@ -56,54 +56,36 @@ export default function Instance(props) {
 
 	useUpdateActivePuzzle("logic", name);
 
-	const updateWork = useCallback(async () => {
-		setSaveStatus("saving");
-		const response = await fetch(apiurl, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				authorization: token,
-			},
-			body: JSON.stringify({ puzzleData: work }),
-		});
-
-		const newSessionData = JSON.parse(
-			sessionStorage.getItem(sessionDataKey)
-		);
-		newSessionData.work = work;
-		sessionStorage.setItem(sessionDataKey, JSON.stringify(newSessionData));
-
-		if (response.ok) setSaveStatus("saved");
-		else setSaveStatus("error");
-	}, [token, work, apiurl, sessionDataKey]);
+	const updateWork = useUpdateWork("logic", name, setSaveStatus);
+	const workUpdater = useCallback(() => updateWork(work), [work]);
 
 	useEffect(() => {
 		if (initializing.current) return (initializing.current = false);
 		setSaveStatus(null);
-		const clearHistoryListener = props.history.listen(updateWork);
-		const updateTimer = setTimeout(updateWork, 3000);
+		const clearHistoryListener = props.history.listen(workUpdater);
+		const updateTimer = setTimeout(workUpdater, 3000);
 		return () => {
 			clearTimeout(updateTimer);
 			clearHistoryListener();
 		};
-	}, [updateWork, props.history, setSaveStatus, initializing]);
+	}, [workUpdater, props.history, setSaveStatus, initializing]);
 
 	useEffect(() => {
 		const conditionalUpdater = () => {
-			if (saveStatus !== "saved") updateWork();
+			if (saveStatus !== "saved") workUpdater();
 		};
 		window.addEventListener("beforeunload", conditionalUpdater);
 		return () => {
 			window.removeEventListener("beforeunload", conditionalUpdater);
 		};
-	}, [updateWork, saveStatus]);
+	}, [workUpdater, saveStatus]);
 
 	useEffect(() => {
 		if (updateTimer === 0) {
 			setUpdateTimer(30);
-			if (!saveStatus) updateWork();
+			if (!saveStatus) workUpdater();
 		}
-	}, [updateTimer, updateWork, saveStatus]);
+	}, [updateTimer, workUpdater, saveStatus]);
 
 	useEffect(() => {
 		const timeInterval = setInterval(
@@ -120,7 +102,7 @@ export default function Instance(props) {
 				className="work"
 				onChange={(e) => {
 					setWork(e.target.value);
-					//updateWork();
+					//workUpdater();
 				}}
 				value={work}
 				placeholder="Enter your solution or any notes here!"

@@ -6,7 +6,11 @@ import React, {
 	useCallback,
 } from "react";
 import { UserContext } from "../../login/user-context";
-import { useUpdateActivePuzzle, useUpdateCompleted } from "../../api-utils.js";
+import {
+	useUpdateActivePuzzle,
+	useUpdateCompleted,
+	useUpdateWork,
+} from "../../api-utils.js";
 
 export default function Instance(props) {
 	const name = useMemo(() => props.name, [props.name]);
@@ -116,27 +120,7 @@ export default function Instance(props) {
 
 	useUpdateCompleted("light", name, checkComplete);
 
-	const updateWork = async (work) => {
-		setSaveStatus("saving");
-		const response = await fetch(apiurl, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				authorization: token,
-			},
-			body: JSON.stringify({ puzzleData: work }),
-		});
-
-		const newSessionData = JSON.parse(
-			sessionStorage.getItem(sessionDataKey)
-		);
-		newSessionData.work = work;
-		newSessionData.workPosition = work.length;
-		sessionStorage.setItem(sessionDataKey, JSON.stringify(newSessionData));
-
-		if (response.ok) setSaveStatus("saved");
-		else setSaveStatus("error");
-	};
+	const updateWork = useUpdateWork("light", name, setSaveStatus);
 
 	const triggerSquare = (square) => {
 		const updatedWork = [...work.slice(0, workPosition), square];

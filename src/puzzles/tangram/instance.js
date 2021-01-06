@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useContext, useEffect } from "react";
 import { UserContext } from "../../login/user-context";
-import { useUpdateActivePuzzle } from "../../api-utils.js";
+import { useUpdateActivePuzzle, useUpdateWork } from "../../api-utils.js";
 import { defaultData } from "./sample-data";
 import Controller from "./controller";
 
@@ -48,31 +48,15 @@ export default function Instance(props) {
 
 	useUpdateActivePuzzle("tangram", name);
 
-	const updateWork = async (shapes) => {
+	const updateWork = useUpdateWork("tangram", name, setSaveStatus);
+	const workUpdater = (shapes) => {
 		const newWork = { ...work };
 		for (let shape of shapes) {
 			const { name, center, angle } = shape;
 			newWork[name] = { center, angle };
 		}
 		setWork(newWork);
-		setSaveStatus("saving");
-		const response = await fetch(apiurl, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				authorization: token,
-			},
-			body: JSON.stringify({ puzzleData: newWork }),
-		});
-
-		const newSessionData = JSON.parse(
-			sessionStorage.getItem(sessionDataKey)
-		);
-		newSessionData.work = newWork;
-		sessionStorage.setItem(sessionDataKey, JSON.stringify(newSessionData));
-
-		if (response.ok) setSaveStatus("saved");
-		else setSaveStatus("error");
+		updateWork(newWork);
 	};
 
 	return (
@@ -81,7 +65,7 @@ export default function Instance(props) {
 			<Controller
 				data={data}
 				work={work}
-				updateWork={updateWork}
+				updateWork={workUpdater}
 				saveStatus={saveStatus}
 			/>
 		</div>

@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useContext, useEffect } from "react";
 import { UserContext } from "../../login/user-context";
-import { useUpdateActivePuzzle } from "../../api-utils.js";
+import { useUpdateActivePuzzle, useUpdateWork } from "../../api-utils.js";
 import Canvas from "./canvas";
 
 export default function Instance(props) {
@@ -59,26 +59,8 @@ export default function Instance(props) {
 
 	useUpdateActivePuzzle("matchstick", name);
 
-	const updateWork = async (newWork = work) => {
-		setSaveStatus("saving");
-		const response = await fetch(apiurl, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				authorization: token,
-			},
-			body: JSON.stringify({ puzzleData: newWork }),
-		});
-
-		const newSessionData = JSON.parse(
-			sessionStorage.getItem(sessionDataKey)
-		);
-		newSessionData.work = newWork;
-		sessionStorage.setItem(sessionDataKey, JSON.stringify(newSessionData));
-
-		if (response.ok) setSaveStatus("saved");
-		else setSaveStatus("error");
-	};
+	const updateWork = useUpdateWork("matchstick", name, setSaveStatus);
+	const workUpdater = (newWork = work) => updateWork(newWork);
 
 	const reset = () => {
 		const resetWork = data.startingConfiguration.map((stick) =>
@@ -87,7 +69,7 @@ export default function Instance(props) {
 			})
 		);
 		setWork(resetWork);
-		updateWork(resetWork);
+		workUpdater(resetWork);
 	};
 
 	return (
@@ -99,7 +81,7 @@ export default function Instance(props) {
 					puzzleData={data}
 					sticks={work}
 					setSticks={setWork}
-					updateWork={updateWork}
+					updateWork={workUpdater}
 				/>
 				<div className="saving-indicator">
 					{saveStatus === "saving"

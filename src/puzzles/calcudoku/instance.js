@@ -6,7 +6,11 @@ import React, {
 	useCallback,
 } from "react";
 import { UserContext } from "../../login/user-context";
-import { useUpdateActivePuzzle, useUpdateCompleted } from "../../api-utils.js";
+import {
+	useUpdateActivePuzzle,
+	useUpdateCompleted,
+	useUpdateWork,
+} from "../../api-utils.js";
 
 const parsedOperations = {
 	"-": "-",
@@ -80,29 +84,12 @@ export default function Instance(props) {
 
 	useUpdateCompleted("calcudoku", name, checkComplete);
 
-	const updateWork = async () => {
-		setSaveStatus("saving");
+	const updateWork = useUpdateWork("calcudoku", name, setSaveStatus);
+	const workUpdater = () => {
 		const work = grid.map((sq) => {
 			return { col: sq.col, row: sq.row, value: sq.value };
 		});
-
-		const response = await fetch(dburl, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				authorization: token,
-			},
-			body: JSON.stringify({ puzzleData: work }),
-		});
-
-		const newSessionData = JSON.parse(
-			sessionStorage.getItem(sessionDataKey)
-		);
-		newSessionData.work = work;
-		sessionStorage.setItem(sessionDataKey, JSON.stringify(newSessionData));
-
-		if (response.ok) setSaveStatus("saved");
-		else setSaveStatus("error");
+		updateWork(work);
 	};
 
 	const downHandler = ({ key }) => {
@@ -146,7 +133,7 @@ export default function Instance(props) {
 			}
 
 			setGrid([...grid]);
-			updateWork();
+			workUpdater();
 		} else if (
 			["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(key)
 		) {
@@ -197,7 +184,7 @@ export default function Instance(props) {
 				onClick={() => {
 					activeSquare.value = number;
 					setGrid([...grid]);
-					updateWork();
+					workUpdater();
 				}}
 			>
 				{number}
