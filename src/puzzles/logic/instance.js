@@ -1,15 +1,9 @@
-import React, {
-	useState,
-	useEffect,
-	useCallback,
-	useMemo,
-	useRef,
-} from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useUpdateActivePuzzle, useUpdateWork } from "../../api-utils.js";
 
 export default function Instance(props) {
-	const name = useMemo(() => props.name, [props.name]);
-	const sessionDataKey = useMemo(() => `logic-instance-data-${name}`, [name]);
+	const { name } = props;
+	const sessionDataKey = `logic-instance-data-${name}`;
 	const sessionData = JSON.parse(sessionStorage.getItem(sessionDataKey));
 	const { description } = sessionData;
 	const [work, setWork] = useState(sessionData.work);

@@ -1,16 +1,10 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { useUpdateActivePuzzle, useUpdateWork } from "../../api-utils.js";
 import Canvas from "./canvas";
 
-export default function Instance(props) {
-	const name = useMemo(() => props.name, [props.name]);
-	const sessionDataKey = useMemo(() => `matchstick-instance-data-${name}`, [
-		name,
-	]);
-	const data = useMemo(
-		() => JSON.parse(sessionStorage.getItem(sessionDataKey)),
-		[sessionDataKey]
-	);
+export default function Instance({ name }) {
+	const sessionDataKey = `matchstick-instance-data-${name}`;
+	const data = JSON.parse(sessionStorage.getItem(sessionDataKey));
 	const [work, setWork] = useState(data.work);
 	const [saveStatus, setSaveStatus] = useState("saved");
 

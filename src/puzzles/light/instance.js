@@ -1,17 +1,13 @@
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import {
 	useUpdateActivePuzzle,
 	useUpdateCompleted,
 	useUpdateWork,
 } from "../../api-utils.js";
 
-export default function Instance(props) {
-	const name = useMemo(() => props.name, [props.name]);
-	const sessionDataKey = useMemo(() => `light-instance-data-${name}`, [name]);
-	const data = useMemo(
-		() => JSON.parse(sessionStorage.getItem(sessionDataKey)),
-		[sessionDataKey]
-	);
+export default function Instance({ name }) {
+	const sessionDataKey = `light-instance-data-${name}`;
+	const data = JSON.parse(sessionStorage.getItem(sessionDataKey));
 	const [work, setWork] = useState(data.work);
 	const [workPosition, setWorkPosition] = useState(
 		data.workPosition || work.length

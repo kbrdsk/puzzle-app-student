@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
 	useUpdateActivePuzzle,
 	useUpdateCompleted,
@@ -12,15 +12,9 @@ const parsedOperations = {
 	"/": "÷",
 };
 
-export default function Instance(props) {
-	const name = useMemo(() => props.name, [props.name]);
-	const sessionDataKey = useMemo(() => `calcudoku-instance-data-${name}`, [
-		name,
-	]);
-	const sessionData = useMemo(
-		() => JSON.parse(sessionStorage.getItem(sessionDataKey)),
-		[sessionDataKey]
-	);
+export default function Instance({ name }) {
+	const sessionDataKey = `calcudoku-instance-data-${name}`;
+	const sessionData = JSON.parse(sessionStorage.getItem(sessionDataKey));
 	const { size, cages } = sessionData;
 	const [grid, setGrid] = useState(generateGrid(sessionData));
 	const [activeSquare, setActiveSquare] = useState(null);
