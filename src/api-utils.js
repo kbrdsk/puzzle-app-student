@@ -89,3 +89,25 @@ export function useUpdateWork(puzzleName, puzzleId, setSaveStatus) {
 		else setSaveStatus("error");
 	};
 }
+
+export function useFetchPuzzleData(puzzleName, puzzleId) {
+	const {
+		user: { token },
+	} = useContext(UserContext);
+	const sessionDataKey = `${puzzleName}-instance-data-${puzzleId}`;
+	const apiurl =
+		`${process.env.REACT_APP_API_URL}/puzzles/` +
+		`${puzzleName}/${puzzleId}`;
+	return async () => {
+		const response = await fetch(apiurl, {
+			method: "GET",
+			header: { authorization: token },
+		});
+		if (response.ok) {
+			const data = await response.json();
+			sessionStorage.setItem(sessionDataKey, JSON.stringify(data));
+		} else {
+			throw new Error(`HTTP error, status = ${response.status}`);
+		}
+	};
+}
