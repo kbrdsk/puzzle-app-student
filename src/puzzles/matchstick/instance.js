@@ -7,10 +7,8 @@ export default function Instance({ name }) {
 	const data = JSON.parse(sessionStorage.getItem(sessionDataKey));
 	const [work, setWork] = useState(data.work);
 	const [saveStatus, setSaveStatus] = useState("saved");
-
-	useUpdateActivePuzzle("matchstick", name);
-
 	const updateWork = useUpdateWork("matchstick", name, setSaveStatus);
+
 	const workUpdater = (newWork = work) => updateWork(newWork);
 
 	const reset = () => {
@@ -22,6 +20,8 @@ export default function Instance({ name }) {
 		setWork(resetWork);
 		workUpdater(resetWork);
 	};
+
+	useUpdateActivePuzzle("matchstick", name);
 
 	return (
 		<div className="matchstick puzzle-container">

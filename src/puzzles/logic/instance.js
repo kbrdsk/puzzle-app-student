@@ -10,11 +10,10 @@ export default function Instance(props) {
 	const [saveStatus, setSaveStatus] = useState("saved");
 	const [updateTimer, setUpdateTimer] = useState(30);
 	const initializing = useRef(true);
-
-	useUpdateActivePuzzle("logic", name);
-
 	const updateWork = useUpdateWork("logic", name, setSaveStatus);
 	const workUpdater = useCallback(() => updateWork(work), [work]);
+
+	useUpdateActivePuzzle("logic", name);
 
 	useEffect(() => {
 		if (initializing.current) return (initializing.current = false);

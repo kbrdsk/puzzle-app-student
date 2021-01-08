@@ -18,8 +18,7 @@ export default function Instance({ name }) {
 		neighborType,
 	} = data;
 	const [saveStatus, setSaveStatus] = useState("saved");
-
-	useUpdateActivePuzzle("light", name);
+	const updateWork = useUpdateWork("light", name, setSaveStatus);
 
 	const neighborList = ({ row, col }) => {
 		switch (neighborType) {
@@ -67,10 +66,6 @@ export default function Instance({ name }) {
 		return true;
 	}, [cols, rows, isActive]);
 
-	useUpdateCompleted("light", name, checkComplete);
-
-	const updateWork = useUpdateWork("light", name, setSaveStatus);
-
 	const triggerSquare = (square) => {
 		const updatedWork = [...work.slice(0, workPosition), square];
 		setWorkPosition(workPosition + 1);
@@ -106,6 +101,9 @@ export default function Instance({ name }) {
 		newSessionData.workPosition = position;
 		sessionStorage.setItem(sessionDataKey, JSON.stringify(newSessionData));
 	};
+
+	useUpdateCompleted("light", name, checkComplete);
+	useUpdateActivePuzzle("light", name);
 
 	return (
 		<div className="light-puzzle-container">

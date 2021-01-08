@@ -19,8 +19,7 @@ export default function Instance({ name }) {
 	const [grid, setGrid] = useState(generateGrid(sessionData));
 	const [activeSquare, setActiveSquare] = useState(null);
 	const [saveStatus, setSaveStatus] = useState("saved");
-
-	useUpdateActivePuzzle("calcudoku", name);
+	const updateWork = useUpdateWork("calcudoku", name, setSaveStatus);
 
 	const checkComplete = useCallback(() => {
 		const hasCageError = cages.reduce(
@@ -34,10 +33,7 @@ export default function Instance({ name }) {
 
 		return !hasCageError && !hasDuplicate;
 	}, [grid, cages]);
-
-	useUpdateCompleted("calcudoku", name, checkComplete);
-
-	const updateWork = useUpdateWork("calcudoku", name, setSaveStatus);
+	
 	const workUpdater = () => {
 		const work = grid.map((sq) => {
 			return { col: sq.col, row: sq.row, value: sq.value };
@@ -94,11 +90,6 @@ export default function Instance({ name }) {
 		}
 	};
 
-	useEffect(() => {
-		window.addEventListener("keydown", downHandler);
-		return () => window.removeEventListener("keydown", downHandler);
-	});
-
 	const renderSquare = (square) => {
 		const matchSquare = squareMatcher(square);
 		const cage =
@@ -144,6 +135,13 @@ export default function Instance({ name }) {
 			</button>
 		);
 	};
+
+	useUpdateActivePuzzle("calcudoku", name);
+	useUpdateCompleted("calcudoku", name, checkComplete);
+	useEffect(() => {
+		window.addEventListener("keydown", downHandler);
+		return () => window.removeEventListener("keydown", downHandler);
+	});
 
 	return (
 		<div>
