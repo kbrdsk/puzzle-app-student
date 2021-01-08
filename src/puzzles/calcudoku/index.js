@@ -1,7 +1,7 @@
 import React from "react";
 import Instructions from "./instructions";
 import Instance from "./instance";
-import { fetchUserData } from "../../index";
+import { fetchUserData } from "../../api-utils";
 
 const name = "Calcudokus";
 const id = "calcudoku";

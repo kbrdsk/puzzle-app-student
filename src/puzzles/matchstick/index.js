@@ -1,7 +1,7 @@
 import React from "react";
 import Instance from "./instance";
 import Instructions from "./instructions";
-import { fetchUserData } from "../../index";
+import { fetchUserData } from "../../api-utils";
 
 const name = "Matchstick Puzzles";
 const id = "matchstick";

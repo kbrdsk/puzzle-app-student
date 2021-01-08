@@ -1,7 +1,7 @@
 import React from "react";
 import List from "./instance-list";
 import Instructions from "./instructions";
-import { fetchUserData } from "../../index";
+import { fetchUserData } from "../../api-utils";
 
 const name = "Light Puzzles";
 const id = "light";

@@ -111,3 +111,25 @@ export function useFetchPuzzleData(puzzleName, puzzleId) {
 		}
 	};
 }
+
+export async function fetchUserData({ token }) {
+	const url = `${process.env.REACT_APP_API_URL}/data`;
+	const response = await fetch(url, {
+		method: "GET",
+		headers: {
+			authorization: token,
+		},
+	});
+	if (response.ok) {
+		const data = await response.json();
+		for (let puzzleName in data) {
+			for (let puzzle of data[puzzleName]) {
+				const { puzzleId } = puzzle;
+				const instanceKey = `${puzzleName}-instance-data-${puzzleId}`;
+				sessionStorage.setItem(instanceKey, JSON.stringify(puzzle));
+			}
+		}
+	} else {
+		console.log(`HTTP error, status = ${response.status}`);
+	}
+}

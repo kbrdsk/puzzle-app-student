@@ -8,6 +8,7 @@ import { UserContext } from "./login/user-context";
 import Home from "./home/index";
 import { puzzleList } from "./puzzles/index";
 import InstanceRouter from "./puzzles/instance-router";
+import { fetchUserData } from "./api-utils"
 
 import "./stylesheets/index.css";
 
@@ -132,28 +133,6 @@ function renderPuzzleRoute(puzzle) {
 			)}
 		/>
 	);
-}
-
-export async function fetchUserData({ token }) {
-	const url = `${process.env.REACT_APP_API_URL}/data`;
-	const response = await fetch(url, {
-		method: "GET",
-		headers: {
-			authorization: token,
-		},
-	});
-	if (response.ok) {
-		const data = await response.json();
-		for (let puzzleName in data) {
-			for (let puzzle of data[puzzleName]) {
-				const { puzzleId } = puzzle;
-				const instanceKey = `${puzzleName}-instance-data-${puzzleId}`;
-				sessionStorage.setItem(instanceKey, JSON.stringify(puzzle));
-			}
-		}
-	} else {
-		console.log(`HTTP error, status = ${response.status}`);
-	}
 }
 
 function capitalize(string) {

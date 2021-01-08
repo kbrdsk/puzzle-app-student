@@ -1,6 +1,6 @@
 import React from "react";
 import Instance from "./instance";
-import { fetchUserData } from "../../index";
+import { fetchUserData } from "../../api-utils";
 
 const name = "Logic Puzzles";
 const id = "logic";
