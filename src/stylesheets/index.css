@@ -827,10 +827,23 @@ div.calcudoku-instructions h2 {
 
 div.logic.instance p.puzzle-description {
   white-space: pre-wrap;
+  padding: 1em;
+  color: #17065d;
 }
 div.logic.instance textarea {
+  font-family: inherit;
+  font-weight: lighter;
+  box-sizing: border-box;
+  font-size: 1em;
   width: 100%;
   height: 13em;
+  border: solid 3px #280ba4;
+  border-radius: 1em;
+  padding: 1em;
+  background-color: #f4f2fe;
+}
+div.logic.instance textarea:focus {
+  outline: none;
 }
 div.logic.instance div.saving-indicator {
   text-align: right;
