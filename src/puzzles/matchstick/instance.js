@@ -1,5 +1,4 @@
-import React, { useState, useMemo, useContext, useEffect } from "react";
-import { UserContext } from "../../login/user-context";
+import React, { useState, useMemo } from "react";
 import { useUpdateActivePuzzle, useUpdateWork } from "../../api-utils.js";
 import Canvas from "./canvas";
 
@@ -8,54 +7,12 @@ export default function Instance(props) {
 	const sessionDataKey = useMemo(() => `matchstick-instance-data-${name}`, [
 		name,
 	]);
-	const sessionData = useMemo(
+	const data = useMemo(
 		() => JSON.parse(sessionStorage.getItem(sessionDataKey)),
 		[sessionDataKey]
 	);
-	const [data, setData] = useState(
-		sessionData
-			? sessionData
-			: {
-					size: {},
-					work: [],
-					startingConfiguration: [],
-					stickLength: 0,
-					selectionProximity: 0,
-					height: 0,
-					width: 0,
-			  }
-	);
 	const [work, setWork] = useState(data.work);
-	const [saveStatus, setSaveStatus] = useState(sessionData ? "saved" : null);
-	const {
-		user: { token },
-	} = useContext(UserContext);
-	const apiurl = `${process.env.REACT_APP_API_URL}/puzzles/matchstick/${name}`;
-
-	useEffect(() => {
-		if (!sessionData) {
-			(async () => {
-				const response = await fetch(apiurl, {
-					method: "GET",
-					headers: { authorization: token },
-				});
-				if (response.ok) {
-					try {
-						const responseData = await response.json();
-						sessionStorage.setItem(
-							sessionDataKey,
-							JSON.stringify(responseData)
-						);
-						setData(responseData);
-						setWork(responseData.work);
-						setSaveStatus("saved");
-					} catch (error) {
-						console.log(error);
-					}
-				} else console.log("HTTP error, status = " + response.status);
-			})();
-		}
-	}, [apiurl, token, sessionData, sessionDataKey]);
+	const [saveStatus, setSaveStatus] = useState("saved");
 
 	useUpdateActivePuzzle("matchstick", name);
 

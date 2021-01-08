@@ -1,11 +1,4 @@
-import React, {
-	useState,
-	useMemo,
-	useContext,
-	useEffect,
-	useCallback,
-} from "react";
-import { UserContext } from "../../login/user-context";
+import React, { useState, useMemo, useCallback } from "react";
 import {
 	useUpdateActivePuzzle,
 	useUpdateCompleted,
@@ -15,20 +8,9 @@ import {
 export default function Instance(props) {
 	const name = useMemo(() => props.name, [props.name]);
 	const sessionDataKey = useMemo(() => `light-instance-data-${name}`, [name]);
-	const sessionData = useMemo(
+	const data = useMemo(
 		() => JSON.parse(sessionStorage.getItem(sessionDataKey)),
 		[sessionDataKey]
-	);
-	const [data, setData] = useState(
-		sessionData
-			? sessionData
-			: {
-					size: {},
-					work: [],
-					beginstate: [],
-					neighborType: "+",
-					workPosition: 0,
-			  }
 	);
 	const [work, setWork] = useState(data.work);
 	const [workPosition, setWorkPosition] = useState(
@@ -39,36 +21,7 @@ export default function Instance(props) {
 		beginstate,
 		neighborType,
 	} = data;
-	const [saveStatus, setSaveStatus] = useState(sessionData ? "saved" : null);
-	const {
-		user: { token },
-	} = useContext(UserContext);
-	const apiurl = `${process.env.REACT_APP_API_URL}/puzzles/light/${name}`;
-
-	useEffect(() => {
-		if (!sessionData) {
-			(async () => {
-				const response = await fetch(apiurl, {
-					method: "GET",
-					headers: { authorization: token },
-				});
-				if (response.ok) {
-					try {
-						const responseData = await response.json();
-						sessionStorage.setItem(
-							sessionDataKey,
-							JSON.stringify(responseData)
-						);
-						setData(responseData);
-						setWork(responseData.work);
-						setSaveStatus("saved");
-					} catch (error) {
-						console.log(error);
-					}
-				} else console.log("HTTP error, status = " + response.status);
-			})();
-		}
-	}, [apiurl, token, sessionData, sessionDataKey]);
+	const [saveStatus, setSaveStatus] = useState("saved");
 
 	useUpdateActivePuzzle("light", name);
 

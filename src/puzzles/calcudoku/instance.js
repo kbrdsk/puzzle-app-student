@@ -1,11 +1,4 @@
-import React, {
-	useState,
-	useEffect,
-	useContext,
-	useMemo,
-	useCallback,
-} from "react";
-import { UserContext } from "../../login/user-context";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import {
 	useUpdateActivePuzzle,
 	useUpdateCompleted,
@@ -28,44 +21,10 @@ export default function Instance(props) {
 		() => JSON.parse(sessionStorage.getItem(sessionDataKey)),
 		[sessionDataKey]
 	);
-	const [size, setSize] = useState(sessionData ? sessionData.size : null);
-	const [grid, setGrid] = useState(
-		sessionData ? generateGrid(sessionData) : null
-	);
-	const [cages, setCages] = useState(sessionData ? sessionData.cages : null);
+	const { size, cages } = sessionData;
+	const [grid, setGrid] = useState(generateGrid(sessionData));
 	const [activeSquare, setActiveSquare] = useState(null);
-	const [saveStatus, setSaveStatus] = useState(sessionData ? "saved" : null);
-	const {
-		user: { token },
-	} = useContext(UserContext);
-	const dburl = `${process.env.REACT_APP_API_URL}/puzzles/calcudoku/${name}`;
-
-	useEffect(() => {
-		if (!sessionData) {
-			(async () => {
-				const response = await fetch(dburl, {
-					method: "GET",
-					headers: { authorization: token },
-				});
-				if (response.ok) {
-					try {
-						const data = await response.json();
-						sessionStorage.setItem(
-							sessionDataKey,
-							JSON.stringify(data)
-						);
-						setSize(data.size);
-						setGrid(generateGrid(data));
-						setCages(data.cages);
-						setSaveStatus("saved");
-					} catch (error) {
-						setGrid([]);
-						console.log(error);
-					}
-				} else console.log("HTTP error, status = " + response.status);
-			})();
-		}
-	}, [dburl, token, sessionData, sessionDataKey]);
+	const [saveStatus, setSaveStatus] = useState("saved");
 
 	useUpdateActivePuzzle("calcudoku", name);
 

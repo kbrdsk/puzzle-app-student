@@ -1,58 +1,21 @@
 import React, {
 	useState,
 	useEffect,
-	useContext,
 	useCallback,
 	useMemo,
 	useRef,
 } from "react";
-import { UserContext } from "../../login/user-context";
 import { useUpdateActivePuzzle, useUpdateWork } from "../../api-utils.js";
 
 export default function Instance(props) {
 	const name = useMemo(() => props.name, [props.name]);
 	const sessionDataKey = useMemo(() => `logic-instance-data-${name}`, [name]);
-	const [description, setDescription] = useState("");
-	const [work, setWork] = useState("");
-	const [saveStatus, setSaveStatus] = useState(null);
+	const sessionData = JSON.parse(sessionStorage.getItem(sessionDataKey));
+	const { description } = sessionData;
+	const [work, setWork] = useState(sessionData.work);
+	const [saveStatus, setSaveStatus] = useState("saved");
 	const [updateTimer, setUpdateTimer] = useState(30);
 	const initializing = useRef(true);
-	const {
-		user: { token },
-	} = useContext(UserContext);
-	const apiurl = `${process.env.REACT_APP_API_URL}/puzzles/logic/${name}`;
-
-	useMemo(() => {
-		const sessionData = JSON.parse(sessionStorage.getItem(sessionDataKey));
-
-		if (sessionData) {
-			setDescription(sessionData.description);
-			setWork(sessionData.work);
-			setSaveStatus("saved");
-			return;
-		}
-
-		(async () => {
-			const response = await fetch(apiurl, {
-				method: "GET",
-				headers: { authorization: token },
-			});
-			if (response.ok) {
-				try {
-					const { description, work } = await response.json();
-					sessionStorage.setItem(
-						sessionDataKey,
-						JSON.stringify({ description, work })
-					);
-					setDescription(description);
-					setWork(work);
-					setSaveStatus("saved");
-				} catch (error) {
-					console.log(error);
-				}
-			} else console.log("HTTP error, status = " + response.status);
-		})();
-	}, [apiurl, token, setWork, sessionDataKey]);
 
 	useUpdateActivePuzzle("logic", name);
 
